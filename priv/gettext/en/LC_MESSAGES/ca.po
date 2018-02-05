@@ -1,0 +1,98 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "Good Friday"
+msgstr ""
+
+msgid "Easter Sunday"
+msgstr ""
+
+msgid "Easter Monday"
+msgstr ""
+
+msgid "New Year's Day"
+msgstr ""
+
+msgid "New Year's"
+msgstr ""
+
+msgid "Family Day"
+msgstr ""
+
+msgid "Louis Riel Day"
+msgstr ""
+
+msgid "Nova Scotia Heritage Day"
+msgstr ""
+
+msgid "Islander Day"
+msgstr ""
+
+msgid "St. Patrick's Day"
+msgstr ""
+
+msgid "Victoria Day"
+msgstr ""
+
+msgid "National Patriotes Day"
+msgstr ""
+
+msgid "Discovery Day"
+msgstr ""
+
+msgid "Fête Nationale"
+msgstr ""
+
+msgid "National Aboriginal Day"
+msgstr ""
+
+msgid "Canada Day"
+msgstr ""
+
+msgid "Orangemen's Day"
+msgstr ""
+
+msgid "Nunavut Day"
+msgstr ""
+
+msgid "B.C. Day"
+msgstr ""
+
+msgid "Saskatchewan Day"
+msgstr ""
+
+msgid "Heritage Day"
+msgstr ""
+
+msgid "Natal Day"
+msgstr ""
+
+msgid "Civic Holiday"
+msgstr ""
+
+msgid "New Brunswick Day"
+msgstr ""
+
+msgid "Labour Day"
+msgstr ""
+
+msgid "Thanksgiving"
+msgstr ""
+
+msgid "Remembrance Day"
+msgstr ""
+
+msgid "Christmas Day"
+msgstr ""
+
+msgid "Boxing Day"
+msgstr ""

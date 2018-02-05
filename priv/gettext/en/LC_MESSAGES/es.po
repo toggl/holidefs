@@ -1,0 +1,98 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "Jueves Santo"
+msgstr "Maundy Thursday"
+
+msgid "Viernes Santo"
+msgstr "Good Friday"
+
+msgid "Lunes de Pascua"
+msgstr "Easter Monday"
+
+msgid "Año Nuevo"
+msgstr "New Year's Day"
+
+msgid "Día de Reyes"
+msgstr "Epiphany"
+
+msgid "Día de Andalucía"
+msgstr "Andalusian National Day"
+
+msgid "Día de las Islas Baleares"
+msgstr "Balearic National Day"
+
+msgid "San José"
+msgstr "St. Joseph's Day"
+
+msgid "Día de Castilla y León"
+msgstr "Day of Castilla y León"
+
+msgid "San Jorge, Día de Aragón"
+msgstr "Aragonese National Day"
+
+msgid "Día del Trabajador"
+msgstr "Labour Day"
+
+msgid "Fiesta de la Comunidad"
+msgstr "Community Party"
+
+msgid "Día de las Canarias"
+msgstr "Canarians National Day"
+
+msgid "Día de la Región Castilla-La Mancha"
+msgstr "Day of the Castilla-La Mancha Region"
+
+msgid "Día de la Región de Murcia"
+msgstr "Day of the Region of Murcia"
+
+msgid "Día de La Rioja"
+msgstr "Day of La Rioja"
+
+msgid "Santiago Apostol"
+msgstr "Galician National Day"
+
+msgid "Asunción"
+msgstr "Assumption"
+
+msgid "Día de Ceuta"
+msgstr "Ceuta Day"
+
+msgid "Día de Asturias"
+msgstr "Asturias Day"
+
+msgid "Día de Extremadura"
+msgstr "Extremadura Day"
+
+msgid "Fiesta Nacional de Cataluña"
+msgstr "Catalonian National Day"
+
+msgid "Día de Valencia"
+msgstr "Valencia Day"
+
+msgid "Día de la Hispanidad"
+msgstr "Hispanic Heritage Day"
+
+msgid "Todos los Santos"
+msgstr "All Saints Day"
+
+msgid "Día de la Constitución"
+msgstr "Constitution Day"
+
+msgid "Inmaculada Concepción"
+msgstr "Immaculate Conception"
+
+msgid "Navidad del Señor"
+msgstr "Christmas Day"
+
+msgid "San Esteban"
+msgstr "St. Stephen's Day"

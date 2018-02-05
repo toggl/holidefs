@@ -1,0 +1,95 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "Good Friday"
+msgstr ""
+
+msgid "Easter Saturday"
+msgstr ""
+
+msgid "Easter Sunday"
+msgstr ""
+
+msgid "Easter Monday"
+msgstr ""
+
+msgid "New Year's Day"
+msgstr ""
+
+msgid "Australia Day"
+msgstr ""
+
+msgid "Royal Hobart Regatta"
+msgstr ""
+
+msgid "Labour Day"
+msgstr ""
+
+msgid "Eight Hours Day"
+msgstr ""
+
+msgid "March Public Holiday"
+msgstr ""
+
+msgid "Canberra Day"
+msgstr ""
+
+msgid "ANZAC Day"
+msgstr ""
+
+msgid "May Day"
+msgstr ""
+
+msgid "May Public Holiday"
+msgstr ""
+
+msgid "Foundation Day"
+msgstr ""
+
+msgid "Queen's Birthday"
+msgstr ""
+
+msgid "Queensland Day"
+msgstr ""
+
+msgid "Cairns Show"
+msgstr ""
+
+msgid "Ekka"
+msgstr ""
+
+msgid "Family & Community Day"
+msgstr ""
+
+msgid "Friday before the AFL Grand Final"
+msgstr ""
+
+msgid "Royal Hobart Show"
+msgstr ""
+
+msgid "G20 Day"
+msgstr ""
+
+msgid "Recreation Day"
+msgstr ""
+
+msgid "Melbourne Cup Day"
+msgstr ""
+
+msgid "Christmas Day"
+msgstr ""
+
+msgid "Boxing Day"
+msgstr ""
+
+msgid "Proclamation Day"
+msgstr ""

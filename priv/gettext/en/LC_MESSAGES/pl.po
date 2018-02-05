@@ -1,0 +1,128 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "Tłusty Czwartek"
+msgstr "Fat Thursday"
+
+msgid "Ostatki"
+msgstr "Slavic carnival"
+
+msgid "Środa Popielcowa"
+msgstr "Ash Wednesday"
+
+msgid "Niedziela Palmowa"
+msgstr "Palm Sunday"
+
+msgid "Wielki Czwartek"
+msgstr "Maundy Thursday"
+
+msgid "Wielki Piątek"
+msgstr "Good Friday"
+
+msgid "Wielka Sobota"
+msgstr "Holy Saturday"
+
+msgid "Niedziela Wielkanocna"
+msgstr "Easter"
+
+msgid "Poniedziałek Wielkanocny (Lany Poniedziałek)"
+msgstr "Easter Monday"
+
+msgid "Zesłanie Ducha Świętego (Zielone Świątki)"
+msgstr "Pentecost"
+
+msgid "Uroczystość Najświętszego Ciała i Krwi Pańskiej (Boże Ciało)"
+msgstr "Corpus Christi"
+
+msgid "Nowy Rok"
+msgstr "New Year's Day"
+
+msgid "Objawienie Pańskie (święto Trzech Króli)"
+msgstr "Epiphany"
+
+msgid "Dzień Babci"
+msgstr "Grandmother's Day"
+
+msgid "Dzień Dziadka"
+msgstr "Grandfather's Day"
+
+msgid "Ofiarowanie Pańskie (Matki Boskiej Gromnicznej)"
+msgstr "Candlemas"
+
+msgid "Dzień Zakochanych (Walentynki)"
+msgstr "Valentine's Day"
+
+msgid "Dzień Kobiet"
+msgstr "Women's Day"
+
+msgid "Dzień Mężczyzn"
+msgstr "Men's Day"
+
+msgid "Prima Aprilis"
+msgstr "April Fools' Day"
+
+msgid "Międzynarodowy Dzień Ziemi"
+msgstr "Earth Day"
+
+msgid "Święto Państwowe (Święto Pracy)"
+msgstr "Labour Day"
+
+msgid "Dzień Flagi Rzeczpospolitej Polskiej"
+msgstr "Flag Day 🇵🇱"
+
+msgid "Święto Narodowe Trzeciego Maja"
+msgstr "Constitution Day"
+
+msgid "Dzień Ojca"
+msgstr "Father's Day"
+
+msgid "Wniebowzięcie Najświętszej Maryi Panny"
+msgstr "Assumption of Mary"
+
+msgid "Święto Wojska Polskiego"
+msgstr "Armed Forces Day"
+
+msgid "Dzień Chłopaka"
+msgstr "Boys' Day"
+
+msgid "Dzień Nauczyciela (Dzień Edukacji Narodowej)"
+msgstr "Teachers' Day"
+
+msgid "Wszystkich Świętych"
+msgstr "All Saints' Day"
+
+msgid "Dzień Zaduszny"
+msgstr "All Souls' Day"
+
+msgid "Narodowe Święto Niepodległości"
+msgstr "Independence Day"
+
+msgid "Andrzejki"
+msgstr "Saint Andrew's Day"
+
+msgid "Barbórka (Dzień Górnika, Naftowca i Gazownika)"
+msgstr "Miners' Day"
+
+msgid "Mikołajki"
+msgstr "Saint Nicholas' Day"
+
+msgid "Wigilia Bożego Narodzenia"
+msgstr "Christmas Eve"
+
+msgid "pierwszy dzień Bożego Narodzenia"
+msgstr "Christmas Day"
+
+msgid "drugi dzień Bożego Narodzenia"
+msgstr "St. Stephen's Day"
+
+msgid "Sylwester"
+msgstr "New Year's Eve"

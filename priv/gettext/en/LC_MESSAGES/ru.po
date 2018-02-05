@@ -1,0 +1,41 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "Новый год"
+msgstr "New Year's Day"
+
+msgid "Новогодний праздник"
+msgstr "New Year's Celebration"
+
+msgid "Рождество Христово"
+msgstr "Nativity Day"
+
+msgid "День защитника Отечества"
+msgstr "Defender of the Fatherland Day"
+
+msgid "Международный женский день"
+msgstr "International Women's Day"
+
+msgid "Праздник Весны и Труда"
+msgstr "Spring and Labour Day"
+
+msgid "День Победы"
+msgstr "Victory Day"
+
+msgid "День России"
+msgstr "Russia Day"
+
+msgid "День Государственного флага Российской Федерации"
+msgstr "Day of the State Flag of the Russian Federation"
+
+msgid "День народного единства"
+msgstr "Day of National Unity"

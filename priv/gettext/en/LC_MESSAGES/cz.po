@@ -1,0 +1,50 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "Velký pátek"
+msgstr "Good Friday"
+
+msgid "Velikonoční pondělí"
+msgstr "Easter Monday"
+
+msgid "Den obnovy samostatného českého státu"
+msgstr "Restoration Day of the Independent Czech State"
+
+msgid "Svátek práce"
+msgstr "Labour Day"
+
+msgid "Den vítězství"
+msgstr "Liberation Day"
+
+msgid "Den slovanských věrozvěstů Cyrila a Metoděje"
+msgstr "Saints Cyril and Methodius Day"
+
+msgid "Den upálení mistra Jana Husa"
+msgstr "Jan Hus Day"
+
+msgid "Den české státnosti"
+msgstr "Czech Statehood Day"
+
+msgid "Den vzniku samostatného československého státu"
+msgstr "Independent Czechoslovak State Day"
+
+msgid "Den boje za svobodu a demokracii"
+msgstr "Struggle for Freedom and Democracy Day"
+
+msgid "Štědrý den"
+msgstr "Christmas Eve"
+
+msgid "1. svátek vánoční"
+msgstr "1. Christmas Day"
+
+msgid "2. svátek vánoční"
+msgstr "2. Christmas Day"

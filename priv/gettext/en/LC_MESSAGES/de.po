@@ -1,0 +1,80 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "Karfreitag"
+msgstr "Good Friday"
+
+msgid "Ostersonntag"
+msgstr "Easter Sunday"
+
+msgid "Ostermontag"
+msgstr "Easter Monday"
+
+msgid "Christi Himmelfahrt"
+msgstr "Ascension Day"
+
+msgid "Pfingstsonntag"
+msgstr "Whit Sunday"
+
+msgid "Pfingstmontag"
+msgstr "Whit Monday"
+
+msgid "Fronleichnam"
+msgstr "Corpus Christi"
+
+msgid "Weiberfastnacht"
+msgstr ""
+
+msgid "Rosenmontag"
+msgstr "Fasching"
+
+msgid "Aschermittwoch"
+msgstr "Ash Wednesday"
+
+msgid "Neujahrstag"
+msgstr "New Year's Day"
+
+msgid "Heilige Drei Könige"
+msgstr "Epiphany"
+
+msgid "Tag der Arbeit"
+msgstr "Labour Day"
+
+msgid "Mariä Himmelfahrt"
+msgstr "Assumption Day"
+
+msgid "Friedensfest"
+msgstr "Peace Festival"
+
+msgid "Tag der Deutschen Einheit"
+msgstr "German Unity Day"
+
+msgid "Reformationstag"
+msgstr "Reformation Day"
+
+msgid "Allerheiligen"
+msgstr "All Sains"
+
+msgid "Buß- und Bettag"
+msgstr "Repentance and Prayer Day"
+
+msgid "Heilig Abend"
+msgstr "Christmas Eve"
+
+msgid "1. Weihnachtstag"
+msgstr "1. Christmas Day"
+
+msgid "2. Weihnachtstag"
+msgstr "2. Christmas Day"
+
+msgid "Silvester"
+msgstr "New Year's Eve"

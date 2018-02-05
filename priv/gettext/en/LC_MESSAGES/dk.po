@@ -1,0 +1,83 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "Fastelavn"
+msgstr "Mardi Gras"
+
+msgid "Palmesøndag"
+msgstr "Palm Sunday"
+
+msgid "Skærtorsdag"
+msgstr "Maundy Thursday"
+
+msgid "Langfredag"
+msgstr "Good Friday"
+
+msgid "Påskedag"
+msgstr "Easter Sunday"
+
+msgid "2. påskedag"
+msgstr "Easter Monday"
+
+msgid "Store Bededag"
+msgstr "General Prayer Day"
+
+msgid "Kristi Himmelfartsdag"
+msgstr "Ascension Day"
+
+msgid "Pinsedag"
+msgstr "Whit Sunday"
+
+msgid "2. Pinsedag"
+msgstr "Whit Monday"
+
+msgid "Nytårsdag"
+msgstr "New Year's Day"
+
+msgid "1. april"
+msgstr "April Fools' Day"
+
+msgid "Danmarks besættelse"
+msgstr "Occupation of Denmark"
+
+msgid "Dronningens fødselsdag"
+msgstr "Birthday of Queen Margrethe II"
+
+msgid "Arbejdernes kampdag"
+msgstr "International Workers' Day"
+
+msgid "Danmarks befrielse"
+msgstr "Liberation day"
+
+msgid "Grundlovsdag"
+msgstr "Constitution Day "
+
+msgid "Valdemarsdag og Genforeningsdag"
+msgstr "Day of Valdemar and Reunion Day"
+
+msgid "Sankt Hans aften"
+msgstr "Saint John's Eve"
+
+msgid "Mortensaften"
+msgstr "The eve before Saint Martin's day"
+
+msgid "Sankt Lucia"
+msgstr "Saint Lucy's Day"
+
+msgid "Juleaftensdag"
+msgstr "Christmas Eve"
+
+msgid "1. juledag"
+msgstr "1. Christmas Day"
+
+msgid "2. juledag"
+msgstr "2. Christmas Day"

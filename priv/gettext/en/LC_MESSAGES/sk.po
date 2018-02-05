@@ -1,0 +1,56 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "Veľkonočný pondelok"
+msgstr "Easter Monday"
+
+msgid "Veľký piatok"
+msgstr "Good Friday"
+
+msgid "Nový rok"
+msgstr "New Year's Day"
+
+msgid "Zjavenie Pána (Traja králi)"
+msgstr "The Revelation of the Lord (Three Kings)"
+
+msgid "Sviatok práce"
+msgstr "Labor Day"
+
+msgid "Deň víťazstva nad fašizmom"
+msgstr "Day of victory over fascism"
+
+msgid "Sviatok svätého Cyrila a svätého Metoda"
+msgstr "St. Cyril's Day and the Holy Method"
+
+msgid "Výročie Slovenského národného povstania"
+msgstr "The anniversary of the Slovak National Uprising"
+
+msgid "Deň Ústavy Slovenskej republiky"
+msgstr "Slovak Constitution Day"
+
+msgid "Sedembolestná Panna Mária"
+msgstr "The Assumption of Mary"
+
+msgid "Sviatok všetkých svätých"
+msgstr "All Saints' Day"
+
+msgid "Deň boja za slobodu a demokraciu"
+msgstr "Day of Fight for Freedom and Democracy"
+
+msgid "Štedrý deň"
+msgstr "Christmas Eve"
+
+msgid "1. sviatok vianočný"
+msgstr "1st Christmas Holiday"
+
+msgid "2. sviatok vianočný"
+msgstr "2nd Christmas Holiday"

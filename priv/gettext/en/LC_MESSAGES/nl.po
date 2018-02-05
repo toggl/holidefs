@@ -1,0 +1,50 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "Goede Vrijdag"
+msgstr "Good Friday"
+
+msgid "Eerste Paasdag"
+msgstr "First Easter Day"
+
+msgid "Tweede Paasdag"
+msgstr "Second Easter Day"
+
+msgid "Hemelvaartsdag"
+msgstr "Ascension Day"
+
+msgid "Eerste Pinksterdag"
+msgstr "Pentecost"
+
+msgid "Tweede Pinksterdag"
+msgstr "Whit Monday"
+
+msgid "Nieuwjaarsdag"
+msgstr "New Year's Day"
+
+msgid "Koningsdag"
+msgstr "Royal Day"
+
+msgid "Dodenherdenking"
+msgstr "Remembrance Day"
+
+msgid "Bevrijdingsdag"
+msgstr "Liberation Day"
+
+msgid "Sinterklaas"
+msgstr "Saint Nicholas Day"
+
+msgid "Eerste Kerstdag"
+msgstr "First Christmas Day"
+
+msgid "Tweede Kerstdag"
+msgstr "Boxing Day"

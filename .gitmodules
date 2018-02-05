@@ -1,0 +1,3 @@
+[submodule "priv/calendars/definitions"]
+	path = priv/calendars/definitions
+	url = git@github.com:holidays/definitions.git

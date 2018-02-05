@@ -1,0 +1,86 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "Karfreitag"
+msgstr "Good Friday"
+
+msgid "Ostermontag"
+msgstr "Easter Monday"
+
+msgid "Auffahrt"
+msgstr "Ascension Day"
+
+msgid "Pfingstmontag"
+msgstr "Whit Monday"
+
+msgid "Fronleichnam"
+msgstr "Corpus Christi"
+
+msgid "Lundi du Jeûne fédéral"
+msgstr "Federal Fast Monday"
+
+msgid "Jeûne genevois"
+msgstr "Geneva fast"
+
+msgid "Neujahrstag"
+msgstr "New Years Day"
+
+msgid "Berchtoldstag"
+msgstr "Berchtolds Day"
+
+msgid "Dreikönigstag"
+msgstr "Epiphany"
+
+msgid "Instauration de la République"
+msgstr "Establishment of the Republic"
+
+msgid "Josephstag"
+msgstr "St Joseph's Day"
+
+msgid "Näfelser Fahrt"
+msgstr ""
+
+msgid "Tag der Arbeit"
+msgstr "Labour Day"
+
+msgid "Commémoration du plébiscite jurassien"
+msgstr "Commemoration of the Jura plebiscite"
+
+msgid "San Pietro e Paolo"
+msgstr "St Peter and St Paul"
+
+msgid "Bundesfeiertag"
+msgstr "National Day"
+
+msgid "Mariä Himmelfahrt"
+msgstr "Assumption Day"
+
+msgid "Mauritiustag"
+msgstr ""
+
+msgid "Bruderklausenfest"
+msgstr "Saint Nicholas of Flüe"
+
+msgid "Allerheiligen"
+msgstr "All Saints' Day"
+
+msgid "Maria Empfängnis"
+msgstr "Immaculate Conpection Day"
+
+msgid "Weihnachten"
+msgstr "Christmas Day"
+
+msgid "Stefanstag"
+msgstr "St Stephens Day"
+
+msgid "Restauration de la République"
+msgstr "Restoration Day"
