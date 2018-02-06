@@ -4,7 +4,7 @@ defmodule Holidefs.Definition.Rule do
   when it happens on a year.
   """
 
-  alias Holidefs.CustomFunctions
+  alias Holidefs.Definition.CustomFunctions
   alias Holidefs.Definition.Rule
 
   defstruct [
