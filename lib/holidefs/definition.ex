@@ -20,17 +20,21 @@ defmodule Holidefs.Definition do
   @doc """
   Returns the path for the given locale definition file
   """
-  @spec file_path(String.t()) :: Path.t()
-  def file_path(code) do
-    Path.join(@path, "#{String.downcase(code)}.yaml")
-  end
+  @spec file_path(Atom.t()) :: Path.t()
+  def file_path(code), do: Path.join(@path, "#{code}.yaml")
+
+  @doc """
+  Returns the path where all the locale definitions are saved
+  """
+  @spec path() :: Path.t()
+  def path, do: @path
 
   @doc """
   Loads the definition for a locale code and name.
 
   If any definition rule is invalid, a RuntimeError will be raised
   """
-  @spec load!(String.t(), String.t()) :: t
+  @spec load!(Atom.t(), String.t()) :: t
   def load!(code, name) do
     rules =
       code

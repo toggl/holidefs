@@ -29,10 +29,16 @@ defmodule Holidefs.Store do
   @doc """
   Sets the language to translate the keys to.
 
-  To use the original descriptions, you can set the language to `"orig"`
+  To use the original descriptions, you can set the language to `:orig`
   """
-  @spec set_language(String.t()) :: nil
-  def set_language(locale) do
+  @spec set_language(Atom.t() | String.t()) :: nil
+  def set_language(locale) when is_atom(locale) do
+    locale
+    |> Atom.to_string()
+    |> set_language()
+  end
+
+  def set_language(locale) when is_binary(locale) do
     Agent.cast(__MODULE__, fn state ->
       Gettext.put_locale(Holidefs.Gettext, locale)
       state
@@ -53,7 +59,7 @@ defmodule Holidefs.Store do
   If succeed returns a `{:ok, events}` tuple, otherwise
   returns a `{:error, reason}` tuple
   """
-  @spec on(String.t(), Date.t()) :: {:ok, [Holidefs.Event.t()]} | {:error, String.t()}
+  @spec on(Atom.t(), Date.t()) :: {:ok, [Holidefs.Event.t()]} | {:error, String.t()}
   def on(locale, date, opts \\ []) do
     Agent.get(__MODULE__, fn state ->
       state
@@ -68,7 +74,7 @@ defmodule Holidefs.Store do
   If succeed returns a `{:ok, events}` tuple, otherwise
   returns a `{:error, reason}` tuple
   """
-  @spec year(String.t(), integer) :: {:ok, [Holidefs.Event.t()]} | {:error, String.t()}
+  @spec year(Atom.t(), integer) :: {:ok, [Holidefs.Event.t()]} | {:error, String.t()}
   def year(locale, year, opts \\ []) do
     Agent.get(__MODULE__, fn state ->
       state
@@ -84,7 +90,7 @@ defmodule Holidefs.Store do
   If succeed returns a `{:ok, events}` tuple, otherwise
   returns a `{:error, reason}` tuple
   """
-  @spec between(String.t(), Date.t(), Date.t()) ::
+  @spec between(Atom.t(), Date.t(), Date.t()) ::
           {:ok, [Holidefs.Event.t()]} | {:error, String.t()}
   def between(locale, start, finish, opts \\ []) do
     Agent.get(__MODULE__, fn state ->
@@ -102,16 +108,16 @@ defmodule Holidefs.Store do
     {:error, :no_def}
   end
 
-  defp find_year(%Definition{rules: rules}, year, code, opts) do
-    {:ok, all_year_events(rules, year, code, opts)}
+  defp find_year(%Definition{rules: rules}, year, locale, opts) do
+    {:ok, all_year_events(rules, year, locale, opts)}
   end
 
-  defp all_year_events(rules, year, code, opts) do
+  defp all_year_events(rules, year, locale, opts) do
     include_informal? = Keyword.get(opts, :include_informal?, false)
 
     rules
     |> Stream.filter(&(include_informal? or not &1.informal?))
-    |> Stream.flat_map(&Event.from_rule(code, &1, year, opts))
+    |> Stream.flat_map(&Event.from_rule(locale, &1, year, opts))
     |> Enum.sort_by(&Date.to_erl(&1.date))
   end
 
@@ -119,10 +125,10 @@ defmodule Holidefs.Store do
     {:error, :no_def}
   end
 
-  defp find_between(%Definition{rules: rules}, start, finish, code, opts) do
+  defp find_between(%Definition{rules: rules}, start, finish, locale, opts) do
     events =
       start.year..finish.year
-      |> Stream.flat_map(&all_year_events(rules, &1, code, opts))
+      |> Stream.flat_map(&all_year_events(rules, &1, locale, opts))
       |> Stream.drop_while(&(Date.compare(&1.date, start) == :lt))
       |> Enum.take_while(&(Date.compare(&1.date, finish) != :gt))
 
@@ -130,40 +136,40 @@ defmodule Holidefs.Store do
   end
 
   @locales %{
-    "AT" => "Austria",
-    "AU" => "Australia",
-    "BR" => "Brazil",
-    "CA" => "Canada",
-    "CH" => "Switzerland",
-    "CZ" => "Czech Republic",
-    "DE" => "Germany",
-    "DK" => "Denmark",
-    "EE" => "Estonia",
-    "ES" => "Spain",
-    "FI" => "Finland",
-    "FR" => "France",
-    "GB" => "United Kingdom",
+    at: "Austria",
+    au: "Australia",
+    br: "Brazil",
+    ca: "Canada",
+    ch: "Switzerland",
+    cz: "Czech Republic",
+    de: "Germany",
+    dk: "Denmark",
+    ee: "Estonia",
+    es: "Spain",
+    fi: "Finland",
+    fr: "France",
+    gb: "United Kingdom",
     # TODO - the Hong Kong file on office holidefs is coming with a
     # negative date
-    # "HK" => "Hong Kong",
-    "HR" => "Croatia",
-    "HU" => "Hungary",
-    "IE" => "Ireland",
-    "IT" => "Italy",
-    "MY" => "Malaysia",
-    "NL" => "Netherlands",
-    "NO" => "Norway",
-    "PH" => "Philippines",
-    "PL" => "Poland",
-    "PT" => "Portugal",
-    "RS_LA" => "Serbia (Latin)",
-    "RU" => "Russia",
-    "SE" => "Sweden",
-    "SG" => "Singapore",
-    "SI" => "Slovenia",
-    "SK" => "Slovakia",
-    "US" => "United States",
-    "ZA" => "South Africa"
+    # hk: "Hong Kong",
+    hr: "Croatia",
+    hu: "Hungary",
+    ie: "Ireland",
+    it: "Italy",
+    my: "Malaysia",
+    nl: "Netherlands",
+    no: "Norway",
+    ph: "Philippines",
+    pl: "Poland",
+    pt: "Portugal",
+    rs_la: "Serbia (Latin)",
+    ru: "Russia",
+    se: "Sweden",
+    sg: "Singapore",
+    si: "Slovenia",
+    sk: "Slovakia",
+    us: "United States",
+    za: "South Africa"
   }
 
   @doc """
@@ -176,11 +182,9 @@ defmodule Holidefs.Store do
 
   defp load_all do
     %{
-      definitions: load_definitions()
+      definitions: for {code, name} <- @locales do
+        Definition.load!(code, name)
+      end
     }
-  end
-
-  defp load_definitions do
-    for {code, name} <- @locales, do: Definition.load!(code, name)
   end
 end

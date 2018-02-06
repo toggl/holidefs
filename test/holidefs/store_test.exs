@@ -12,7 +12,7 @@ defmodule Holidefs.StoreTest do
   end
 
   test "between/3 returns all the calendars between the given dates" do
-    assert {:ok, events} = Store.between("BR", ~D[2017-11-03], ~D[2017-12-24])
+    assert {:ok, events} = Store.between(:br, ~D[2017-11-03], ~D[2017-12-24])
 
     assert events == [
              %Event{

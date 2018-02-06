@@ -20,8 +20,8 @@ defmodule Holidefs.Event do
   @doc """
   Returns a list of events for the definition rule on the given year
   """
-  @spec from_rule(String.t(), Holidefs.DefinitionRule.t(), integer) :: [t]
-  @spec from_rule(String.t(), Holidefs.DefinitionRule.t(), integer, Keyword.t()) :: [t]
+  @spec from_rule(Atom.t(), Holidefs.DefinitionRule.t(), integer) :: [t]
+  @spec from_rule(Atom.t(), Holidefs.DefinitionRule.t(), integer, Keyword.t()) :: [t]
   def from_rule(code, rule, year, opts \\ [])
 
   def from_rule(code, %DefinitionRule{year_ranges: year_ranges} = rule, year, opts) do
@@ -148,17 +148,8 @@ defmodule Holidefs.Event do
   @doc """
   Returns the translated name of the given event
   """
-  @spec translate_name(String.t(), String.t()) :: String.t()
+  @spec translate_name(Atom.t(), String.t()) :: String.t()
   def translate_name(code, name) do
-    Gettext.dgettext(Holidefs.Gettext, String.downcase(code), name)
-  end
-
-  @doc """
-  Returns an event for the given fallback calendar event
-  """
-  @spec from_fallback(ExIcal.Event.t()) :: t
-  def from_fallback(%ExIcal.Event{description: description, start: start}) do
-    {:ok, date} = Date.new(start.year, start.month, start.day)
-    %Event{name: description, date: date}
+    Gettext.dgettext(Holidefs.Gettext, Atom.to_string(code), name)
   end
 end

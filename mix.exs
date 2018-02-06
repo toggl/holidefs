@@ -23,7 +23,7 @@ defmodule Holidefs.Mixfile do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ex_ical, "~> 0.1.0"},
+      {:download, "~> 0.0.4", optional: true},
       {:gettext, "~> 0.13"},
       {:yaml_elixir, "~> 1.3"}
     ]
