@@ -1,19 +1,18 @@
-defmodule Holidefs.EventTest do
+defmodule Holidefs.HolidayTest do
   use ExUnit.Case
-  alias ExIcal.Event, as: IcalEvent
-  alias Holidefs.DefinitionRule
-  alias Holidefs.Event
+  alias Holidefs.Definition.Rule
+  alias Holidefs.Holiday
 
-  doctest Event
+  doctest Holiday
 
-  test "from_rule/2 returns an event from a rule and year" do
-    rule = %DefinitionRule{name: "Christmas", month: 12, day: 25}
-    assert [%Event{} = event] = Event.from_rule(:us, rule, 2017)
-    assert event.name == "Christmas"
-    assert event.date == ~D[2017-12-25]
+  test "from_rule/2 returns a holiday from a rule and year" do
+    rule = %Rule{name: "Christmas", month: 12, day: 25}
+    assert [%Holiday{} = holiday] = Holiday.from_rule(:us, rule, 2017)
+    assert holiday.name == "Christmas"
+    assert holiday.date == ~D[2017-12-25]
 
-    rule = %DefinitionRule{name: "Test 1", month: 7, week: -1, weekday: 3}
-    assert [%Event{} = event] = Event.from_rule(:us, rule, 2017)
-    assert event.date == ~D[2017-07-26]
+    rule = %Rule{name: "Test 1", month: 7, week: -1, weekday: 3}
+    assert [%Holiday{} = holiday] = Holiday.from_rule(:us, rule, 2017)
+    assert holiday.date == ~D[2017-07-26]
   end
 end

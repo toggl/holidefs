@@ -1,15 +1,15 @@
-defmodule Holidefs.Event do
+defmodule Holidefs.Holiday do
   @moduledoc """
-  A holiday event, in other words, the holiday on a given year.
+  A holiday itself.
   """
 
   alias Holidefs.DateCalculator
-  alias Holidefs.DefinitionRule
-  alias Holidefs.Event
+  alias Holidefs.Definition.Rule
+  alias Holidefs.Holiday
 
   defstruct [:name, :raw_date, :observed_date, :date, informal?: false]
 
-  @type t :: %Event{
+  @type t :: %Holiday{
           name: String.t(),
           raw_date: Date.t(),
           observed_date: Date.t(),
@@ -18,13 +18,13 @@ defmodule Holidefs.Event do
         }
 
   @doc """
-  Returns a list of events for the definition rule on the given year
+  Returns a list of holidays for the definition rule on the given year
   """
-  @spec from_rule(Atom.t(), Holidefs.DefinitionRule.t(), integer) :: [t]
-  @spec from_rule(Atom.t(), Holidefs.DefinitionRule.t(), integer, Keyword.t()) :: [t]
+  @spec from_rule(Atom.t(), Holidefs.Definition.Rule.t(), integer) :: [t]
+  @spec from_rule(Atom.t(), Holidefs.Definition.Rule.t(), integer, Keyword.t()) :: [t]
   def from_rule(code, rule, year, opts \\ [])
 
-  def from_rule(code, %DefinitionRule{year_ranges: year_ranges} = rule, year, opts) do
+  def from_rule(code, %Rule{year_ranges: year_ranges} = rule, year, opts) do
     if in_year_ranges?(year_ranges, year) do
       build_from_rule(code, rule, year, opts)
     else
@@ -47,7 +47,7 @@ defmodule Holidefs.Event do
 
   defp build_from_rule(
          code,
-         %DefinitionRule{name: name, function: fun, informal?: informal?} = rule,
+         %Rule{name: name, function: fun, informal?: informal?} = rule,
          year,
          opts
        )
@@ -57,7 +57,7 @@ defmodule Holidefs.Event do
     case fun.(year, rule) do
       list when is_list(list) ->
         for date <- list do
-          %Event{
+          %Holiday{
             name: name,
             raw_date: date,
             observed_date: load_observed(rule, date),
@@ -68,7 +68,7 @@ defmodule Holidefs.Event do
 
       %Date{} = date ->
         [
-          %Event{
+          %Holiday{
             name: name,
             raw_date: date,
             observed_date: load_observed(rule, date),
@@ -84,7 +84,7 @@ defmodule Holidefs.Event do
 
   defp build_from_rule(
          code,
-         %DefinitionRule{name: name, month: month, day: day, informal?: informal?} = rule,
+         %Rule{name: name, month: month, day: day, informal?: informal?} = rule,
          year,
          opts
        )
@@ -92,7 +92,7 @@ defmodule Holidefs.Event do
     {:ok, date} = Date.new(year, month, day)
 
     [
-      %Event{
+      %Holiday{
         name: translate_name(code, name),
         raw_date: date,
         observed_date: load_observed(rule, date),
@@ -104,7 +104,7 @@ defmodule Holidefs.Event do
 
   defp build_from_rule(
          code,
-         %DefinitionRule{
+         %Rule{
            name: name,
            month: month,
            week: week,
@@ -117,7 +117,7 @@ defmodule Holidefs.Event do
     date = DateCalculator.nth_day_of_week(year, month, week, weekday)
 
     [
-      %Event{
+      %Holiday{
         name: translate_name(code, name),
         raw_date: date,
         observed_date: load_observed(rule, date),
@@ -139,14 +139,14 @@ defmodule Holidefs.Event do
     date
   end
 
-  defp load_observed(%DefinitionRule{observed: nil}, date), do: date
+  defp load_observed(%Rule{observed: nil}, date), do: date
 
-  defp load_observed(%DefinitionRule{observed: fun} = rule, date) when is_function(fun) do
+  defp load_observed(%Rule{observed: fun} = rule, date) when is_function(fun) do
     fun.(date, rule)
   end
 
   @doc """
-  Returns the translated name of the given event
+  Returns the translated name of the given holiday
   """
   @spec translate_name(Atom.t(), String.t()) :: String.t()
   def translate_name(code, name) do

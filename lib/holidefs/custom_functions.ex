@@ -4,7 +4,7 @@ defmodule Holidefs.CustomFunctions do
   """
 
   alias Holidefs.DateCalculator
-  alias Holidefs.DefinitionRule
+  alias Holidefs.Definition.Rule
 
   def easter(year, _) do
     DateCalculator.gregorian_easter(year)
@@ -82,7 +82,7 @@ defmodule Holidefs.CustomFunctions do
     end
   end
 
-  def to_weekday_if_weekend(year, %DefinitionRule{month: month, day: day}) do
+  def to_weekday_if_weekend(year, %Rule{month: month, day: day}) do
     {:ok, date} = Date.new(year, month, day)
     to_weekday_if_weekend(date, nil)
   end
@@ -94,7 +94,7 @@ defmodule Holidefs.CustomFunctions do
     end
   end
 
-  def to_tuesday_if_sunday_or_monday_if_saturday(year, %DefinitionRule{month: month, day: day}) do
+  def to_tuesday_if_sunday_or_monday_if_saturday(year, %Rule{month: month, day: day}) do
     {:ok, date} = Date.new(year, month, day)
     to_tuesday_if_sunday_or_monday_if_saturday(date, nil)
   end
@@ -106,12 +106,12 @@ defmodule Holidefs.CustomFunctions do
     end
   end
 
-  def to_monday_if_sunday(year, %DefinitionRule{month: month, day: day}) do
+  def to_monday_if_sunday(year, %Rule{month: month, day: day}) do
     {:ok, date} = Date.new(year, month, day)
     to_monday_if_sunday(date, nil)
   end
 
-  def christmas_eve_holiday(year, %DefinitionRule{month: month, day: day}) do
+  def christmas_eve_holiday(year, %Rule{month: month, day: day}) do
     {:ok, date} = Date.new(year, month, day)
 
     if Date.day_of_week(date) in [6, 7] do
@@ -129,7 +129,7 @@ defmodule Holidefs.CustomFunctions do
     end
   end
 
-  def to_monday_if_weekend(year, %DefinitionRule{month: month, day: day}) do
+  def to_monday_if_weekend(year, %Rule{month: month, day: day}) do
     {:ok, date} = Date.new(year, month, day)
     to_monday_if_weekend(date, nil)
   end

@@ -1,8 +1,8 @@
 defmodule Mix.Tasks.Holidefs.Download do
   use Mix.Task
 
-  alias Holidefs.Store
   alias Holidefs.Definition
+  alias Holidefs.Definition.Store
 
   @shortdoc "Downloads the .yaml files with the calendar definitions"
 

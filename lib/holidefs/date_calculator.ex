@@ -92,7 +92,7 @@ defmodule Holidefs.DateCalculator do
     g = rem(y, 19)
     i = (19 * g + 15) |> rem(30)
     j = (year + div(year, 4) + i) |> rem(7)
-    j_month = 3 + div((i - j + 40), 44)
+    j_month = 3 + div(i - j + 40, 44)
     j_day = i - j + 28 - 31 * div(j_month, 4)
 
     {:ok, date} = Date.new(year, j_month, j_day)

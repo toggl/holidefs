@@ -9,7 +9,7 @@ defmodule Holidefs.Application do
   def start(_type, _args) do
     # List all child processes to be supervised
     children = [
-      {Holidefs.Store, nil}
+      {Holidefs.Definition.Store, nil}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
