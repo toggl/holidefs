@@ -7,9 +7,10 @@ defmodule Holidefs do
   alias Holidefs.Definition
   alias Holidefs.Definition.Store
   alias Holidefs.Holiday
+  alias Holidefs.Options
 
   @doc """
-  Returns the language to translate the keys to.
+  Returns the language to translate the holiday names to.
   """
   @spec get_language :: String.t()
   def get_language do
@@ -17,9 +18,9 @@ defmodule Holidefs do
   end
 
   @doc """
-  Sets the language to translate the keys to.
+  Sets the language to translate the holiday names to.
 
-  To use the original descriptions, you can set the language to `:orig`
+  To use the native language names, you can set the language to `:orig`
   """
   @spec set_language(Atom.t() | String.t()) :: nil
   def set_language(locale) when is_atom(locale) do
@@ -36,9 +37,11 @@ defmodule Holidefs do
   Returns all the holidays for the given locale on the given date.
 
   If succeed returns a `{:ok, holidays}` tuple, otherwise
-  returns a `{:error, reason}` tuple
+  returns a `{:error, reason}` tuple.
   """
   @spec on(Atom.t(), Date.t()) :: {:ok, [Holidefs.Holiday.t()]} | {:error, String.t()}
+  @spec on(Atom.t(), Date.t(), Holidefs.Options.t()) ::
+          {:ok, [Holidefs.Holiday.t()]} | {:error, String.t()}
   def on(locale, date, opts \\ []) do
     locale
     |> Store.get_definition()
@@ -52,6 +55,8 @@ defmodule Holidefs do
   returns a `{:error, reason}` tuple
   """
   @spec year(Atom.t(), integer) :: {:ok, [Holidefs.Holiday.t()]} | {:error, String.t()}
+  @spec year(Atom.t(), integer, Holidefs.Options.t()) ::
+          {:ok, [Holidefs.Holiday.t()]} | {:error, String.t()}
   def year(locale, year, opts \\ []) do
     locale
     |> Store.get_definition()
@@ -67,6 +72,8 @@ defmodule Holidefs do
   """
   @spec between(Atom.t(), Date.t(), Date.t()) ::
           {:ok, [Holidefs.Holiday.t()]} | {:error, String.t()}
+  @spec between(Atom.t(), Date.t(), Date.t(), Holidefs.Options.t()) ::
+          {:ok, [Holidefs.Holiday.t()]} | {:error, String.t()}
   def between(locale, start, finish, opts \\ []) do
     locale
     |> Store.get_definition()
@@ -81,13 +88,20 @@ defmodule Holidefs do
     {:ok, all_year_holidays(rules, year, locale, opts)}
   end
 
-  defp all_year_holidays(rules, year, locale, opts) do
-    include_informal? = Keyword.get(opts, :include_informal?, false)
-
+  defp all_year_holidays(
+         rules,
+         year,
+         locale,
+         %Options{include_informal?: include_informal?} = opts
+       ) do
     rules
     |> Stream.filter(&(include_informal? or not &1.informal?))
     |> Stream.flat_map(&Holiday.from_rule(locale, &1, year, opts))
     |> Enum.sort_by(&Date.to_erl(&1.date))
+  end
+
+  defp all_year_holidays(rules, year, locale, opts) when is_list(opts) or is_map(opts) do
+    all_year_holidays(rules, year, locale, struct(Options, opts))
   end
 
   defp find_between(nil, _, _, _, _) do
