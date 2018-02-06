@@ -1,4 +1,4 @@
-defmodule Holidefs.CustomFunctions do
+defmodule Holidefs.Definition.CustomFunctions do
   @moduledoc """
   These are the functions that can be used on the definition rules
   """
