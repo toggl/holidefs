@@ -2,7 +2,6 @@ defmodule Mix.Tasks.Holidefs.Download do
   use Mix.Task
 
   alias Holidefs.Definition
-  alias Holidefs.Definition.Store
 
   @shortdoc "Downloads the .yaml files with the calendar definitions"
 
@@ -77,7 +76,7 @@ defmodule Mix.Tasks.Holidefs.Download do
   end
 
   defp codes do
-    Store.locales()
+    Holidefs.locales()
     |> Map.keys()
     |> Stream.map(&Atom.to_string/1)
   end

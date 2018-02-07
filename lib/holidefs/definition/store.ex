@@ -33,52 +33,10 @@ defmodule Holidefs.Definition.Store do
     end)
   end
 
-  @locales %{
-    at: "Austria",
-    au: "Australia",
-    br: "Brazil",
-    ca: "Canada",
-    ch: "Switzerland",
-    cz: "Czech Republic",
-    de: "Germany",
-    dk: "Denmark",
-    ee: "Estonia",
-    es: "Spain",
-    fi: "Finland",
-    fr: "France",
-    gb: "United Kingdom",
-    hr: "Croatia",
-    hu: "Hungary",
-    ie: "Ireland",
-    it: "Italy",
-    my: "Malaysia",
-    nl: "Netherlands",
-    no: "Norway",
-    ph: "Philippines",
-    pl: "Poland",
-    pt: "Portugal",
-    rs_la: "Serbia (Latin)",
-    ru: "Russia",
-    se: "Sweden",
-    sg: "Singapore",
-    si: "Slovenia",
-    sk: "Slovakia",
-    us: "United States",
-    za: "South Africa"
-  }
-
-  @doc """
-  Returns a map of all the supported locales.
-
-  The key is the code and the value the name of the locale.
-  """
-  @spec locales :: Map.t()
-  def locales, do: @locales
-
   defp load_all do
     %{
       definitions:
-        for {code, name} <- @locales do
+        for {code, name} <- Holidefs.locales() do
           Definition.load!(code, name)
         end
     }

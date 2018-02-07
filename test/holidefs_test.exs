@@ -2,7 +2,6 @@ defmodule HolidefsTest do
   use ExUnit.Case
 
   alias Holidefs.Definition
-  alias Holidefs.Definition.Store
   alias Holidefs.Holiday
 
   doctest Holidefs
@@ -27,7 +26,7 @@ defmodule HolidefsTest do
     Holidefs.set_language("orig")
 
     warning_count =
-      Store.locales()
+      Holidefs.locales()
       |> Stream.map(&test_definition/1)
       |> Enum.sum()
 
