@@ -11,4 +11,5 @@ ratings:
     - "**.exs"
 exclude_paths:
   - test/
+  - priv/calendars/definitions/
 
