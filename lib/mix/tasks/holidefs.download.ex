@@ -22,6 +22,7 @@ defmodule Mix.Tasks.Holidefs.Download do
   """
 
   @endpoint "https://raw.githubusercontent.com/holidays/definitions/master"
+  @path "./priv/calendars/definitions"
 
   @switches [locale: :string, clean: :boolean]
   @aliases [l: :locale, c: :clean]
@@ -29,7 +30,7 @@ defmodule Mix.Tasks.Holidefs.Download do
   @doc false
   def run(args) do
     {:ok, _apps} = Application.ensure_all_started(:download)
-    File.mkdir_p!(Definition.path())
+    File.mkdir_p!(@path)
 
     args
     |> read_opts()
@@ -38,11 +39,11 @@ defmodule Mix.Tasks.Holidefs.Download do
 
   defp download_all(opts) do
     if opts[:clean] do
-      for filename <- File.ls!(Definition.path()) do
+      for filename <- File.ls!(@path) do
         [code, _] = String.split(filename, ".")
 
         if code not in codes() do
-          path = Path.join(Definition.path(), filename)
+          path = Path.join(@path, filename)
           File.rm!(path)
           Mix.shell().info([:red, "* deleted ", :reset, path])
         end
@@ -52,7 +53,7 @@ defmodule Mix.Tasks.Holidefs.Download do
     for code <- opts.locale do
       check_locale(code)
 
-      case download(code, Definition.file_path(code)) do
+      case download(code, Definition.file_path(code, @path)) do
         {:ok, filename} ->
           relative_path = Path.relative_to_cwd(filename)
           Mix.shell().info([:green, "* downloaded ", :reset, relative_path])
