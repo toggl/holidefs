@@ -1,11 +1,16 @@
 defmodule Holidefs.Mixfile do
   use Mix.Project
 
+  @github_url "https://github.com/Teamweek/holidefs"
+
   def project do
     [
       app: :holidefs,
       version: "0.1.0",
       elixir: "~> 1.5",
+      description: "Definition-based national holidays",
+      source_url: @github_url,
+      homepage_url: @github_url,
       package: package(),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -25,11 +30,10 @@ defmodule Holidefs.Mixfile do
 
   defp package do
     [
-      name: :holidefs,
       files: ["lib", "priv", "mix.exs", "README*", "LICENSE*"],
       maintainers: ["Kelvin Stinghen"],
       licenses: ["MIT"],
-      links: %{"GitHub" => "https://github.com/Teamweek/holidefs"}
+      links: %{"GitHub" => @github_url}
     ]
   end
 

@@ -6,6 +6,7 @@
 
 ### Added
 
+- CI configuration
 - This changelog file
 - README usage section
 - Loading and handling of holiday definition files from http://github.com/holidays/definitions
