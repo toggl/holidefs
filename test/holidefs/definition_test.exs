@@ -5,8 +5,8 @@ defmodule Holidefs.DefinitionTest do
   doctest Definition
 
   test "load!/2 loads the given locale from the definition lib" do
-    assert %Definition{} = definition = Definition.load!("BR", "Brazil")
-    assert definition.code == "BR"
+    assert %Definition{} = definition = Definition.load!(:br, "Brazil")
+    assert definition.code == :br
     assert definition.name == "Brazil"
 
     assert Enum.map(definition.rules, fn rule ->
