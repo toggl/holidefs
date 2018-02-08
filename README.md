@@ -1,6 +1,7 @@
 # Holidefs
 
 [![Build Status](https://travis-ci.org/Teamweek/holidefs.svg?branch=master)](https://travis-ci.org/Teamweek/holidefs)
+[![Inline docs](http://inch-ci.org/github/Teamweek/holidefs.svg)](http://inch-ci.org/github/Teamweek/holidefs)
 
 Definition-based national holidays in Elixir.
 
