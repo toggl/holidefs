@@ -6,6 +6,7 @@ defmodule Holidefs.Mixfile do
       app: :holidefs,
       version: "0.1.0",
       elixir: "~> 1.5",
+      package: package(),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       compilers: [:gettext] ++ Mix.compilers(),
@@ -21,6 +22,16 @@ defmodule Holidefs.Mixfile do
     [
       extra_applications: [:logger],
       mod: {Holidefs.Application, []}
+    ]
+  end
+
+  defp package do
+    [
+      name: :holidefs,
+      files: ["lib", "priv", "mix.exs", "README*", "LICENSE*"],
+      maintainers: ["Kelvin Stinghen"],
+      licenses: ["MIT"],
+      links: %{"GitHub" => "https://github.com/Teamweek/holidefs"}
     ]
   end
 

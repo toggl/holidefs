@@ -20,7 +20,7 @@ defmodule Mix.Tasks.Holidefs.Gettext.Extract do
 
   """
 
-  @path "./priv/gettext"
+  @path :holidefs |> :code.priv_dir() |> Path.join("gettext")
 
   @doc false
   def run(_args) do
