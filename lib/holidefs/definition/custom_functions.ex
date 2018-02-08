@@ -1,19 +1,20 @@
 defmodule Holidefs.Definition.CustomFunctions do
-  @moduledoc """
-  These are the functions that can be used on the definition rules
-  """
+  @moduledoc false
 
   alias Holidefs.DateCalculator
   alias Holidefs.Definition.Rule
 
+  @doc false
   def easter(year, _) do
     DateCalculator.gregorian_easter(year)
   end
 
+  @doc false
   def orthodox_easter(year, _) do
     DateCalculator.gregorian_orthodox_easter(year)
   end
 
+  @doc false
   def us_inauguration_day(year, rule) when rem(year, 4) == 1 do
     {:ok, date} = Date.new(year, rule.month, 20)
     date
@@ -23,17 +24,20 @@ defmodule Holidefs.Definition.CustomFunctions do
     nil
   end
 
+  @doc false
   def lee_jackson_day(year, rule) do
     %Date{day: day_of_holiday} = DateCalculator.nth_day_of_week(year, rule.month, 3, 1)
     {:ok, king_day} = Date.new(year, rule.month, day_of_holiday)
     DateCalculator.previous_day_of_week(king_day, 5)
   end
 
+  @doc false
   def georgia_state_holiday(year, rule) do
     {:ok, state_holiday} = Date.new(year, rule.month, 26)
     DateCalculator.previous_day_of_week(state_holiday, 1)
   end
 
+  @doc false
   def rosh_hashanah(year, _) do
     map = %{
       2014 => ~D[2014-09-25],
@@ -48,6 +52,7 @@ defmodule Holidefs.Definition.CustomFunctions do
     map[year]
   end
 
+  @doc false
   def yom_kippur(year, _) do
     map = %{
       2014 => ~D[2014-10-04],
@@ -62,18 +67,21 @@ defmodule Holidefs.Definition.CustomFunctions do
     map[year]
   end
 
+  @doc false
   def election_day(year, _) do
     year
     |> DateCalculator.nth_day_of_week(11, 1, 1)
     |> Date.add(1)
   end
 
+  @doc false
   def day_after_thanksgiving(year, _) do
     year
     |> DateCalculator.nth_day_of_week(11, 4, 4)
     |> Date.add(1)
   end
 
+  @doc false
   def to_weekday_if_weekend(%Date{} = date, _) do
     case Date.day_of_week(date) do
       6 -> Date.add(date, -1)
@@ -87,6 +95,7 @@ defmodule Holidefs.Definition.CustomFunctions do
     to_weekday_if_weekend(date, nil)
   end
 
+  @doc false
   def to_tuesday_if_sunday_or_monday_if_saturday(%Date{} = date, _) do
     case Date.day_of_week(date) do
       wday when wday in 6..7 -> Date.add(date, 2)
@@ -99,6 +108,7 @@ defmodule Holidefs.Definition.CustomFunctions do
     to_tuesday_if_sunday_or_monday_if_saturday(date, nil)
   end
 
+  @doc false
   def to_monday_if_sunday(%Date{} = date, _) do
     case Date.day_of_week(date) do
       7 -> Date.add(date, 1)
@@ -111,6 +121,7 @@ defmodule Holidefs.Definition.CustomFunctions do
     to_monday_if_sunday(date, nil)
   end
 
+  @doc false
   def christmas_eve_holiday(year, %Rule{month: month, day: day}) do
     {:ok, date} = Date.new(year, month, day)
 
@@ -121,6 +132,7 @@ defmodule Holidefs.Definition.CustomFunctions do
     end
   end
 
+  @doc false
   def to_monday_if_weekend(%Date{} = date, _) do
     if Date.day_of_week(date) in [6, 7] do
       DateCalculator.next_day_of_week(date, 1)
@@ -134,18 +146,22 @@ defmodule Holidefs.Definition.CustomFunctions do
     to_monday_if_weekend(date, nil)
   end
 
+  @doc false
   def march_pub_hol_sa(year, _) do
     if year >= 2006, do: DateCalculator.nth_day_of_week(year, 3, 2, 1)
   end
 
+  @doc false
   def qld_labour_day_may(year, _) do
     if year not in 2013..2015, do: DateCalculator.nth_day_of_week(year, 5, 1, 1)
   end
 
+  @doc false
   def may_pub_hol_sa(year, _) do
     if year < 2006, do: DateCalculator.nth_day_of_week(year, 5, 3, 1)
   end
 
+  @doc false
   def qld_queens_birthday_june(2012, _) do
     [DateCalculator.nth_day_of_week(2012, 6, 2, 1), ~D[2012-10-01]]
   end
@@ -158,6 +174,7 @@ defmodule Holidefs.Definition.CustomFunctions do
     nil
   end
 
+  @doc false
   def afl_grand_final(year, _) do
     dates = %{
       2015 => ~D[2015-10-02],
@@ -168,22 +185,27 @@ defmodule Holidefs.Definition.CustomFunctions do
     dates[year]
   end
 
+  @doc false
   def qld_labour_day_october(year, _) do
     if year in 2014..2015, do: DateCalculator.nth_day_of_week(year, 10, 1, 1)
   end
 
+  @doc false
   def qld_queens_bday_october(year, _) do
     if year >= 2016, do: DateCalculator.nth_day_of_week(year, 10, 1, 1)
   end
 
+  @doc false
   def hobart_show_day(year, _) do
     fourth_sat_in_oct = DateCalculator.nth_day_of_week(year, 10, 4, 6)
     Date.add(fourth_sat_in_oct, -2)
   end
 
+  @doc false
   def g20_day_2014_only(2014, _), do: ~D[2014-11-14]
   def g20_day_2014_only(_, _), do: nil
 
+  @doc false
   def to_weekday_if_boxing_weekend(%Date{} = date, _) do
     if Date.day_of_week(date) in 6..7 do
       Date.add(date, 2)
@@ -192,6 +214,7 @@ defmodule Holidefs.Definition.CustomFunctions do
     end
   end
 
+  @doc false
   def to_weekday_if_boxing_weekend_from_year(year, _) do
     {:ok, boxing} = Date.new(year, 12, 26)
 
@@ -202,6 +225,7 @@ defmodule Holidefs.Definition.CustomFunctions do
     end
   end
 
+  @doc false
   def to_weekday_if_boxing_weekend_from_year_or_to_tuesday_if_monday(year, _) do
     {:ok, boxing} = Date.new(year, 12, 26)
 
@@ -212,23 +236,27 @@ defmodule Holidefs.Definition.CustomFunctions do
     end
   end
 
+  @doc false
   def ca_victoria_day(year, _) do
     {:ok, date} = Date.new(year, 5, 24)
     DateCalculator.previous_day_of_week(date, 1)
   end
 
+  @doc false
   def ch_vd_lundi_du_jeune_federal(year, _) do
     year
     |> DateCalculator.nth_day_of_week(9, 3, 7)
     |> DateCalculator.next_day_of_week(1)
   end
 
+  @doc false
   def ch_ge_jeune_genevois(year, _) do
     year
     |> DateCalculator.nth_day_of_week(9, 1, 7)
     |> DateCalculator.next_day_of_week(4)
   end
 
+  @doc false
   def ch_gl_naefelser_fahrt(year, _) do
     thursday = DateCalculator.nth_day_of_week(year, 4, 1, 4)
 
@@ -244,6 +272,7 @@ defmodule Holidefs.Definition.CustomFunctions do
     end
   end
 
+  @doc false
   def de_buss_und_bettag(year, _) do
     {:ok, date} = Date.new(year, 11, 23)
 
@@ -254,25 +283,30 @@ defmodule Holidefs.Definition.CustomFunctions do
     end
   end
 
+  @doc false
   def fi_pyhainpaiva(year, _) do
     {:ok, date} = Date.new(year, 10, 31)
     DateCalculator.next_day_of_week(date, 6)
   end
 
+  @doc false
   def fi_juhannusaatto(year, _) do
     {:ok, date} = Date.new(year, 6, 19)
     DateCalculator.next_day_of_week(date, 5)
   end
 
+  @doc false
   def fi_juhannuspaiva(year, _) do
     {:ok, date} = Date.new(year, 6, 20)
     DateCalculator.next_day_of_week(date, 6)
   end
 
+  @doc false
   def ph_heroes_day(year, _) do
     DateCalculator.nth_day_of_week(year, 8, -1, 1)
   end
 
+  @doc false
   def pl_trzech_kroli_informal(year, _) do
     if year < 2011 do
       {:ok, date} = Date.new(year, 1, 6)
@@ -282,6 +316,7 @@ defmodule Holidefs.Definition.CustomFunctions do
     end
   end
 
+  @doc false
   def pl_trzech_kroli(year, _) do
     if year >= 2011 do
       {:ok, date} = Date.new(year, 1, 6)
@@ -291,11 +326,13 @@ defmodule Holidefs.Definition.CustomFunctions do
     end
   end
 
+  @doc false
   def se_midsommardagen(year, _) do
     {:ok, date} = Date.new(year, 6, 20)
     DateCalculator.next_day_of_week(date, 6)
   end
 
+  @doc false
   def se_alla_helgons_dag(year, _) do
     {:ok, date} = Date.new(year, 10, 31)
     DateCalculator.next_day_of_week(date, 6)
