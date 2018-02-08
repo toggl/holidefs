@@ -23,16 +23,16 @@ defmodule Holidefs.DateCalculator do
     c = rem(y, 100)
     d = div(b, 4)
     e = rem(b, 4)
-    f = (b + 8) |> div(25)
-    g = (b - f + 1) |> div(3)
-    h = (19 * a + b - d - g + 15) |> rem(30)
+    f = div((b + 8), 25)
+    g = div((b - f + 1), 3)
+    h = rem((19 * a + b - d - g + 15), 30)
     i = div(c, 4)
     k = rem(c, 4)
-    l = (32 + 2 * e + 2 * i - h - k) |> rem(7)
-    m = (a + 11 * h + 22 * l) |> div(451)
+    l = rem((32 + 2 * e + 2 * i - h - k), 7)
+    m = div((a + 11 * h + 22 * l), 451)
 
-    month = (h + l - 7 * m + 114) |> div(31)
-    day = ((h + l - 7 * m + 114) |> rem(31)) + 1
+    month =  div((h + l - 7 * m + 114), 31)
+    day = rem((h + l - 7 * m + 114), 31) + 1
 
     {:ok, date} = Date.new(year, month, day)
     date
@@ -90,8 +90,8 @@ defmodule Holidefs.DateCalculator do
   def julian_orthodox_easter(year) do
     y = year
     g = rem(y, 19)
-    i = (19 * g + 15) |> rem(30)
-    j = (year + div(year, 4) + i) |> rem(7)
+    i = rem((19 * g + 15), 30)
+    j = rem((year + div(year, 4) + i), 7)
     j_month = 3 + div(i - j + 40, 44)
     j_day = i - j + 28 - 31 * div(j_month, 4)
 

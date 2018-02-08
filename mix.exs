@@ -10,14 +10,12 @@ defmodule Holidefs.Mixfile do
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       compilers: [:gettext] ++ Mix.compilers(),
-      docs: [
-        main: "readme",
-        extras: ["README.md", "CHANGELOG.md"]
-      ]
+      test_coverage: [tool: ExCoveralls],
+      docs: docs(),
+      preferred_cli_env: preferred_cli_env()
     ]
   end
 
-  # Run "mix help compile.app" to learn about applications.
   def application do
     [
       extra_applications: [:logger],
@@ -35,11 +33,28 @@ defmodule Holidefs.Mixfile do
     ]
   end
 
-  # Run "mix help deps" to learn about dependencies.
+  defp docs do
+    [
+      main: "readme",
+      extras: ["README.md", "CHANGELOG.md"]
+    ]
+  end
+
+  defp preferred_cli_env do
+    [
+      coveralls: :test,
+      "coveralls.detail": :test,
+      "coveralls.post": :test,
+      "coveralls.html": :test
+    ]
+  end
+
   defp deps do
     [
+      {:credo, "~> 0.8.10", only: [:test, :dev], optional: true, runtime: false},
+      {:download, "~> 0.0.4", optional: true, runtime: false},
       {:ex_doc, "~> 0.18", only: :dev, runtime: false},
-      {:download, "~> 0.0.4", optional: true},
+      {:excoveralls, "~> 0.6", only: :test},
       {:gettext, "~> 0.13"},
       {:yaml_elixir, "~> 1.3"}
     ]
