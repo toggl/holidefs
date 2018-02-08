@@ -15,7 +15,7 @@ defmodule Holidefs.Definition do
           rules: [Holidefs.Definition.Rule.t()]
         }
 
-  @path :holidefs |> :code.priv_dir() |> Path.join("calendars/definitions")
+  @path Application.app_dir(:holidefs, "priv/calendars/definitions")
 
   @doc """
   Returns the path for the given locale definition file
