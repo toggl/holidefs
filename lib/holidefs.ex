@@ -107,14 +107,21 @@ defmodule Holidefs do
     |> case do
       nil ->
         {:error, :no_def}
+
       %Definition{rules: rules, code: locale} when is_integer(year) ->
         {:ok, all_year_holidays(rules, year, locale, opts)}
+
       _ ->
         {:error, :invalid_date}
     end
   end
 
-  @spec all_year_holidays([Holidefs.Definition.Rule.t()], integer, atom, Holidefs.Options.t() | list) :: [Holidefs.Holiday.t()]
+  @spec all_year_holidays(
+          [Holidefs.Definition.Rule.t()],
+          integer,
+          atom,
+          Holidefs.Options.t() | list
+        ) :: [Holidefs.Holiday.t()]
   defp all_year_holidays(
          rules,
          year,
@@ -130,7 +137,6 @@ defmodule Holidefs do
   defp all_year_holidays(rules, year, locale, opts) when is_list(opts) or is_map(opts) do
     all_year_holidays(rules, year, locale, struct(Options, opts))
   end
-
 
   @doc """
   Returns all the holidays for the given locale between start
