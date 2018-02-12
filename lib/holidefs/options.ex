@@ -13,7 +13,7 @@ defmodule Holidefs.Options do
 
   @type t ::
           Keyword.t()
-          | Map.t()
+          | map
           | %Holidefs.Options{
               include_informal?: boolean,
               observed?: boolean

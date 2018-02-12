@@ -17,7 +17,8 @@ defmodule Holidefs.Mixfile do
       compilers: [:gettext] ++ Mix.compilers(),
       test_coverage: [tool: ExCoveralls],
       docs: docs(),
-      preferred_cli_env: preferred_cli_env()
+      preferred_cli_env: preferred_cli_env(),
+      dialyzer: dialyzer()
     ]
   end
 
@@ -31,7 +32,7 @@ defmodule Holidefs.Mixfile do
   defp package do
     [
       files: ["lib", "priv", "mix.exs", "README*", "LICENSE*"],
-      maintainers: ["Kelvin Stinghen"],
+      maintainers: ["Kelvin Stinghen", "Artur Cygan"],
       licenses: ["MIT"],
       links: %{"GitHub" => @github_url}
     ]
@@ -53,6 +54,24 @@ defmodule Holidefs.Mixfile do
     ]
   end
 
+  defp dialyzer do
+    [
+      plt_apps: [
+        :compiler,
+        :elixir,
+        :gettext,
+        :kernel,
+        :logger,
+        :stdlib,
+        :yamerl,
+        :yaml_elixir,
+        :mix,
+        :download
+      ],
+      dialyzer: [plt_add_deps: :transitive]
+    ]
+  end
+
   defp deps do
     [
       {:credo, "~> 0.8.10", only: [:test, :dev], optional: true, runtime: false},
@@ -61,7 +80,8 @@ defmodule Holidefs.Mixfile do
       {:excoveralls, "~> 0.6", only: :test},
       {:gettext, "~> 0.13"},
       {:inch_ex, only: :docs},
-      {:yaml_elixir, "~> 1.3"}
+      {:yaml_elixir, "~> 1.3"},
+      {:dialyxir, "~> 0.5", only: [:dev, :test], runtime: false}
     ]
   end
 end

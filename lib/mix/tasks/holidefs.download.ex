@@ -138,6 +138,7 @@ defmodule Mix.Tasks.Holidefs.Download do
     download(code, path)
   end
 
+  @spec raise_download(atom, String.t()) :: no_return()
   defp raise_download(code, reason) do
     Mix.raise("""
     Error while downloading definition file for locale #{code}.

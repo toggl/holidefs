@@ -50,7 +50,7 @@ defmodule Holidefs do
 
   The key is the code and the value the name of the locale.
   """
-  @spec locales :: Map.t()
+  @spec locales :: map
   def locales, do: @locales
 
   @doc """
@@ -66,7 +66,7 @@ defmodule Holidefs do
 
   To use the native language names, you can set the language to `:orig`
   """
-  @spec set_language(Atom.t() | String.t()) :: nil
+  @spec set_language(atom | String.t()) :: nil
   def set_language(locale) when is_atom(locale) do
     locale
     |> Atom.to_string()
@@ -83,8 +83,8 @@ defmodule Holidefs do
   If succeed returns a `{:ok, holidays}` tuple, otherwise
   returns a `{:error, reason}` tuple.
   """
-  @spec on(Atom.t(), Date.t()) :: {:ok, [Holidefs.Holiday.t()]} | {:error, String.t()}
-  @spec on(Atom.t(), Date.t(), Holidefs.Options.t()) ::
+  @spec on(atom, Date.t()) :: {:ok, [Holidefs.Holiday.t()]} | {:error, String.t()}
+  @spec on(atom, Date.t(), Holidefs.Options.t()) ::
           {:ok, [Holidefs.Holiday.t()]} | {:error, error_reasons}
   def on(locale, date, opts \\ []) do
     locale
@@ -98,44 +98,23 @@ defmodule Holidefs do
   If succeed returns a `{:ok, holidays}` tuple, otherwise
   returns a `{:error, reason}` tuple
   """
-  @spec year(Atom.t(), integer) :: {:ok, [Holidefs.Holiday.t()]} | {:error, String.t()}
-  @spec year(Atom.t(), integer, Holidefs.Options.t()) ::
+  @spec year(atom, integer) :: {:ok, [Holidefs.Holiday.t()]} | {:error, String.t()}
+  @spec year(atom, integer, Holidefs.Options.t()) ::
           {:ok, [Holidefs.Holiday.t()]} | {:error, error_reasons}
   def year(locale, year, opts \\ []) do
     locale
     |> Store.get_definition()
-    |> find_year(year, opts)
+    |> case do
+      nil ->
+        {:error, :no_def}
+      %Definition{rules: rules, code: locale} when is_integer(year) ->
+        {:ok, all_year_holidays(rules, year, locale, opts)}
+      _ ->
+        {:error, :invalid_date}
+    end
   end
 
-  @doc """
-  Returns all the holidays for the given locale between start
-  and finish dates.
-
-  If succeed returns a `{:ok, holidays}` tuple, otherwise
-  returns a `{:error, reason}` tuple
-  """
-  @spec between(Atom.t(), Date.t(), Date.t()) ::
-          {:ok, [Holidefs.Holiday.t()]} | {:error, error_reasons}
-  @spec between(Atom.t(), Date.t(), Date.t(), Holidefs.Options.t()) ::
-          {:ok, [Holidefs.Holiday.t()]} | {:error, error_reasons}
-  def between(locale, start, finish, opts \\ []) do
-    locale
-    |> Store.get_definition()
-    |> find_between(start, finish, opts)
-  end
-
-  defp find_year(nil, _, _) do
-    {:error, :no_def}
-  end
-
-  defp find_year(%Definition{rules: rules, code: locale}, year, opts) when is_integer(year) do
-    {:ok, all_year_holidays(rules, year, locale, opts)}
-  end
-
-  defp find_year(_, _, _) do
-    {:error, :invalid_date}
-  end
-
+  @spec all_year_holidays([Holidefs.Definition.Rule.t()], integer, atom, Holidefs.Options.t() | list) :: [Holidefs.Holiday.t()]
   defp all_year_holidays(
          rules,
          year,
@@ -150,6 +129,22 @@ defmodule Holidefs do
 
   defp all_year_holidays(rules, year, locale, opts) when is_list(opts) or is_map(opts) do
     all_year_holidays(rules, year, locale, struct(Options, opts))
+  end
+
+
+  @doc """
+  Returns all the holidays for the given locale between start
+  and finish dates.
+
+  If succeed returns a `{:ok, holidays}` tuple, otherwise
+  returns a `{:error, reason}` tuple
+  """
+  @spec between(atom, Date.t(), Date.t(), Holidefs.Options.t()) ::
+          {:ok, [Holidefs.Holiday.t()]} | {:error, error_reasons}
+  def between(locale, start, finish, opts \\ []) do
+    locale
+    |> Store.get_definition()
+    |> find_between(start, finish, opts)
   end
 
   defp find_between(nil, _, _, _) do

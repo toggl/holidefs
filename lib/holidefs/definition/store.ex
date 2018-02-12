@@ -26,7 +26,7 @@ defmodule Holidefs.Definition.Store do
   @doc """
   Returns the definitions for the given locale
   """
-  @spec get_definition(Atom.t()) :: Holidefs.Definition.t()
+  @spec get_definition(atom) :: Holidefs.Definition.t() | nil
   def get_definition(locale) do
     Agent.get(__MODULE__, fn %{definitions: definitions} ->
       Enum.find(definitions, &(&1.code == locale))

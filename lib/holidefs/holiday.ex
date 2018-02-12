@@ -21,11 +21,8 @@ defmodule Holidefs.Holiday do
   @doc """
   Returns a list of holidays for the definition rule on the given year
   """
-  @spec from_rule(Atom.t(), Holidefs.Definition.Rule.t(), integer) :: [t]
-  @spec from_rule(Atom.t(), Holidefs.Definition.Rule.t(), integer, Holidefs.Options.t()) :: [t]
-  def from_rule(code, rule, year, opts \\ [])
-
-  def from_rule(code, %Rule{year_ranges: year_ranges} = rule, year, opts) do
+  @spec from_rule(atom, Holidefs.Definition.Rule.t(), integer, Holidefs.Options.t()) :: [t]
+  def from_rule(code, %Rule{year_ranges: year_ranges} = rule, year, opts \\ []) do
     if in_year_ranges?(year_ranges, year) do
       build_from_rule(code, rule, year, opts)
     else
@@ -46,6 +43,7 @@ defmodule Holidefs.Holiday do
   defp in_year_range?(%{"limited" => years}, year), do: year in years
   defp in_year_range?(%{"between" => years}, year), do: year in years
 
+  @spec build_from_rule(atom, Holidefs.Definition.Rule.t(), integer, Holidefs.Options.t()) :: [t]
   defp build_from_rule(
          code,
          %Rule{name: name, function: fun, informal?: informal?} = rule,
@@ -155,7 +153,7 @@ defmodule Holidefs.Holiday do
   @doc """
   Returns the translated name of the given holiday
   """
-  @spec translate_name(Atom.t(), String.t()) :: String.t()
+  @spec translate_name(atom, String.t()) :: String.t()
   def translate_name(code, name) do
     Gettext.dgettext(Holidefs.Gettext, Atom.to_string(code), name)
   end

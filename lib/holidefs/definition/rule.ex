@@ -27,7 +27,7 @@ defmodule Holidefs.Definition.Rule do
           weekday: integer,
           function: function,
           observed: function,
-          year_ranges: map,
+          year_ranges: map | nil,
           informal?: boolean
         }
 
@@ -37,7 +37,7 @@ defmodule Holidefs.Definition.Rule do
   @doc """
   Builds a new rule from its month and definition map
   """
-  @spec build(integer, Map.t()) :: {:ok, t} | {:error, :invalid_rule}
+  @spec build(integer, map) :: t
   def build(month, %{"name" => name, "function" => func} = map) do
     %Rule{
       name: name,

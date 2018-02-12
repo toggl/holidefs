@@ -6,6 +6,12 @@ env:
   global:
     - MIX_ENV=test
 
+cache:
+  directories:
+    - ~/.hex
+    - ~/.mix
+    - deps
+
 matrix:
   include:
     - elixir: 1.6.1
@@ -19,6 +25,7 @@ install:
 
 script:
   - mix compile --warnings-as-errors --force
+  - mix dialyzer --halt-exit-status
   - $FORMAT_CHECK
   - mix credo
   - mix coveralls
@@ -26,5 +33,3 @@ script:
 after_script:
   - mix deps.get --only docs
   - MIX_ENV=docs mix inch.report
-
-

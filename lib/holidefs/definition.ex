@@ -10,7 +10,7 @@ defmodule Holidefs.Definition do
   defstruct [:code, :name, rules: []]
 
   @type t :: %Definition{
-          code: String.t(),
+          code: atom,
           name: String.t(),
           rules: [Holidefs.Definition.Rule.t()]
         }
@@ -20,8 +20,7 @@ defmodule Holidefs.Definition do
   @doc """
   Returns the path for the given locale definition file
   """
-  @spec file_path(Atom.t()) :: Path.t()
-  @spec file_path(Atom.t(), Path.t()) :: Path.t()
+  @spec file_path(atom, Path.t()) :: binary
   def file_path(code, path \\ @path), do: Path.join(path, "#{code}.yaml")
 
   @doc """
@@ -35,11 +34,12 @@ defmodule Holidefs.Definition do
 
   If any definition rule is invalid, a RuntimeError will be raised
   """
-  @spec load!(Atom.t(), String.t()) :: t
+  @spec load!(atom, String.t()) :: t
   def load!(code, name) do
     rules =
       code
       |> file_path()
+      |> to_charlist()
       |> YamlElixir.read_from_file()
       |> Map.get("months")
       |> Enum.flat_map(fn {month, rules} ->
