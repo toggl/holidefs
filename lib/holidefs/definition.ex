@@ -15,19 +15,19 @@ defmodule Holidefs.Definition do
           rules: [Holidefs.Definition.Rule.t()]
         }
 
-  @path Application.app_dir(:holidefs, "priv/calendars/definitions")
-
   @doc """
   Returns the path for the given locale definition file
   """
   @spec file_path(atom, Path.t()) :: binary
-  def file_path(code, path \\ @path), do: Path.join(path, "#{code}.yaml")
+  def file_path(code, path \\ path()), do: Path.join(path, "#{code}.yaml")
 
   @doc """
   Returns the path where all the locale definitions are saved
   """
   @spec path() :: Path.t()
-  def path, do: @path
+  def path() do
+    Path.join(:code.priv_dir(:holidefs), "/calendars/definitions")
+  end
 
   @doc """
   Loads the definition for a locale code and name.
