@@ -7,6 +7,8 @@
 ### Changed
 
 - `:rs_la` for serbian (latin) locale renamed to `:rs` (no backward compatibility maintained)
+- All definitions files download are now locked to
+https://github.com/holidays/definitions/tree/v2.3.0 tag
 
 ## 0.1.2
 

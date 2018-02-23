@@ -21,7 +21,8 @@ defmodule Mix.Tasks.Holidefs.Download do
 
   """
 
-  @endpoint "https://raw.githubusercontent.com/holidays/definitions/master"
+  @version "v2.3.0"
+  @endpoint "https://raw.githubusercontent.com/holidays/definitions/#{@version}"
   @path Path.join(:code.priv_dir(:holidefs), "/calendars/definitions")
 
   @switches [locale: :string, clean: :boolean]
