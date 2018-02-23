@@ -92,7 +92,9 @@ defmodule Mix.Tasks.Holidefs.Download do
           content =
             downloaded_path
             |> File.stream!()
-            |> Enum.map(&String.replace(&1, Atom.to_string(renamed_locale(code)), Atom.to_string(code)))
+            |> Enum.map(
+              &String.replace(&1, Atom.to_string(renamed_locale(code)), Atom.to_string(code))
+            )
 
           File.write!(downloaded_path, content)
         end
