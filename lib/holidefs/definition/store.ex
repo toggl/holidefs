@@ -26,11 +26,29 @@ defmodule Holidefs.Definition.Store do
   @doc """
   Returns the definitions for the given locale
   """
-  @spec get_definition(atom) :: Holidefs.Definition.t() | nil
+  @spec get_definition(Holidefs.locale_code()) :: Holidefs.Definition.t() | nil
   def get_definition(locale) do
     Agent.get(__MODULE__, fn %{definitions: definitions} ->
-      Enum.find(definitions, &(&1.code == locale))
+      Enum.find(definitions, &(&1.code == get_locale_atom(locale)))
     end)
+  end
+
+  defp get_locale_atom(locale) when is_binary(locale) do
+    if locale in locale_keys() do
+      String.to_existing_atom(locale)
+    else
+      locale
+    end
+  end
+
+  defp get_locale_atom(locale) when is_atom(locale) do
+    locale
+  end
+
+  defp locale_keys do
+    Holidefs.locales()
+    |> Map.keys()
+    |> Enum.map(&Atom.to_string/1)
   end
 
   defp load_all do

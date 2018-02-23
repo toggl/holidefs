@@ -1,6 +1,10 @@
 # Changelog
 
-## Unreleased
+## 0.2.1
+
+### Added
+
+- Now `Holidefs` functions accepts string locale codes too
 
 ## 0.2.0
 
