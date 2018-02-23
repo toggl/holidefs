@@ -21,11 +21,16 @@ defmodule Mix.Tasks.Holidefs.Download do
 
   """
 
-  @endpoint "https://raw.githubusercontent.com/holidays/definitions/master"
+  @version "v2.3.0"
+  @endpoint "https://raw.githubusercontent.com/holidays/definitions/#{@version}"
   @path Path.join(:code.priv_dir(:holidefs), "/calendars/definitions")
 
   @switches [locale: :string, clean: :boolean]
   @aliases [l: :locale, c: :clean]
+
+  @renamed_locales %{
+    rs: :rs_la
+  }
 
   @doc false
   def run(args) do
@@ -77,18 +82,39 @@ defmodule Mix.Tasks.Holidefs.Download do
   end
 
   defp codes do
-    Holidefs.locales()
-    |> Map.keys()
-    |> Stream.map(&Atom.to_string/1)
+    Map.keys(Holidefs.locales())
   end
 
   defp download(code, path) do
-    case Download.from("#{@endpoint}/#{code}.yaml", path: path) do
-      {:ok, downloaded_path} -> {:ok, downloaded_path}
-      {:error, :eexist} -> resolve_conflict(code, path)
-      {:error, reason} -> {:error, reason}
+    case Download.from("#{@endpoint}/#{renamed_locale(code)}.yaml", path: path) do
+      {:ok, downloaded_path} ->
+        if renamed_locale?(code) do
+          content =
+            downloaded_path
+            |> File.stream!()
+            |> Enum.map(
+              &String.replace(&1, Atom.to_string(renamed_locale(code)), Atom.to_string(code))
+            )
+
+          File.write!(downloaded_path, content)
+        end
+
+        {:ok, downloaded_path}
+
+      {:error, :eexist} ->
+        resolve_conflict(code, path)
+
+      {:error, reason, status} ->
+        {:error, "Download failed! Reason: #{inspect(reason)}, status code: #{status}"}
+
+      {:error, reason} ->
+        {:error, reason}
     end
   end
+
+  defp renamed_locale?(code), do: code in Map.keys(@renamed_locales)
+
+  defp renamed_locale(code), do: @renamed_locales[code] || code
 
   defp resolve_conflict(code, path) do
     resolve_conflict(code, path, Process.get(:conflict_action))
@@ -166,5 +192,9 @@ defmodule Mix.Tasks.Holidefs.Download do
 
   defp handle_opts([head | tail], acc), do: handle_opts(tail, [head | acc])
 
-  defp handle_locale(locale) when is_bitstring(locale), do: String.split(locale, ",")
+  defp handle_locale(locale) when is_bitstring(locale) do
+    locale
+    |> String.split(",")
+    |> Enum.map(&String.to_atom/1)
+  end
 end

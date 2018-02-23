@@ -35,7 +35,7 @@ defmodule Holidefs do
     ph: "Philippines",
     pl: "Poland",
     pt: "Portugal",
-    rs_la: "Serbia (Latin)",
+    rs: "Serbia",
     ru: "Russia",
     se: "Sweden",
     sg: "Singapore",
