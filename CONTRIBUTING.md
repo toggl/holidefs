@@ -19,8 +19,12 @@ Here is the step by step to release the project (team members only):
 - Change the `version` key on `mix.exs` to the version you'll release
 - Commit it to `master`
 - Make sure CI passes and docs are good
-- If you're releasing a minor, open a branch for it, with a naming like `1.0`
-- If you're releasing a patch, checkout the minor branch and `git rebase master` on it
+- Prepare the version branch:
+  - If you're releasing a major or minor, open a branch for it, with a naming like `1.0`
+  - If you're releasing a patch with all the things on master, checkout the minor branch and 
+  `git rebase master` on it
+  - If you're releasing a patch, but can't get everything of master, `git cherry-pick <sha>` of 
+  every commit you need and push it
 - Create a draft for your release on Github
   - From branch: `1.0`
   - Tag: `v1.0.0`
@@ -28,4 +32,4 @@ Here is the step by step to release the project (team members only):
   - Description: exactly the same as changelog
 - Run `mix hex.publish`
 - Submit your release draft
-
+- Update `README.md` version
