@@ -13,31 +13,43 @@ defmodule Holidefs.Options do
   """
 
   alias Holidefs.Definition
+  alias Holidefs.Options
 
-  defstruct [:region, include_informal?: false, observed?: false]
+  defstruct regions: [], include_informal?: false, observed?: false
 
-  @type t ::
-          Keyword.t()
-          | map
-          | %Holidefs.Options{
-              region: String.t() | [String.t()],
-              include_informal?: boolean,
-              observed?: boolean
-            }
+  @type attrs :: Keyword.t() | map
+  @type t :: %Options{
+          regions: [String.t()],
+          include_informal?: boolean,
+          observed?: boolean
+        }
 
   @doc """
-  Returns the list of regions from the given `opts`.
+  Builds a new `Options` struct with normalized fields.
 
-  The `definition` will be used to get the all the regions and code.
+  The `definition` is used to get the all the regions and code.
   """
-  @spec get_regions(Holidefs.Options.t, Holidefs.Definition.t()) :: [String.t()]
-  def get_regions(opts, definition) do
-    main_region = Atom.to_string(definition.code)
-    case opts.region do
-      [""] -> Definition.get_regions(definition)
-      regions when is_list(regions) -> [main_region | regions]
-      region when is_bitstring(region) -> [main_region, region]
-      nil -> [main_region]
-    end
+  @spec build(attrs, Definition.t()) :: Options.t()
+  def build(attrs, %Definition{} = definition) do
+    opts = struct(Options, attrs)
+    %{opts | regions: get_regions(opts.regions, definition)}
   end
+
+  defp get_regions([""], definition) do
+    Definition.get_regions(definition)
+  end
+
+  defp get_regions(regions, definition) when is_list(regions) do
+    [main_region(definition) | regions]
+  end
+
+  defp get_regions(region, definition) when is_bitstring(region) do
+    [main_region(definition), region]
+  end
+
+  defp get_regions(nil, definition) do
+    [main_region(definition)]
+  end
+
+  defp main_region(%Definition{code: code}), do: Atom.to_string(code)
 end

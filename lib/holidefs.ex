@@ -138,21 +138,19 @@ defmodule Holidefs do
           Holidefs.Holiday.t()
         ]
   defp all_year_holidays(
-         %Definition{code: code, rules: rules} = definition,
+         %Definition{code: code, rules: rules},
          year,
-         %Options{include_informal?: include_informal?} = opts
+         %Options{include_informal?: include_informal?, regions: regions} = opts
        ) do
-    regions = Options.get_regions(opts, definition)
-
     rules
     |> Stream.filter(&(include_informal? or not &1.informal?))
-    |> Stream.filter(&((regions -- &1.regions) != regions))
+    |> Stream.filter(&(regions -- &1.regions != regions))
     |> Stream.flat_map(&Holiday.from_rule(code, &1, year, opts))
     |> Enum.sort_by(&Date.to_erl(&1.date))
   end
 
   defp all_year_holidays(definition, year, opts) when is_list(opts) or is_map(opts) do
-    all_year_holidays(definition, year, struct(Options, opts))
+    all_year_holidays(definition, year, Options.build(opts, definition))
   end
 
   @doc """

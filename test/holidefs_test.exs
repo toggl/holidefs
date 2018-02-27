@@ -125,7 +125,7 @@ defmodule HolidefsTest do
   end
 
   defp given_options(_, regions, code) do
-    [region: Enum.map(regions, &String.replace(&1, "#{code}_", ""))]
+    [regions: Enum.map(regions, &String.replace(&1, "#{code}_", ""))]
   end
 
   defp translate_option("informal"), do: {:include_informal?, true}
@@ -147,7 +147,9 @@ defmodule HolidefsTest do
 
   defp check_expectations(code, %{"given" => given, "expect" => expect}) do
     for date <- get_dates(given) do
-      {:ok, holidays} = Holidefs.on(code, date, given_options(given, Map.get(given, "regions", []), code))
+      {:ok, holidays} =
+        Holidefs.on(code, date, given_options(given, Map.get(given, "regions", []), code))
+
       matches? = expectation_matches?(expect, holidays)
 
       unless matches? do
