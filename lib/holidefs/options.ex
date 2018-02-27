@@ -17,8 +17,8 @@ defmodule Holidefs.Options do
 
   defstruct regions: [], include_informal?: false, observed?: false
 
-  @type attrs :: Keyword.t() | map
-  @type t :: %Options{
+  @type attrs :: [] | Keyword.t() | map
+  @type t :: %Holidefs.Options{
           regions: [String.t()],
           include_informal?: boolean,
           observed?: boolean
@@ -29,7 +29,7 @@ defmodule Holidefs.Options do
 
   The `definition` is used to get the all the regions and code.
   """
-  @spec build(attrs, Definition.t()) :: Options.t()
+  @spec build(attrs, Holidefs.Definition.t()) :: Holidefs.Options.t()
   def build(attrs, %Definition{} = definition) do
     opts = struct(Options, attrs)
     %{opts | regions: get_regions(opts.regions, definition)}

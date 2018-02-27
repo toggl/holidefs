@@ -99,7 +99,7 @@ defmodule Holidefs do
   returns a `{:error, reason}` tuple.
   """
   @spec on(locale_code, Date.t()) :: {:ok, [Holidefs.Holiday.t()]} | {:error, error_reasons}
-  @spec on(locale_code, Date.t(), Holidefs.Options.t()) ::
+  @spec on(locale_code, Date.t(), Holidefs.Options.attrs()) ::
           {:ok, [Holidefs.Holiday.t()]} | {:error, error_reasons}
   def on(locale, date, opts \\ []) do
     locale
@@ -114,7 +114,7 @@ defmodule Holidefs do
   returns a `{:error, reason}` tuple
   """
   @spec year(locale_code, integer) :: {:ok, [Holidefs.Holiday.t()]} | {:error, String.t()}
-  @spec year(locale_code, integer, Holidefs.Options.t()) ::
+  @spec year(locale_code, integer, Holidefs.Options.attrs()) ::
           {:ok, [Holidefs.Holiday.t()]} | {:error, error_reasons}
   def year(locale, year, opts \\ [])
 
@@ -134,7 +134,7 @@ defmodule Holidefs do
     {:error, :invalid_date}
   end
 
-  @spec all_year_holidays(Holiday.Definition.t(), integer, Holidefs.Options.t() | list) :: [
+  @spec all_year_holidays(Holiday.Definition.t(), integer, Holidefs.Options.attrs()) :: [
           Holidefs.Holiday.t()
         ]
   defp all_year_holidays(
@@ -160,7 +160,7 @@ defmodule Holidefs do
   If succeed returns a `{:ok, holidays}` tuple, otherwise
   returns a `{:error, reason}` tuple
   """
-  @spec between(locale_code, Date.t(), Date.t(), Holidefs.Options.t()) ::
+  @spec between(locale_code, Date.t(), Date.t(), Holidefs.Options.attrs()) ::
           {:ok, [Holidefs.Holiday.t()]} | {:error, error_reasons}
   def between(locale, start, finish, opts \\ []) do
     locale
