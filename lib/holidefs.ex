@@ -79,12 +79,36 @@ defmodule Holidefs do
   end
 
   @doc """
+  Returns the list of regions from the given locale.
+
+  If succeed returns a `{:ok, regions}` tuple, otherwise
+  returns a `{:error, reason}` tuple.
+  """
+  @spec regions(locale_code) :: {:ok, [String.t()]} | {:error, error_reasons}
+  def regions(locale) do
+    case Store.get_definition(locale) do
+      nil ->
+        {:error, :no_def}
+
+      definition ->
+        result =
+          definition
+          |> Map.get(:rules)
+          |> Stream.flat_map(&Map.get(&1, :regions))
+          |> Stream.uniq()
+          |> Enum.sort()
+
+        {:ok, result}
+    end
+  end
+
+  @doc """
   Returns all the holidays for the given locale on the given date.
 
   If succeed returns a `{:ok, holidays}` tuple, otherwise
   returns a `{:error, reason}` tuple.
   """
-  @spec on(locale_code, Date.t()) :: {:ok, [Holidefs.Holiday.t()]} | {:error, String.t()}
+  @spec on(locale_code, Date.t()) :: {:ok, [Holidefs.Holiday.t()]} | {:error, error_reasons}
   @spec on(locale_code, Date.t(), Holidefs.Options.t()) ::
           {:ok, [Holidefs.Holiday.t()]} | {:error, error_reasons}
   def on(locale, date, opts \\ []) do

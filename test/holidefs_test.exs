@@ -6,6 +6,16 @@ defmodule HolidefsTest do
 
   doctest Holidefs
 
+  test "regions/1 returns all the regions for the given locale" do
+    assert Holidefs.regions("will_never_exist") == {:error, :no_def}
+    assert Holidefs.regions("us") == {:ok, [
+      "ak", "al", "ar", "az", "ca", "co", "ct", "dc", "de", "fl", "ga", "gu", "hi", "ia", "id",
+      "il", "in", "ks", "ky", "la", "ma", "md", "me", "mi", "mn", "mo", "ms", "mt", "nc", "nd",
+      "ne", "nh", "nj", "nm", "nv", "ny", "oh", "ok", "or", "pa", "pr", "ri", "sc", "sd", "tn",
+      "tx", "us", "ut", "va", "vi", "vt", "wa", "wi", "wv", "wy"
+    ]}
+  end
+
   test "between/3 returns all the calendars between the given dates" do
     Holidefs.set_language("orig")
     assert {:ok, holidays} = Holidefs.between(:br, ~D[2017-11-03], ~D[2017-12-24])
