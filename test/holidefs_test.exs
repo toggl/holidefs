@@ -37,12 +37,9 @@ defmodule HolidefsTest do
   test "all definition files tests match" do
     Holidefs.set_language("orig")
 
-    warning_count =
-      Holidefs.locales()
-      |> Stream.map(&test_definition/1)
-      |> Enum.sum()
-
-    if warning_count > 0, do: Logger.warn("Warning count: #{warning_count}")
+    for code <- Holidefs.locales() do
+      test_definition(code)
+    end
   end
 
   defp test_definition({code, _}) do
@@ -57,23 +54,12 @@ defmodule HolidefsTest do
       %{"given" => %{"date" => date} = given, "expect" => expect} ->
         [{given, date, expect}]
     end)
-    |> Stream.map(fn {given, date, expect} ->
+    |> Enum.map(fn {given, date, expect} ->
       matches? = definition_test_match?(code, date, given, expect)
       msg = definition_test_msg(code, given, date, expect)
 
-      if no_holiday?(expect) do
-        if matches? do
-          :ok
-        else
-          Logger.warn(msg)
-          :warning
-        end
-      else
-        assert matches?, msg
-        :ok
-      end
+      assert matches?, msg
     end)
-    |> Enum.count(&(&1 == :warning))
   end
 
   defp no_holiday?(%{"holiday" => false}), do: true
