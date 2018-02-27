@@ -126,41 +126,43 @@ defmodule Holidefs do
   @spec year(locale_code, integer) :: {:ok, [Holidefs.Holiday.t()]} | {:error, String.t()}
   @spec year(locale_code, integer, Holidefs.Options.t()) ::
           {:ok, [Holidefs.Holiday.t()]} | {:error, error_reasons}
-  def year(locale, year, opts \\ []) do
+  def year(locale, year, opts \\ [])
+
+  def year(locale, year, opts) when is_integer(year) do
     locale
     |> Store.get_definition()
     |> case do
       nil ->
         {:error, :no_def}
 
-      %Definition{rules: rules, code: locale} when is_integer(year) ->
-        {:ok, all_year_holidays(rules, year, locale, opts)}
-
-      _ ->
-        {:error, :invalid_date}
+      %Definition{} = definition ->
+        {:ok, all_year_holidays(definition, year, opts)}
     end
   end
 
-  @spec all_year_holidays(
-          [Holidefs.Definition.Rule.t()],
-          integer,
-          locale_code,
-          Holidefs.Options.t() | list
-        ) :: [Holidefs.Holiday.t()]
+  def year(_, _, _) do
+    {:error, :invalid_date}
+  end
+
+  @spec all_year_holidays(Holiday.Definition.t(), integer, Holidefs.Options.t() | list) :: [
+          Holidefs.Holiday.t()
+        ]
   defp all_year_holidays(
-         rules,
+         %Definition{code: code, rules: rules},
          year,
-         locale,
          %Options{include_informal?: include_informal?} = opts
        ) do
+    region = opts.region || Atom.to_string(code)
+
     rules
     |> Stream.filter(&(include_informal? or not &1.informal?))
-    |> Stream.flat_map(&Holiday.from_rule(locale, &1, year, opts))
+    |> Stream.filter(&(region in &1.regions))
+    |> Stream.flat_map(&Holiday.from_rule(code, &1, year, opts))
     |> Enum.sort_by(&Date.to_erl(&1.date))
   end
 
-  defp all_year_holidays(rules, year, locale, opts) when is_list(opts) or is_map(opts) do
-    all_year_holidays(rules, year, locale, struct(Options, opts))
+  defp all_year_holidays(definition, year, opts) when is_list(opts) or is_map(opts) do
+    all_year_holidays(definition, year, struct(Options, opts))
   end
 
   @doc """
@@ -183,14 +185,14 @@ defmodule Holidefs do
   end
 
   defp find_between(
-         %Definition{rules: rules, code: locale},
+         definition,
          %Date{} = start,
          %Date{} = finish,
          opts
        ) do
     holidays =
       start.year..finish.year
-      |> Stream.flat_map(&all_year_holidays(rules, &1, locale, opts))
+      |> Stream.flat_map(&all_year_holidays(definition, &1, opts))
       |> Stream.drop_while(&(Date.compare(&1.date, start) == :lt))
       |> Enum.take_while(&(Date.compare(&1.date, finish) != :gt))
 

@@ -61,7 +61,7 @@ defmodule HolidefsTest do
       matches? = definition_test_match?(code, date, given, expect)
       msg = definition_test_msg(code, given, date, expect)
 
-      if no_holiday?(expect) or has_regions?(given) do
+      if no_holiday?(expect) do
         if matches? do
           :ok
         else
@@ -76,8 +76,6 @@ defmodule HolidefsTest do
     |> Enum.count(&(&1 == :warning))
   end
 
-  defp has_regions?(given), do: Map.has_key?(given, "regions")
-
   defp no_holiday?(%{"holiday" => false}), do: true
   defp no_holiday?(_), do: false
 
@@ -91,18 +89,19 @@ defmodule HolidefsTest do
     """
   end
 
-  defp given_options(%{"options" => opts}) when is_list(opts) do
+  defp given_options(%{"options" => opts}, region, code) when is_list(opts) do
     opts
     |> Stream.map(&translate_option/1)
     |> Enum.filter(&(&1 != nil))
+    |> Keyword.merge(given_options(nil, region, code))
   end
 
-  defp given_options(%{"options" => opt}) do
-    [translate_option(opt)]
+  defp given_options(%{"options" => opt}, region, code) do
+    Keyword.merge([translate_option(opt)], given_options(nil, region, code))
   end
 
-  defp given_options(_) do
-    []
+  defp given_options(_, region, code) do
+    [region: String.replace(region, "#{code}_", "")]
   end
 
   defp translate_option("informal"), do: {:include_informal?, true}
@@ -120,12 +119,14 @@ defmodule HolidefsTest do
   end
 
   defp definition_test_match?(code, date, given, expect) do
-    {:ok, holidays} = Holidefs.on(code, date, given_options(given))
+    for region <- given["regions"] do
+      {:ok, holidays} = Holidefs.on(code, date, given_options(given, region, code))
 
-    if no_holiday?(expect) do
-      holidays == []
-    else
-      expect["name"] in Enum.map(holidays, & &1.name)
+      if no_holiday?(expect) do
+        holidays == []
+      else
+        expect["name"] in Enum.map(holidays, & &1.name)
+      end
     end
   end
 end
