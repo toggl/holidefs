@@ -187,7 +187,7 @@ defmodule Holidefs.Definition.CustomFunctions do
 
   @doc false
   def qld_labour_day_october(year, _) do
-    if year in 2014..2015, do: DateCalculator.nth_day_of_week(year, 10, 1, 1)
+    if year in 2013..2015, do: DateCalculator.nth_day_of_week(year, 10, 1, 1)
   end
 
   @doc false

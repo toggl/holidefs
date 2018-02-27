@@ -152,11 +152,9 @@ defmodule Holidefs do
          year,
          %Options{include_informal?: include_informal?} = opts
        ) do
-    region = opts.region || Atom.to_string(code)
-
     rules
     |> Stream.filter(&(include_informal? or not &1.informal?))
-    |> Stream.filter(&(region in &1.regions))
+    |> Stream.filter(&(opts.region in &1.regions or Atom.to_string(code) in &1.regions))
     |> Stream.flat_map(&Holiday.from_rule(code, &1, year, opts))
     |> Enum.sort_by(&Date.to_erl(&1.date))
   end

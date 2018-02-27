@@ -8,12 +8,66 @@ defmodule HolidefsTest do
 
   test "regions/1 returns all the regions for the given locale" do
     assert Holidefs.regions("will_never_exist") == {:error, :no_def}
-    assert Holidefs.regions("us") == {:ok, [
-      "ak", "al", "ar", "az", "ca", "co", "ct", "dc", "de", "fl", "ga", "gu", "hi", "ia", "id",
-      "il", "in", "ks", "ky", "la", "ma", "md", "me", "mi", "mn", "mo", "ms", "mt", "nc", "nd",
-      "ne", "nh", "nj", "nm", "nv", "ny", "oh", "ok", "or", "pa", "pr", "ri", "sc", "sd", "tn",
-      "tx", "us", "ut", "va", "vi", "vt", "wa", "wi", "wv", "wy"
-    ]}
+
+    assert Holidefs.regions("us") ==
+             {:ok,
+              [
+                "ak",
+                "al",
+                "ar",
+                "az",
+                "ca",
+                "co",
+                "ct",
+                "dc",
+                "de",
+                "fl",
+                "ga",
+                "gu",
+                "hi",
+                "ia",
+                "id",
+                "il",
+                "in",
+                "ks",
+                "ky",
+                "la",
+                "ma",
+                "md",
+                "me",
+                "mi",
+                "mn",
+                "mo",
+                "ms",
+                "mt",
+                "nc",
+                "nd",
+                "ne",
+                "nh",
+                "nj",
+                "nm",
+                "nv",
+                "ny",
+                "oh",
+                "ok",
+                "or",
+                "pa",
+                "pr",
+                "ri",
+                "sc",
+                "sd",
+                "tn",
+                "tx",
+                "us",
+                "ut",
+                "va",
+                "vi",
+                "vt",
+                "wa",
+                "wi",
+                "wv",
+                "wy"
+              ]}
   end
 
   test "between/3 returns all the calendars between the given dates" do
@@ -37,42 +91,26 @@ defmodule HolidefsTest do
   test "all definition files tests match" do
     Holidefs.set_language("orig")
 
-    for code <- Holidefs.locales() do
-      test_definition(code)
-    end
+    sum =
+      Holidefs.locales()
+      |> Stream.map(fn {code, _} -> test_definition(code) end)
+      |> Enum.sum()
+
+    if sum > 0, do: Logger.warn("Total number of warnings: #{sum}")
   end
 
-  defp test_definition({code, _}) do
-    code
-    |> Definition.file_path()
-    |> YamlElixir.read_from_file()
-    |> Map.get("tests")
-    |> Stream.flat_map(fn
-      %{"given" => %{"date" => list} = given, "expect" => expect} when is_list(list) ->
-        for date <- list, do: {given, date, expect}
+  defp test_definition(code) do
+    count =
+      code
+      |> Definition.file_path()
+      |> YamlElixir.read_from_file()
+      |> Map.get("tests")
+      |> Stream.flat_map(&check_expectations(code, &1))
+      |> Enum.count(&(!&1))
 
-      %{"given" => %{"date" => date} = given, "expect" => expect} ->
-        [{given, date, expect}]
-    end)
-    |> Enum.map(fn {given, date, expect} ->
-      matches? = definition_test_match?(code, date, given, expect)
-      msg = definition_test_msg(code, given, date, expect)
+    if count > 0, do: Logger.warn("Warnings for #{code}: #{count}")
 
-      assert matches?, msg
-    end)
-  end
-
-  defp no_holiday?(%{"holiday" => false}), do: true
-  defp no_holiday?(_), do: false
-
-  defp definition_test_msg(code, given, date, expect) do
-    """
-    Test on definition file for #{inspect(code)} did not match.
-
-    Date: #{inspect(date)}
-    Given: #{inspect(given)}
-    Expectation failed: #{inspect(expect)}
-    """
+    count
   end
 
   defp given_options(%{"options" => opts}, region, code) when is_list(opts) do
@@ -94,25 +132,45 @@ defmodule HolidefsTest do
   defp translate_option("observed"), do: {:observed?, true}
   defp translate_option(_), do: nil
 
-  defp definition_test_match?(code, date, given, expect) when is_bitstring(date) do
+  defp get_dates(%{"date" => list}) when is_list(list), do: Enum.map(list, &parse_date/1)
+  defp get_dates(%{"date" => date}) when is_bitstring(date), do: [parse_date(date)]
+
+  defp parse_date(date) when is_bitstring(date) do
     [year, month, day] =
       date
       |> String.split("-")
       |> Enum.map(&String.to_integer/1)
 
     {:ok, date} = Date.new(year, month, day)
-    definition_test_match?(code, date, given, expect)
+    date
   end
 
-  defp definition_test_match?(code, date, given, expect) do
-    for region <- given["regions"] do
+  defp check_expectations(code, %{"given" => given, "expect" => expect}) do
+    for date <- get_dates(given),
+        region <- Map.get(given, "regions", []) do
       {:ok, holidays} = Holidefs.on(code, date, given_options(given, region, code))
+      matches? = expectation_matches?(expect, holidays)
 
-      if no_holiday?(expect) do
-        holidays == []
-      else
-        expect["name"] in Enum.map(holidays, & &1.name)
+      unless matches? do
+        Logger.warn("""
+        Test on definition file for #{inspect(code)} did not match.
+
+        Date: #{inspect(date)}
+        Given: #{inspect(given)}
+        Expectation failed: #{inspect(expect)}
+        Region: #{inspect(region)}
+        Holidays: #{inspect(holidays)}
+        """)
       end
+
+      matches?
     end
+  end
+
+  defp expectation_matches?(%{"holiday" => false}, []), do: true
+  defp expectation_matches?(%{"holiday" => false}, _), do: false
+  defp expectation_matches?(%{"name" => name}, hld), do: name in Enum.map(hld, & &1.name)
+
+  defp message(code, given, expect, date, holidays, region) do
   end
 end
