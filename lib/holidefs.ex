@@ -84,21 +84,11 @@ defmodule Holidefs do
   If succeed returns a `{:ok, regions}` tuple, otherwise
   returns a `{:error, reason}` tuple.
   """
-  @spec regions(locale_code) :: {:ok, [String.t()]} | {:error, error_reasons}
-  def regions(locale) do
+  @spec get_regions(locale_code) :: {:ok, [String.t()]} | {:error, error_reasons}
+  def get_regions(locale) do
     case Store.get_definition(locale) do
-      nil ->
-        {:error, :no_def}
-
-      definition ->
-        result =
-          definition
-          |> Map.get(:rules)
-          |> Stream.flat_map(&Map.get(&1, :regions))
-          |> Stream.uniq()
-          |> Enum.sort()
-
-        {:ok, result}
+      nil -> {:error, :no_def}
+      definition -> {:ok, Definition.get_regions(definition)}
     end
   end
 
@@ -148,13 +138,15 @@ defmodule Holidefs do
           Holidefs.Holiday.t()
         ]
   defp all_year_holidays(
-         %Definition{code: code, rules: rules},
+         %Definition{code: code, rules: rules} = definition,
          year,
          %Options{include_informal?: include_informal?} = opts
        ) do
+    regions = Options.get_regions(opts, definition)
+
     rules
     |> Stream.filter(&(include_informal? or not &1.informal?))
-    |> Stream.filter(&(opts.region in &1.regions or Atom.to_string(code) in &1.regions))
+    |> Stream.filter(&((regions -- &1.regions) != regions))
     |> Stream.flat_map(&Holiday.from_rule(code, &1, year, opts))
     |> Enum.sort_by(&Date.to_erl(&1.date))
   end

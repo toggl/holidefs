@@ -6,10 +6,10 @@ defmodule HolidefsTest do
 
   doctest Holidefs
 
-  test "regions/1 returns all the regions for the given locale" do
-    assert Holidefs.regions("will_never_exist") == {:error, :no_def}
+  test "get_regions/1 returns all the regions for the given locale" do
+    assert Holidefs.get_regions("will_never_exist") == {:error, :no_def}
 
-    assert Holidefs.regions("us") ==
+    assert Holidefs.get_regions("us") ==
              {:ok,
               [
                 "ak",
@@ -113,19 +113,19 @@ defmodule HolidefsTest do
     count
   end
 
-  defp given_options(%{"options" => opts}, region, code) when is_list(opts) do
+  defp given_options(%{"options" => opts}, regions, code) when is_list(opts) do
     opts
     |> Stream.map(&translate_option/1)
     |> Enum.filter(&(&1 != nil))
-    |> Keyword.merge(given_options(nil, region, code))
+    |> Keyword.merge(given_options(nil, regions, code))
   end
 
-  defp given_options(%{"options" => opt}, region, code) do
-    Keyword.merge([translate_option(opt)], given_options(nil, region, code))
+  defp given_options(%{"options" => opt}, regions, code) do
+    Keyword.merge([translate_option(opt)], given_options(nil, regions, code))
   end
 
-  defp given_options(_, region, code) do
-    [region: String.replace(region, "#{code}_", "")]
+  defp given_options(_, regions, code) do
+    [region: Enum.map(regions, &String.replace(&1, "#{code}_", ""))]
   end
 
   defp translate_option("informal"), do: {:include_informal?, true}
@@ -146,9 +146,8 @@ defmodule HolidefsTest do
   end
 
   defp check_expectations(code, %{"given" => given, "expect" => expect}) do
-    for date <- get_dates(given),
-        region <- Map.get(given, "regions", []) do
-      {:ok, holidays} = Holidefs.on(code, date, given_options(given, region, code))
+    for date <- get_dates(given) do
+      {:ok, holidays} = Holidefs.on(code, date, given_options(given, Map.get(given, "regions", []), code))
       matches? = expectation_matches?(expect, holidays)
 
       unless matches? do
@@ -158,7 +157,6 @@ defmodule HolidefsTest do
         Date: #{inspect(date)}
         Given: #{inspect(given)}
         Expectation failed: #{inspect(expect)}
-        Region: #{inspect(region)}
         Holidays: #{inspect(holidays)}
         """)
       end
@@ -170,7 +168,4 @@ defmodule HolidefsTest do
   defp expectation_matches?(%{"holiday" => false}, []), do: true
   defp expectation_matches?(%{"holiday" => false}, _), do: false
   defp expectation_matches?(%{"name" => name}, hld), do: name in Enum.map(hld, & &1.name)
-
-  defp message(code, given, expect, date, holidays, region) do
-  end
 end

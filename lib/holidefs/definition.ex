@@ -52,4 +52,16 @@ defmodule Holidefs.Definition do
       rules: rules
     }
   end
+
+  @doc """
+  Returns the list of regions from the definition.
+  """
+  @spec get_regions(t) :: [String.t()]
+  def get_regions(%Definition{} = definition) do
+    definition
+    |> Map.get(:rules)
+    |> Stream.flat_map(&Map.get(&1, :regions))
+    |> Stream.uniq()
+    |> Enum.sort()
+  end
 end
