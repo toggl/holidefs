@@ -6,6 +6,70 @@ defmodule HolidefsTest do
 
   doctest Holidefs
 
+  test "get_regions/1 returns all the regions for the given locale" do
+    assert Holidefs.get_regions("will_never_exist") == {:error, :no_def}
+
+    assert Holidefs.get_regions("us") ==
+             {:ok,
+              [
+                "ak",
+                "al",
+                "ar",
+                "az",
+                "ca",
+                "co",
+                "ct",
+                "dc",
+                "de",
+                "fl",
+                "ga",
+                "gu",
+                "hi",
+                "ia",
+                "id",
+                "il",
+                "in",
+                "ks",
+                "ky",
+                "la",
+                "ma",
+                "md",
+                "me",
+                "mi",
+                "mn",
+                "mo",
+                "ms",
+                "mt",
+                "nc",
+                "nd",
+                "ne",
+                "nh",
+                "nj",
+                "nm",
+                "nv",
+                "ny",
+                "oh",
+                "ok",
+                "or",
+                "pa",
+                "pr",
+                "ri",
+                "sc",
+                "sd",
+                "tn",
+                "tx",
+                "us",
+                "ut",
+                "va",
+                "vi",
+                "vt",
+                "wa",
+                "wi",
+                "wv",
+                "wy"
+              ]}
+  end
+
   test "between/3 returns all the calendars between the given dates" do
     Holidefs.set_language("orig")
     assert {:ok, holidays} = Holidefs.between(:br, ~D[2017-11-03], ~D[2017-12-24])
@@ -27,95 +91,83 @@ defmodule HolidefsTest do
   test "all definition files tests match" do
     Holidefs.set_language("orig")
 
-    warning_count =
+    sum =
       Holidefs.locales()
-      |> Stream.map(&test_definition/1)
+      |> Stream.map(fn {code, _} -> test_definition(code) end)
       |> Enum.sum()
 
-    if warning_count > 0, do: Logger.warn("Warning count: #{warning_count}")
+    assert sum == 0, "There were errors on definition tests. Total number of errors: #{sum}"
   end
 
-  defp test_definition({code, _}) do
-    code
-    |> Definition.file_path()
-    |> YamlElixir.read_from_file()
-    |> Map.get("tests")
-    |> Stream.flat_map(fn
-      %{"given" => %{"date" => list} = given, "expect" => expect} when is_list(list) ->
-        for date <- list, do: {given, date, expect}
+  defp test_definition(code) do
+    count =
+      code
+      |> Definition.file_path()
+      |> YamlElixir.read_from_file()
+      |> Map.get("tests")
+      |> Stream.flat_map(&check_expectations(code, &1))
+      |> Enum.count(&(!&1))
 
-      %{"given" => %{"date" => date} = given, "expect" => expect} ->
-        [{given, date, expect}]
-    end)
-    |> Stream.map(fn {given, date, expect} ->
-      matches? = definition_test_match?(code, date, given, expect)
-      msg = definition_test_msg(code, given, date, expect)
+    if count > 0, do: Logger.error("Errors for #{code}: #{count}")
 
-      if no_holiday?(expect) or has_regions?(given) do
-        if matches? do
-          :ok
-        else
-          Logger.warn(msg)
-          :warning
-        end
-      else
-        assert matches?, msg
-        :ok
-      end
-    end)
-    |> Enum.count(&(&1 == :warning))
+    count
   end
 
-  defp has_regions?(given), do: Map.has_key?(given, "regions")
-
-  defp no_holiday?(%{"holiday" => false}), do: true
-  defp no_holiday?(_), do: false
-
-  defp definition_test_msg(code, given, date, expect) do
-    """
-    Test on definition file for #{inspect(code)} did not match.
-
-    Date: #{inspect(date)}
-    Given: #{inspect(given)}
-    Expectation failed: #{inspect(expect)}
-    """
-  end
-
-  defp given_options(%{"options" => opts}) when is_list(opts) do
+  defp given_options(%{"options" => opts}, regions, code) when is_list(opts) do
     opts
     |> Stream.map(&translate_option/1)
     |> Enum.filter(&(&1 != nil))
+    |> Keyword.merge(given_options(nil, regions, code))
   end
 
-  defp given_options(%{"options" => opt}) do
-    [translate_option(opt)]
+  defp given_options(%{"options" => opt}, regions, code) do
+    Keyword.merge([translate_option(opt)], given_options(nil, regions, code))
   end
 
-  defp given_options(_) do
-    []
+  defp given_options(_, regions, code) do
+    [regions: Enum.map(regions, &String.replace(&1, "#{code}_", ""))]
   end
 
   defp translate_option("informal"), do: {:include_informal?, true}
   defp translate_option("observed"), do: {:observed?, true}
   defp translate_option(_), do: nil
 
-  defp definition_test_match?(code, date, given, expect) when is_bitstring(date) do
+  defp get_dates(%{"date" => list}) when is_list(list), do: Enum.map(list, &parse_date/1)
+  defp get_dates(%{"date" => date}) when is_bitstring(date), do: [parse_date(date)]
+
+  defp parse_date(date) when is_bitstring(date) do
     [year, month, day] =
       date
       |> String.split("-")
       |> Enum.map(&String.to_integer/1)
 
     {:ok, date} = Date.new(year, month, day)
-    definition_test_match?(code, date, given, expect)
+    date
   end
 
-  defp definition_test_match?(code, date, given, expect) do
-    {:ok, holidays} = Holidefs.on(code, date, given_options(given))
+  defp check_expectations(code, %{"given" => given, "expect" => expect}) do
+    for date <- get_dates(given) do
+      {:ok, holidays} =
+        Holidefs.on(code, date, given_options(given, Map.get(given, "regions", []), code))
 
-    if no_holiday?(expect) do
-      holidays == []
-    else
-      expect["name"] in Enum.map(holidays, & &1.name)
+      matches? = expectation_matches?(expect, holidays)
+
+      unless matches? do
+        Logger.error("""
+        Test on definition file for #{inspect(code)} did not match.
+
+        Date: #{inspect(date)}
+        Given: #{inspect(given)}
+        Expectation failed: #{inspect(expect)}
+        Holidays: #{inspect(holidays)}
+        """)
+      end
+
+      matches?
     end
   end
+
+  defp expectation_matches?(%{"holiday" => false}, []), do: true
+  defp expectation_matches?(%{"holiday" => false}, _), do: false
+  defp expectation_matches?(%{"name" => name}, hld), do: name in Enum.map(hld, & &1.name)
 end

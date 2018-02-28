@@ -32,7 +32,7 @@ defmodule Holidefs.Definition do
   @doc """
   Loads the definition for a locale code and name.
 
-  If any definition rule is invalid, a RuntimeError will be raised
+  If any definition rule is invalid, a `RuntimeError` will be raised
   """
   @spec load!(atom, String.t()) :: t
   def load!(code, name) do
@@ -43,7 +43,7 @@ defmodule Holidefs.Definition do
       |> YamlElixir.read_from_file()
       |> Map.get("months")
       |> Enum.flat_map(fn {month, rules} ->
-        for rule <- rules, do: Rule.build(month, rule)
+        for rule <- rules, do: Rule.build(code, month, rule)
       end)
 
     %Definition{
@@ -51,5 +51,17 @@ defmodule Holidefs.Definition do
       name: name,
       rules: rules
     }
+  end
+
+  @doc """
+  Returns the list of regions from the definition.
+  """
+  @spec get_regions(t) :: [String.t()]
+  def get_regions(%Definition{} = definition) do
+    definition
+    |> Map.get(:rules)
+    |> Stream.flat_map(&Map.get(&1, :regions))
+    |> Stream.uniq()
+    |> Enum.sort()
   end
 end

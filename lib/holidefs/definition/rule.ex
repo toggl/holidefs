@@ -14,6 +14,7 @@ defmodule Holidefs.Definition.Rule do
     :week,
     :weekday,
     :function,
+    :regions,
     :observed,
     :year_ranges,
     informal?: false
@@ -26,6 +27,7 @@ defmodule Holidefs.Definition.Rule do
           week: integer,
           weekday: integer,
           function: function,
+          regions: [String.t()],
           observed: function,
           year_ranges: map | nil,
           informal?: boolean
@@ -37,8 +39,8 @@ defmodule Holidefs.Definition.Rule do
   @doc """
   Builds a new rule from its month and definition map
   """
-  @spec build(integer, map) :: t
-  def build(month, %{"name" => name, "function" => func} = map) do
+  @spec build(atom, integer, map) :: t
+  def build(code, month, %{"name" => name, "function" => func} = map) do
     %Rule{
       name: name,
       month: month,
@@ -48,6 +50,7 @@ defmodule Holidefs.Definition.Rule do
       year_ranges: map["year_ranges"],
       informal?: map["type"] == "informal",
       observed: observed_from_name(map["observed"]),
+      regions: load_regions(map, code),
       function:
         func
         |> function_from_name()
@@ -55,7 +58,7 @@ defmodule Holidefs.Definition.Rule do
     }
   end
 
-  def build(month, %{"name" => name, "week" => week, "wday" => wday} = map)
+  def build(code, month, %{"name" => name, "week" => week, "wday" => wday} = map)
       when week in @valid_weeks and wday in @valid_weekdays do
     %Rule{
       name: name,
@@ -64,19 +67,29 @@ defmodule Holidefs.Definition.Rule do
       weekday: wday,
       year_ranges: map["year_ranges"],
       informal?: map["type"] == "informal",
-      observed: observed_from_name(map["observed"])
+      observed: observed_from_name(map["observed"]),
+      regions: load_regions(map, code)
     }
   end
 
-  def build(month, %{"name" => name, "mday" => day} = map) do
+  def build(code, month, %{"name" => name, "mday" => day} = map) do
     %Rule{
       name: name,
       month: month,
       day: day,
       year_ranges: map["year_ranges"],
       informal?: map["type"] == "informal",
-      observed: observed_from_name(map["observed"])
+      observed: observed_from_name(map["observed"]),
+      regions: load_regions(map, code)
     }
+  end
+
+  defp load_regions(%{"regions" => regions}, code) do
+    Enum.map(regions, &String.replace(&1, "#{code}_", ""))
+  end
+
+  defp load_regions(_, _) do
+    []
   end
 
   defp load_function(function, nil) do

@@ -187,7 +187,7 @@ defmodule Holidefs.Definition.CustomFunctions do
 
   @doc false
   def qld_labour_day_october(year, _) do
-    if year in 2014..2015, do: DateCalculator.nth_day_of_week(year, 10, 1, 1)
+    if year in 2013..2015, do: DateCalculator.nth_day_of_week(year, 10, 1, 1)
   end
 
   @doc false
@@ -207,10 +207,10 @@ defmodule Holidefs.Definition.CustomFunctions do
 
   @doc false
   def to_weekday_if_boxing_weekend(%Date{} = date, _) do
-    if Date.day_of_week(date) in 6..7 do
-      Date.add(date, 2)
-    else
-      date
+    case Date.day_of_week(date) do
+      day when day in 6..7 -> Date.add(date, 2)
+      1 -> Date.add(date, 1)
+      _ -> date
     end
   end
 

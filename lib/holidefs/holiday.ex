@@ -10,7 +10,7 @@ defmodule Holidefs.Holiday do
 
   defstruct [:name, :raw_date, :observed_date, :date, informal?: false]
 
-  @type t :: %Holiday{
+  @type t :: %Holidefs.Holiday{
           name: String.t(),
           raw_date: Date.t(),
           observed_date: Date.t(),
@@ -22,7 +22,7 @@ defmodule Holidefs.Holiday do
   Returns a list of holidays for the definition rule on the given year
   """
   @spec from_rule(atom, Holidefs.Definition.Rule.t(), integer, Holidefs.Options.t()) :: [t]
-  def from_rule(code, %Rule{year_ranges: year_ranges} = rule, year, opts \\ []) do
+  def from_rule(code, %Rule{year_ranges: year_ranges} = rule, year, opts \\ %Options{}) do
     if in_year_ranges?(year_ranges, year) do
       build_from_rule(code, rule, year, opts)
     else
@@ -43,7 +43,6 @@ defmodule Holidefs.Holiday do
   defp in_year_range?(%{"limited" => years}, year), do: year in years
   defp in_year_range?(%{"between" => years}, year), do: year in years
 
-  @spec build_from_rule(atom, Holidefs.Definition.Rule.t(), integer, Holidefs.Options.t()) :: [t]
   defp build_from_rule(
          code,
          %Rule{name: name, function: fun, informal?: informal?} = rule,
@@ -128,10 +127,6 @@ defmodule Holidefs.Holiday do
 
   defp load_date(rule, date, %Options{observed?: observed?}) do
     load_date(rule, date, observed?)
-  end
-
-  defp load_date(rule, date, opts) when is_list(opts) or is_map(opts) do
-    load_date(rule, date, struct(Options, opts))
   end
 
   defp load_date(rule, date, true) do

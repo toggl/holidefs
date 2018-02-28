@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.0
+
+### Added
+
+- Support for multiple regions on the same locale
+
 ## 0.2.1
 
 ### Added
