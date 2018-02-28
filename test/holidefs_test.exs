@@ -96,7 +96,7 @@ defmodule HolidefsTest do
       |> Stream.map(fn {code, _} -> test_definition(code) end)
       |> Enum.sum()
 
-    if sum > 0, do: Logger.warn("Total number of warnings: #{sum}")
+    assert sum == 0, "There were errors on definition tests. Total number of errors: #{sum}"
   end
 
   defp test_definition(code) do
@@ -108,7 +108,7 @@ defmodule HolidefsTest do
       |> Stream.flat_map(&check_expectations(code, &1))
       |> Enum.count(&(!&1))
 
-    if count > 0, do: Logger.warn("Warnings for #{code}: #{count}")
+    if count > 0, do: Logger.error("Errors for #{code}: #{count}")
 
     count
   end
@@ -153,7 +153,7 @@ defmodule HolidefsTest do
       matches? = expectation_matches?(expect, holidays)
 
       unless matches? do
-        Logger.warn("""
+        Logger.error("""
         Test on definition file for #{inspect(code)} did not match.
 
         Date: #{inspect(date)}
