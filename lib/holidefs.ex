@@ -134,7 +134,7 @@ defmodule Holidefs do
     {:error, :invalid_date}
   end
 
-  @spec all_year_holidays(Holiday.Definition.t(), integer, Holidefs.Options.attrs()) :: [
+  @spec all_year_holidays(Holidefs.Definition.t(), integer, Holidefs.Options.attrs()) :: [
           Holidefs.Holiday.t()
         ]
   defp all_year_holidays(
