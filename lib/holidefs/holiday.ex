@@ -10,7 +10,7 @@ defmodule Holidefs.Holiday do
 
   defstruct [:name, :raw_date, :observed_date, :date, informal?: false]
 
-  @type t :: %Holiday{
+  @type t :: %Holidefs.Holiday{
           name: String.t(),
           raw_date: Date.t(),
           observed_date: Date.t(),
