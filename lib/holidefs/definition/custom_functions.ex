@@ -122,6 +122,24 @@ defmodule Holidefs.Definition.CustomFunctions do
   end
 
   @doc false
+  def closest_monday(%Date{} = date, _) do
+    case Date.day_of_week(date) do
+      day when day in 1..4 -> Date.add(date, 1 - day)
+      day -> Date.add(date, 8 - day)
+    end
+  end
+
+  @doc false
+  def previous_friday(%Date{} = date, _) do
+    DateCalculator.previous_day_of_week(date, 6)
+  end
+
+  @doc false
+  def next_week(%Date{} = date, _) do
+    Date.add(date, 7)
+  end
+
+  @doc false
   def christmas_eve_holiday(year, %Rule{month: month, day: day}) do
     {:ok, date} = Date.new(year, month, day)
 

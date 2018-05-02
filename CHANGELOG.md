@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.1
+
+### Added
+
+- Locales: Belgium, Mexico and New Zealand
+
 ## 0.3.0
 
 ### Added

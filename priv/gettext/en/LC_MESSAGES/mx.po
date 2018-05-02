@@ -1,0 +1,74 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "Año nuevo"
+msgstr "New Year"
+
+msgid "Dia de los Santos Reyes"
+msgstr "Holy Kings day"
+
+msgid "Día de la Constitución"
+msgstr "Day of the constitution"
+
+msgid "Natalicio de Benito Juárez"
+msgstr "Birthday of Benito Juárez"
+
+msgid "Día del Niño"
+msgstr "Children's Day"
+
+msgid "Día del Trabajo"
+msgstr "Labour's Day"
+
+msgid "Cinco de Mayo"
+msgstr "Five of May"
+
+msgid "La Batalla de Puebla"
+msgstr "The Battle of Puebla"
+
+msgid "Día de la Madre"
+msgstr "Mother's Day"
+
+msgid "Día del Maestro"
+msgstr "Teacher's Day"
+
+msgid "Día del Padre"
+msgstr "Father's Day"
+
+msgid "Grito de Dolores"
+msgstr "The Cry of Dolores Day"
+
+msgid "Día de la Independencia"
+msgstr "Independence Day"
+
+msgid "Día de la Raza"
+msgstr "Day of race"
+
+msgid "Todos los Santos"
+msgstr "All Saints Day"
+
+msgid "Los Fieles Difuntos"
+msgstr "The deceased faithful day"
+
+msgid "Día de la Revolución"
+msgstr "Revolution Day"
+
+msgid "Día de la Virgen de Guadalupe"
+msgstr "Day of the Virgin of Guadalupe"
+
+msgid "Nochebuena"
+msgstr "Christmas Eve"
+
+msgid "Navidad"
+msgstr "Christmas"
+
+msgid "Los Santos Inocentes"
+msgstr "The Inocent Saints Day"
