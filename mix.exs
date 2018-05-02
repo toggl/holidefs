@@ -80,7 +80,7 @@ defmodule Holidefs.Mixfile do
       {:excoveralls, "~> 0.6", only: :test},
       {:gettext, "~> 0.13"},
       {:inch_ex, only: :docs},
-      {:yaml_elixir, "~> 1.3"},
+      {:yaml_elixir, "~> 1.3.1"},
       {:dialyxir, "~> 0.5", only: [:dev, :test], runtime: false}
     ]
   end
