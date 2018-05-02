@@ -1,0 +1,80 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "Good Friday"
+msgstr ""
+
+msgid "Easter Monday"
+msgstr ""
+
+msgid "New Year's Day"
+msgstr ""
+
+msgid "Day after New Year's Day"
+msgstr ""
+
+msgid "Southland Anniversary Day"
+msgstr ""
+
+msgid "Wellington Anniversary Day"
+msgstr ""
+
+msgid "Auckland Anniversary Day"
+msgstr ""
+
+msgid "Northland Anniversary Day"
+msgstr ""
+
+msgid "Nelson Anniversary Day"
+msgstr ""
+
+msgid "Waitangi Day"
+msgstr ""
+
+msgid "Otago Anniversary Day"
+msgstr ""
+
+msgid "Taranaki Anniversary Day"
+msgstr ""
+
+msgid "ANZAC Day"
+msgstr ""
+
+msgid "Queen's Birthday"
+msgstr ""
+
+msgid "Dominion Day"
+msgstr ""
+
+msgid "Hawke's bay Anniversary Day"
+msgstr ""
+
+msgid "Labour Day"
+msgstr ""
+
+msgid "Marlborough Anniversary Day"
+msgstr ""
+
+msgid "Canterbury Anniversary Day"
+msgstr ""
+
+msgid "Chatham Island Anniversary Day"
+msgstr ""
+
+msgid "Westland Anniversary Day"
+msgstr ""
+
+msgid "Christmas Day"
+msgstr ""
+
+msgid "Boxing Day"
+msgstr ""

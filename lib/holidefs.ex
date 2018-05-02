@@ -15,6 +15,7 @@ defmodule Holidefs do
   @locales %{
     at: "Austria",
     au: "Australia",
+    be: "Belgium",
     br: "Brazil",
     ca: "Canada",
     ch: "Switzerland",
@@ -31,8 +32,10 @@ defmodule Holidefs do
     ie: "Ireland",
     it: "Italy",
     my: "Malaysia",
+    mx: "Mexico",
     nl: "Netherlands",
     no: "Norway",
+    nz: "New Zealand",
     ph: "Philippines",
     pl: "Poland",
     pt: "Portugal",
