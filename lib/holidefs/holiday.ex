@@ -41,7 +41,12 @@ defmodule Holidefs.Holiday do
   defp in_year_range?(%{"before" => before_year}, year), do: year <= before_year
   defp in_year_range?(%{"after" => after_year}, year), do: year >= after_year
   defp in_year_range?(%{"limited" => years}, year), do: year in years
-  defp in_year_range?(%{"between" => years}, year), do: year in years
+  defp in_year_range?(%{"between" => between}, year) do
+    [start_year, end_year] = String.split(between, "..")
+    {start_year, ""} = Integer.parse(start_year)
+    {end_year, ""} = Integer.parse(end_year)
+    year in start_year..end_year
+  end
 
   defp build_from_rule(
          code,

@@ -320,6 +320,115 @@ defmodule Holidefs.Definition.CustomFunctions do
   end
 
   @doc false
+  def jp_health_sports_day_substitute(year, _) do
+    jp_substitute_holiday(DateCalculator.nth_day_of_week(year, 10, 2, 1))
+  end
+
+  @doc false
+  def jp_vernal_equinox_day(year, _) do
+    day = case year do
+      x when x in 1851..1899 -> 19.8277
+      x when x in 1900..1979 -> 20.8357
+      x when x in 1980..2099 -> 20.8431
+      x when x in 2100..2150 -> 21.8510
+      _ -> raise "out of range"
+    end
+
+    day = day + 0.242194 * (year - 1980) - Float.floor((year - 1980)/4)
+    day =
+      day
+      |> Float.floor()
+      |> Kernel.trunc()
+    {:ok, date} = Date.new(year, 3, day)
+    date
+  end
+
+  @doc false
+  def jp_vernal_equinox_day_substitute(year, _) do
+    jp_substitute_holiday(jp_vernal_equinox_day(year, nil))
+  end
+
+  @doc false
+  def jp_marine_day_substitute(year, _) do
+    jp_substitute_holiday(DateCalculator.nth_day_of_week(year, 7, 3, 1))
+  end
+
+  @doc false
+  def jp_national_culture_day(year, _) do
+    day = case year do
+      x when x in 1851..1899 -> 22.2588
+      x when x in 1900..1979 -> 23.2588
+      x when x in 1980..2099 -> 23.2488
+      x when x in 2100..2150 -> 24.2488
+      _ -> raise "out of range"
+    end
+
+    day = day + 0.242194 * (year - 1980) - Float.floor((year - 1980)/4)
+    day =
+      day
+      |> Float.floor()
+      |> Kernel.trunc()
+    {:ok, date} = Date.new(year, 9, day)
+    date
+  end
+
+  @doc false
+  def jp_national_culture_day_substitute(year, _) do
+    jp_substitute_holiday(jp_national_culture_day(year, nil))
+  end
+
+  @doc false
+  def jp_citizens_holiday(year, _) do
+    date = jp_national_culture_day(year, nil)
+    case Date.day_of_week(%Date{} = date) do
+      3 -> Date.add(date, -1)
+      _ -> nil
+    end
+  end
+
+  @doc false
+  def jp_mountain_holiday(year, _) do
+    {:ok, date} = Date.new(year, 8, 11)
+    date
+  end
+
+  @doc false
+  def jp_mountain_holiday_substitute(year, _) do
+    jp_substitute_holiday(jp_mountain_holiday(year, nil))
+  end
+
+  @doc false
+  def jp_respect_for_aged_holiday_substitute(year, _) do
+    jp_substitute_holiday(DateCalculator.nth_day_of_week(year, 9, 3, 1))
+  end
+
+  @doc false
+  def jp_substitute_holiday(year, %Rule{month: month, day: day}) do
+    {:ok, date} = Date.new(year, month, day)
+    jp_substitute_holiday(date)
+  end
+  def jp_substitute_holiday(date) do
+    case Date.day_of_week(%Date{} = date) do
+      7 -> jp_next_weekday(Date.add(date, 1))
+      _ -> nil
+    end
+  end
+
+  @doc false
+  def jp_next_weekday(%Date{} = date) do
+    defs =
+      (Holidefs.Definition.Store.get_definition(:jp).rules || [])
+      |> Enum.filter(&(&1.month == date.month))
+
+    is_holiday = Enum.any?(defs, &(&1.day == date.day))
+    if Date.day_of_week(date) == 7 || is_holiday do
+      jp_next_weekday(Date.add(date, 1))
+    else
+      date
+    end
+  end
+
+  @doc false
   def ph_heroes_day(year, _) do
     DateCalculator.nth_day_of_week(year, 8, -1, 1)
   end
