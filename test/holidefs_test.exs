@@ -99,11 +99,28 @@ defmodule HolidefsTest do
     assert sum == 0, "There were errors on definition tests. Total number of errors: #{sum}"
   end
 
+  test "setting and getting language" do
+    Holidefs.set_language("orig")
+    assert Holidefs.get_language() == "orig"
+  end
+
+  test "setting as atom and getting language" do
+    Holidefs.set_language(:orig)
+    assert Holidefs.get_language() == "orig"
+  end
+
+  test "return error when asking for all holidays for given year without definition" do
+    assert Holidefs.year("unkown", 2020) == {:error, :no_def}
+  end
+
   defp test_definition(code) do
-    count =
+    {:ok, file_data} =
       code
       |> Definition.file_path()
       |> YamlElixir.read_from_file()
+
+    count =
+      file_data
       |> Map.get("tests")
       |> Stream.flat_map(&check_expectations(code, &1))
       |> Enum.count(&(!&1))
