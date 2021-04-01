@@ -19,6 +19,7 @@ defmodule Holidefs do
     br: "Brazil",
     ca: "Canada",
     ch: "Switzerland",
+    co: "Colombia",
     cz: "Czech Republic",
     de: "Germany",
     dk: "Denmark",

@@ -29,6 +29,7 @@ defmodule Mix.Tasks.Holidefs.Download do
   @aliases [l: :locale, c: :clean]
 
   @renamed_locales %{
+    co: :es_co,
     rs: :rs_la,
     be: :be_nl
   }

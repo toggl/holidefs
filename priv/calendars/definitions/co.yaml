@@ -1,0 +1,168 @@
+# Colombian holiday definitions for the Ruby Holiday gem.
+# Updated 2021-03-31.
+# Sources:
+# - https://www.timeanddate.com/holidays/colombia/
+# - https://en.wikipedia.org/wiki/Public_holidays_in_Colombia
+---
+months:
+  0:
+  - name: Jueves Santo
+    regions: [co]
+    function: easter(year)
+    function_modifier: -3
+  - name: Viernes Santo
+    regions: [co]
+    function: easter(year)
+    function_modifier: -2
+  - name: Ascensión del señor
+    regions: [co]
+    function: easter(year)
+    function_modifier: 43
+  - name: Corpus Christi
+    regions: [co]
+    function: easter(year)
+    function_modifier: 64
+  - name: Sagrado Corazón
+    regions: [co]
+    function: easter(year)
+    function_modifier: 71
+  1:
+  - name: Año nuevo
+    regions: [co]
+    mday: 1
+  - name: Día de los Reyes Magos
+    regions: [co]
+    mday: 6
+  3:
+  - name: Día de San José
+    regions: [co]
+    mday: 19
+  5:
+  - name: Primero de Mayo
+    regions: [co]
+    mday: 1
+  6:
+  - name: San Pedro y San Pablo
+    regions: [co]
+    mday: 29
+  7:
+  - name: Declaración de la Independencia de Colombia
+    regions: [co]
+    mday: 20
+  8:
+  - name: Batalla de Boyacá
+    regions: [co]
+    mday: 7
+  - name: La Asunción
+    regions: [co]
+    mday: 15
+  10:
+  - name: Día de la Raza
+    regions: [co]
+    mday: 12
+  11:
+  - name: Día de los Santos
+    regions: [co]
+    mday: 1
+  - name: Independencia de Cartagena
+    regions: [co]
+    mday: 11
+  12:
+  - name: La Inmaculada Concepción
+    regions: [co]
+    mday: 8
+  - name: Navidad
+    regions: [co]
+    mday: 25
+
+tests:
+  - given:
+      date: '2021-01-01'
+      regions: ["co"]
+    expect:
+      name: "Año nuevo"
+  - given:
+      date: '2021-01-06'
+      regions: ["co"]
+    expect:
+      name: "Día de los Reyes Magos"
+  - given:
+      date: '2021-03-19'
+      regions: ["co"]
+    expect:
+      name: "Día de San José"
+  - given:
+      date: '2021-05-01'
+      regions: ["co"]
+    expect:
+      name: "Primero de Mayo"
+  - given:
+      date: '2021-06-29'
+      regions: ["co"]
+    expect:
+      name: "San Pedro y San Pablo"
+  - given:
+      date: '2021-07-20'
+      regions: ["co"]
+    expect:
+      name: "Declaración de la Independencia de Colombia"
+  - given:
+      date: '2021-08-07'
+      regions: ["co"]
+    expect:
+      name: "Batalla de Boyacá"
+  - given:
+      date: '2021-08-15'
+      regions: ["co"]
+    expect:
+      name: "La Asunción"
+  - given:
+      date: '2021-10-12'
+      regions: ["co"]
+    expect:
+      name: "Día de la Raza"
+  - given:
+      date: '2021-11-01'
+      regions: ["co"]
+    expect:
+      name: "Día de los Santos"
+  - given:
+      date: '2021-11-11'
+      regions: ["co"]
+    expect:
+      name: "Independencia de Cartagena"
+  - given:
+      date: '2021-12-08'
+      regions: ["co"]
+    expect:
+      name: "La Inmaculada Concepción"
+  - given:
+      date: '2021-12-25'
+      regions: ["co"]
+    expect:
+      name: "Navidad"
+  - given:
+      date: '2021-04-01'
+      regions: ["co"]
+    expect:
+      name: "Jueves Santo"
+  - given:
+      date: '2021-04-02'
+      regions: ["co"]
+    expect:
+      name: "Viernes Santo"
+  - given:
+      date: '2021-05-17'
+      regions: ["co"]
+    expect:
+      name: "Ascensión del señor"
+  - given:
+      date: '2021-06-07'
+      regions: ["co"]
+    expect:
+      name: "Corpus Christi"
+  - given:
+      date: '2021-06-14'
+      regions: ["co"]
+    expect:
+      name: "Sagrado Corazón"

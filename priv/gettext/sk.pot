@@ -3,7 +3,6 @@
 msgid ""
 msgstr ""
 
-
 msgid "Veľkonočný pondelok"
 msgstr ""
 
@@ -48,4 +47,3 @@ msgstr ""
 
 msgid "2. sviatok vianočný"
 msgstr ""
-

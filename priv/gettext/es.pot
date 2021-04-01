@@ -3,7 +3,6 @@
 msgid ""
 msgstr ""
 
-
 msgid "Jueves Santo"
 msgstr ""
 
@@ -90,4 +89,3 @@ msgstr ""
 
 msgid "San Esteban"
 msgstr ""
-

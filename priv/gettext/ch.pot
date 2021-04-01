@@ -3,7 +3,6 @@
 msgid ""
 msgstr ""
 
-
 msgid "Karfreitag"
 msgstr ""
 
@@ -78,4 +77,3 @@ msgstr ""
 
 msgid "Restauration de la République"
 msgstr ""
-

@@ -3,7 +3,6 @@
 msgid ""
 msgstr ""
 
-
 msgid "Año nuevo"
 msgstr ""
 
@@ -66,4 +65,3 @@ msgstr ""
 
 msgid "Los Santos Inocentes"
 msgstr ""
-

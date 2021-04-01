@@ -3,7 +3,6 @@
 msgid ""
 msgstr ""
 
-
 msgid "Långfredagen"
 msgstr ""
 
@@ -54,4 +53,3 @@ msgstr ""
 
 msgid "Nyårsafton"
 msgstr ""
-

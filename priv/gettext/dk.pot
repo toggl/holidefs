@@ -3,7 +3,6 @@
 msgid ""
 msgstr ""
 
-
 msgid "Fastelavn"
 msgstr ""
 
@@ -75,4 +74,3 @@ msgstr ""
 
 msgid "2. juledag"
 msgstr ""
-

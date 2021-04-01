@@ -3,7 +3,6 @@
 msgid ""
 msgstr ""
 
-
 msgid "Karfreitag"
 msgstr ""
 
@@ -72,4 +71,3 @@ msgstr ""
 
 msgid "Silvester"
 msgstr ""
-

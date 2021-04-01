@@ -3,7 +3,6 @@
 msgid ""
 msgstr ""
 
-
 msgid "Húsvét hétfő"
 msgstr ""
 
@@ -30,4 +29,3 @@ msgstr ""
 
 msgid "Karácsony"
 msgstr ""
-

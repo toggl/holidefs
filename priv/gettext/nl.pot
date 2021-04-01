@@ -3,7 +3,6 @@
 msgid ""
 msgstr ""
 
-
 msgid "Goede Vrijdag"
 msgstr ""
 
@@ -42,4 +41,3 @@ msgstr ""
 
 msgid "Tweede Kerstdag"
 msgstr ""
-

@@ -3,7 +3,6 @@
 msgid ""
 msgstr ""
 
-
 msgid "Easter Monday"
 msgstr ""
 
@@ -30,4 +29,3 @@ msgstr ""
 
 msgid "St. Stephen's Day"
 msgstr ""
-
