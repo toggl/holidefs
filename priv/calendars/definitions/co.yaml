@@ -33,10 +33,12 @@ months:
   - name: Día de los Reyes Magos
     regions: [co]
     mday: 6
+    observed: to_following_monday_if_not_monday(date)
   3:
   - name: Día de San José
     regions: [co]
     mday: 19
+    observed: to_following_monday_if_not_monday(date)
   5:
   - name: Primero de Mayo
     regions: [co]
@@ -45,6 +47,7 @@ months:
   - name: San Pedro y San Pablo
     regions: [co]
     mday: 29
+    observed: to_following_monday_if_not_monday(date)
   7:
   - name: Declaración de la Independencia de Colombia
     regions: [co]
@@ -56,17 +59,21 @@ months:
   - name: La Asunción
     regions: [co]
     mday: 15
+    observed: to_following_monday_if_not_monday(date)
   10:
   - name: Día de la Raza
     regions: [co]
     mday: 12
+    observed: to_following_monday_if_not_monday(date)
   11:
   - name: Día de los Santos
     regions: [co]
     mday: 1
+    observed: to_following_monday_if_not_monday(date)
   - name: Independencia de Cartagena
     regions: [co]
     mday: 11
+    observed: to_following_monday_if_not_monday(date)
   12:
   - name: La Inmaculada Concepción
     regions: [co]
@@ -82,13 +89,15 @@ tests:
     expect:
       name: "Año nuevo"
   - given:
-      date: '2021-01-06'
+      date: '2021-01-11'
       regions: ["co"]
+      options: ["observed"]
     expect:
       name: "Día de los Reyes Magos"
   - given:
-      date: '2021-03-19'
+      date: '2021-03-22'
       regions: ["co"]
+      options: ["observed"]
     expect:
       name: "Día de San José"
   - given:
@@ -97,8 +106,9 @@ tests:
     expect:
       name: "Primero de Mayo"
   - given:
-      date: '2021-06-29'
+      date: '2021-07-05'
       regions: ["co"]
+      options: ["observed"]
     expect:
       name: "San Pedro y San Pablo"
   - given:
@@ -112,23 +122,27 @@ tests:
     expect:
       name: "Batalla de Boyacá"
   - given:
-      date: '2021-08-15'
+      date: '2021-08-16'
       regions: ["co"]
+      options: ["observed"]
     expect:
       name: "La Asunción"
   - given:
-      date: '2021-10-12'
+      date: '2021-10-18'
       regions: ["co"]
+      options: ["observed"]
     expect:
       name: "Día de la Raza"
   - given:
       date: '2021-11-01'
       regions: ["co"]
+      options: ["observed"]
     expect:
       name: "Día de los Santos"
   - given:
-      date: '2021-11-11'
+      date: '2021-11-15'
       regions: ["co"]
+      options: ["observed"]
     expect:
       name: "Independencia de Cartagena"
   - given:
