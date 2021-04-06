@@ -3,7 +3,6 @@
 msgid ""
 msgstr ""
 
-
 msgid "New Year's Day"
 msgstr ""
 
@@ -21,4 +20,3 @@ msgstr ""
 
 msgid "Christmas Day"
 msgstr ""
-

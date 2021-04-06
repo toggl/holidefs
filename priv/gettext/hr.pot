@@ -3,7 +3,6 @@
 msgid ""
 msgstr ""
 
-
 msgid "Uskrs"
 msgstr ""
 
@@ -45,4 +44,3 @@ msgstr ""
 
 msgid "Sveti Stjepan"
 msgstr ""
-

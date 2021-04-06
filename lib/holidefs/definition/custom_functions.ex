@@ -109,6 +109,14 @@ defmodule Holidefs.Definition.CustomFunctions do
   end
 
   @doc false
+  def to_following_monday_if_not_monday(%Date{} = date, _) do
+    case Date.day_of_week(date) do
+      1 -> date
+      _ -> DateCalculator.next_day_of_week(date, 1)
+    end
+  end
+
+  @doc false
   def to_monday_if_sunday(%Date{} = date, _) do
     case Date.day_of_week(date) do
       7 -> Date.add(date, 1)

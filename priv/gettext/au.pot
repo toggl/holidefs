@@ -3,7 +3,6 @@
 msgid ""
 msgstr ""
 
-
 msgid "Good Friday"
 msgstr ""
 
@@ -87,4 +86,3 @@ msgstr ""
 
 msgid "Proclamation Day"
 msgstr ""
-

@@ -3,7 +3,6 @@
 msgid ""
 msgstr ""
 
-
 msgid "Tłusty Czwartek"
 msgstr ""
 
@@ -120,4 +119,3 @@ msgstr ""
 
 msgid "Sylwester"
 msgstr ""
-

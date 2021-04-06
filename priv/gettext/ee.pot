@@ -3,7 +3,6 @@
 msgid ""
 msgstr ""
 
-
 msgid "suur reede"
 msgstr ""
 
@@ -39,4 +38,3 @@ msgstr ""
 
 msgid "teine jõulupüha"
 msgstr ""
-
