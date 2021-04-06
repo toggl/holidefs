@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.2
+
+### Changed
+
+- Bumped versions. Refactor to make yaml_elixir > 2 work.
+
 ## 0.3.1
 
 ### Added
