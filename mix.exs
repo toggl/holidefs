@@ -32,7 +32,7 @@ defmodule Holidefs.Mixfile do
   defp package do
     [
       files: ["lib", "priv", "mix.exs", "README*", "LICENSE*"],
-      maintainers: ["Kelvin Stinghen", "Artur Cygan"],
+      maintainers: ["Kelvin Stinghen", "Adrien Anselme"],
       licenses: ["MIT"],
       links: %{"GitHub" => @github_url}
     ]
