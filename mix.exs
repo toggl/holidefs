@@ -6,7 +6,7 @@ defmodule Holidefs.Mixfile do
   def project do
     [
       app: :holidefs,
-      version: "0.4.0",
+      version: "0.3.2",
       elixir: "~> 1.5",
       description: "Definition-based national holidays",
       source_url: @github_url,

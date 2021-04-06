@@ -1,11 +1,11 @@
 # Changelog
 
-## 0.4.0
+## 0.3.2
 
 ### Added
 
 - Locales: Colombia
-  
+
 ### Changed
 
 - Bumped versions. Refactor to make yaml_elixir > 2 work.
