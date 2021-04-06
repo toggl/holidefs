@@ -8,7 +8,7 @@ Here is a step by step for contributing to the project:
 - Create tests for it
 - Make sure to run `mix format`
 - Also, give `mix credo` a check, we enforce no warning on CI build
-- Don't forget to add he changes you made to `CHANGELOG.md`
+- Don't forget to add the changes you made to `CHANGELOG.md`
 - Open a PR
 - Wait for review!
 
