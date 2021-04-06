@@ -36,11 +36,14 @@ defmodule Holidefs.Definition do
   """
   @spec load!(atom, String.t()) :: t
   def load!(code, name) do
-    rules =
+    {:ok, file_data} =
       code
       |> file_path()
       |> to_charlist()
       |> YamlElixir.read_from_file()
+
+    rules =
+      file_data
       |> Map.get("months")
       |> Enum.flat_map(fn {month, rules} ->
         for rule <- rules, do: Rule.build(code, month, rule)

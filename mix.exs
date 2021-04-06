@@ -6,7 +6,7 @@ defmodule Holidefs.Mixfile do
   def project do
     [
       app: :holidefs,
-      version: "0.3.1",
+      version: "0.3.2",
       elixir: "~> 1.5",
       description: "Definition-based national holidays",
       source_url: @github_url,
@@ -74,14 +74,14 @@ defmodule Holidefs.Mixfile do
 
   defp deps do
     [
-      {:credo, "~> 0.8.10", only: [:test, :dev], optional: true, runtime: false},
+      {:credo, "~> 1.4", only: [:test, :dev], optional: true, runtime: false},
       {:download, "~> 0.0.4", runtime: false},
       {:ex_doc, "~> 0.18", only: :dev, runtime: false},
-      {:excoveralls, "~> 0.6", only: :test},
-      {:gettext, "~> 0.13"},
+      {:excoveralls, "~> 0.10", only: :test},
+      {:gettext, "~> 0.15"},
       {:inch_ex, only: :docs},
-      {:yaml_elixir, "~> 1.3.1"},
-      {:dialyxir, "~> 0.5", only: [:dev, :test], runtime: false}
+      {:yaml_elixir, "~> 2.0"},
+      {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false}
     ]
   end
 end
