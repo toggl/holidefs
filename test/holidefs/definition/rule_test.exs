@@ -10,7 +10,7 @@ defmodule Holidefs.Definition.RuleTest do
 
     assert rule.month == 0
     assert rule.name == "Passover"
-    assert is_function(rule.function)
+    assert rule.function == :easter
 
     assert %Rule{} = rule = Rule.build(:us, 6, %{"name" => "Bday", "mday" => 20})
 

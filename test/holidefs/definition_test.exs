@@ -1,6 +1,7 @@
 defmodule Holidefs.DefinitionTest do
   use ExUnit.Case
   alias Holidefs.Definition
+  alias Holidefs.Definition.CustomFunctions
 
   doctest Definition
 
@@ -10,7 +11,7 @@ defmodule Holidefs.DefinitionTest do
     assert definition.name == "Brazil"
 
     assert Enum.map(definition.rules, fn rule ->
-             fun_res = if rule.function, do: rule.function.(2017, rule)
+             fun_res = if rule.function, do: CustomFunctions.call(rule.function, 2017, rule)
              {rule.name, rule.month, rule.day, fun_res}
            end) == [
              {"Carnaval", 0, nil, ~D[2017-02-28]},

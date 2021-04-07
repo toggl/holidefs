@@ -24,8 +24,7 @@ defmodule Holidefs.Mixfile do
 
   def application do
     [
-      extra_applications: [:logger],
-      mod: {Holidefs.Application, []}
+      extra_applications: [:logger]
     ]
   end
 
