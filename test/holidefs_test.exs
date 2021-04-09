@@ -6,6 +6,9 @@ defmodule HolidefsTest do
 
   doctest Holidefs
 
+  test "locales/0 returns all the locales loaded on compile time" do
+    assert Holidefs.locales() == %{br: "Brazil", us: "United States"}
+  end
   test "get_regions/1 returns all the regions for the given locale" do
     assert Holidefs.get_regions("will_never_exist") == {:error, :no_def}
 
