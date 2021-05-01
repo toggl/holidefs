@@ -46,6 +46,7 @@ defmodule Holidefs.Mixfile do
 
   defp preferred_cli_env do
     [
+      muzak: :test,
       coveralls: :test,
       "coveralls.detail": :test,
       "coveralls.post": :test,
@@ -77,6 +78,7 @@ defmodule Holidefs.Mixfile do
       {:download, "~> 0.0.4", runtime: false},
       {:ex_doc, "~> 0.18", only: :dev, runtime: false},
       {:excoveralls, "~> 0.10", only: :test},
+      {:muzak, "~> 1.1", only: :test},
       {:gettext, "~> 0.15"},
       {:inch_ex, only: :docs},
       {:yaml_elixir, "~> 2.0"},
