@@ -11,6 +11,7 @@ defmodule Holidefs.Mixfile do
       description: "Definition-based national holidays",
       source_url: @github_url,
       homepage_url: @github_url,
+      elixirc_paths: elixirc_paths(Mix.env()),
       package: package(),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -21,6 +22,10 @@ defmodule Holidefs.Mixfile do
       dialyzer: dialyzer()
     ]
   end
+
+  # Specifies which paths to compile per environment.
+  defp elixirc_paths(:dev), do: ["lib", "dev/support"]
+  defp elixirc_paths(_), do: ["lib"]
 
   def application do
     [
@@ -75,7 +80,7 @@ defmodule Holidefs.Mixfile do
   defp deps do
     [
       {:credo, "~> 1.4", only: [:test, :dev], optional: true, runtime: false},
-      {:download, "~> 0.0.4", runtime: false},
+      {:download, "~> 0.0.4", only: :dev, runtime: false},
       {:ex_doc, "~> 0.18", only: :dev, runtime: false},
       {:excoveralls, "~> 0.10", only: :test},
       {:muzak, "~> 1.1", only: :test},
