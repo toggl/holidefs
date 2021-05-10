@@ -4,6 +4,17 @@ defmodule Holidefs.Definition.CustomFunctions do
   alias Holidefs.DateCalculator
   alias Holidefs.Definition.Rule
 
+  def call(fun, year, %Rule{function_modifier: modifier} = rule) when modifier != nil do
+    case apply(__MODULE__, fun, [year, rule]) do
+      %Date{} = date -> Date.add(date, modifier)
+      other -> other
+    end
+  end
+
+  def call(fun, year, %Rule{} = rule) do
+    apply(__MODULE__, fun, [year, rule]) 
+  end
+
   @doc false
   def easter(year, _) do
     DateCalculator.gregorian_easter(year)

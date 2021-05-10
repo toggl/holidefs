@@ -4,39 +4,55 @@ defmodule Holidefs.Definition.RuleTest do
 
   doctest Rule
 
-  test "build/2 buils the definition for a valid rule map" do
-    assert %Rule{} =
-             rule = Rule.build(:us, 0, %{"name" => "Passover", "function" => "easter(year)"})
+  describe "build/2" do
+    test "buils the definition for a valid rule map" do
+      assert %Rule{} =
+               rule = Rule.build(:us, 0, %{"name" => "Passover", "function" => "easter(year)"})
 
-    assert rule.month == 0
-    assert rule.name == "Passover"
-    assert is_function(rule.function)
+      assert rule.month == 0
+      assert rule.name == "Passover"
+      assert rule.function == :easter
 
-    assert %Rule{} = rule = Rule.build(:us, 6, %{"name" => "Bday", "mday" => 20})
+      assert %Rule{} = rule = Rule.build(:us, 6, %{"name" => "Bday", "mday" => 20})
 
-    assert rule.month == 6
-    assert rule.name == "Bday"
-    assert rule.day == 20
+      assert rule.month == 6
+      assert rule.name == "Bday"
+      assert rule.day == 20
 
-    assert %Rule{} = rule = Rule.build(:us, 6, %{"name" => "Monday", "week" => 1, "wday" => 1})
+      assert %Rule{} = rule = Rule.build(:us, 6, %{"name" => "Monday", "week" => 1, "wday" => 1})
 
-    assert rule.month == 6
-    assert rule.name == "Monday"
-    assert rule.week == 1
-    assert rule.weekday == 1
-  end
-
-  test "build/2 returns error tuple for an invalid rule map" do
-    assert_raise FunctionClauseError, fn ->
-      Rule.build(:us, 0, %{"no_name" => "Bad"})
+      assert rule.month == 6
+      assert rule.name == "Monday"
+      assert rule.week == 1
+      assert rule.weekday == 1
     end
 
-    assert_raise FunctionClauseError, fn ->
-      Rule.build(:us, 0, %{"name" => "Bad"})
+    test "returns error tuple for an invalid rule map" do
+      assert_raise FunctionClauseError, fn ->
+        Rule.build(:us, 0, %{"no_name" => "Bad"})
+      end
+
+      assert_raise FunctionClauseError, fn ->
+        Rule.build(:us, 0, %{"name" => "Bad"})
+      end
+
+      assert_raise FunctionClauseError, fn ->
+        Rule.build(:us, 0, %{"name" => "Bad", "function" => "no_function()"})
+      end
     end
 
-    assert_raise FunctionClauseError, fn ->
-      Rule.build(:us, 0, %{"name" => "Bad", "function" => "no_function()"})
+    test "check the valid weekdays" do
+      for i <- 1..7 do
+        assert %Rule{} = Rule.build(:us, 1, %{"name" => "Weekday test", "week" => 1, "wday" => i})
+      end
+
+      assert_raise FunctionClauseError, fn ->
+        Rule.build(:us, 1, %{"name" => "Weekday test", "week" => 1, "wday" => 0})
+      end
+
+      assert_raise FunctionClauseError, fn ->
+        Rule.build(:us, 1, %{"name" => "Weekday test", "week" => 1, "wday" => 8})
+      end
     end
   end
 end

@@ -12,7 +12,7 @@ defmodule Holidefs do
   @type error_reasons :: :no_def | :invalid_date
   @type locale_code :: atom | binary
 
-  @locales %{
+  @all_locales %{
     at: "Austria",
     au: "Australia",
     be: "Belgium",
@@ -49,6 +49,9 @@ defmodule Holidefs do
     us: "United States",
     za: "South Africa"
   }
+
+  @locale_keys Application.get_env(:holidefs, :locales, Map.keys(@all_locales))
+  @locales Map.take(@all_locales, @locale_keys)
 
   @doc """
   Returns a map of all the supported locales.

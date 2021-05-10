@@ -14,6 +14,7 @@ defmodule Holidefs.Definition.Rule do
     :week,
     :weekday,
     :function,
+    :function_modifier,
     :regions,
     :observed,
     :year_ranges,
@@ -27,6 +28,7 @@ defmodule Holidefs.Definition.Rule do
           week: integer,
           weekday: integer,
           function: function,
+          function_modifier: integer,
           regions: [String.t()],
           observed: function,
           year_ranges: map | nil,
@@ -51,10 +53,8 @@ defmodule Holidefs.Definition.Rule do
       informal?: map["type"] == "informal",
       observed: observed_from_name(map["observed"]),
       regions: load_regions(map, code),
-      function:
-        func
-        |> function_from_name()
-        |> load_function(map["function_modifier"])
+      function: function_from_name(func),
+      function_modifier: map["function_modifier"]
     }
   end
 
@@ -92,19 +92,6 @@ defmodule Holidefs.Definition.Rule do
     []
   end
 
-  defp load_function(function, nil) do
-    function
-  end
-
-  defp load_function(function, modifier) do
-    fn year, rule ->
-      case function.(year, rule) do
-        %Date{} = date -> Date.add(date, modifier)
-        other -> other
-      end
-    end
-  end
-
   defp observed_from_name(nil), do: nil
   defp observed_from_name(name), do: function_from_name(name)
 
@@ -119,7 +106,5 @@ defmodule Holidefs.Definition.Rule do
     |> function_from_name()
   end
 
-  defp function_from_name(name) when is_atom(name) and name in @custom_functions do
-    &apply(CustomFunctions, name, [&1, &2])
-  end
+  defp function_from_name(name) when is_atom(name) and name in @custom_functions, do: name
 end

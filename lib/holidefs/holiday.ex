@@ -4,6 +4,7 @@ defmodule Holidefs.Holiday do
   """
 
   alias Holidefs.DateCalculator
+  alias Holidefs.Definition.CustomFunctions
   alias Holidefs.Definition.Rule
   alias Holidefs.Holiday
   alias Holidefs.Options
@@ -30,29 +31,19 @@ defmodule Holidefs.Holiday do
     end
   end
 
-  defp in_year_ranges?(nil, _) do
-    true
-  end
+  defp in_year_ranges?(nil, _), do: true
 
-  defp in_year_ranges?(list, year) when is_list(list) do
-    Enum.all?(list, &in_year_range?(&1, year))
-  end
+  defp in_year_ranges?(list, year) when is_list(list), do: Enum.all?(list, &in_year_range?(&1, year))
 
   defp in_year_range?(%{"before" => before_year}, year), do: year <= before_year
   defp in_year_range?(%{"after" => after_year}, year), do: year >= after_year
   defp in_year_range?(%{"limited" => years}, year), do: year in years
   defp in_year_range?(%{"between" => years}, year), do: year in years
 
-  defp build_from_rule(
-         code,
-         %Rule{name: name, function: fun, informal?: informal?} = rule,
-         year,
-         opts
-       )
-       when is_function(fun) do
-    name = translate_name(code, name)
+  defp build_from_rule(code, %Rule{function: fun} = rule, year, opts) when fun != nil do
+    name = translate_name(code, rule.name)
 
-    case fun.(year, rule) do
+    case CustomFunctions.call(fun, year, rule) do
       list when is_list(list) ->
         for date <- list do
           %Holiday{
@@ -60,7 +51,7 @@ defmodule Holidefs.Holiday do
             raw_date: date,
             observed_date: load_observed(rule, date),
             date: load_date(rule, date, opts),
-            informal?: informal?
+            informal?: rule.informal?
           }
         end
 
@@ -71,7 +62,7 @@ defmodule Holidefs.Holiday do
             raw_date: date,
             observed_date: load_observed(rule, date),
             date: load_date(rule, date, opts),
-            informal?: informal?
+            informal?: rule.informal?
           }
         ]
 
@@ -80,47 +71,31 @@ defmodule Holidefs.Holiday do
     end
   end
 
-  defp build_from_rule(
-         code,
-         %Rule{name: name, month: month, day: day, informal?: informal?} = rule,
-         year,
-         opts
-       )
+  defp build_from_rule(code, %Rule{month: month, day: day} = rule, year, opts)
        when nil not in [month, day] do
     {:ok, date} = Date.new(year, month, day)
 
     [
       %Holiday{
-        name: translate_name(code, name),
+        name: translate_name(code, rule.name),
         raw_date: date,
         observed_date: load_observed(rule, date),
         date: load_date(rule, date, opts),
-        informal?: informal?
+        informal?: rule.informal?
       }
     ]
   end
 
-  defp build_from_rule(
-         code,
-         %Rule{
-           name: name,
-           month: month,
-           week: week,
-           weekday: weekday,
-           informal?: informal?
-         } = rule,
-         year,
-         opts
-       ) do
-    date = DateCalculator.nth_day_of_week(year, month, week, weekday)
+  defp build_from_rule(code, %Rule{} = rule, year, opts) do
+    date = DateCalculator.nth_day_of_week(year, rule.month, rule.week, rule.weekday)
 
     [
       %Holiday{
-        name: translate_name(code, name),
+        name: translate_name(code, rule.name),
         raw_date: date,
         observed_date: load_observed(rule, date),
         date: load_date(rule, date, opts),
-        informal?: informal?
+        informal?: rule.informal?
       }
     ]
   end
@@ -137,13 +112,8 @@ defmodule Holidefs.Holiday do
     date
   end
 
-  defp load_observed(%Rule{observed: nil}, date) do
-    date
-  end
-
-  defp load_observed(%Rule{observed: fun} = rule, date) when is_function(fun) do
-    fun.(date, rule)
-  end
+  defp load_observed(%Rule{observed: nil}, date), do: date
+  defp load_observed(%Rule{observed: fun} = rule, date), do: CustomFunctions.call(fun, date, rule)
 
   @doc """
   Returns the translated name of the given holiday
