@@ -210,6 +210,7 @@ months:
   - name: Independence Day # fixed
     regions: [us]
     mday: 4
+    observed: to_weekday_if_weekend(date)
   - name: Independence Day (Holiday)
     regions: [us_va]
     mday: 4
@@ -730,8 +731,9 @@ tests:
   - given:
       date: ['2020-7-3', '2021-7-5', '2026-7-3']
       regions: ["us"]
+      options: ["observed"]
     expect:
-      holiday: false
+      name: "Independence Day"
   - given:
       date: ['2020-7-3', '2021-7-5', '2026-7-3']
       regions: ["us_va"]
