@@ -47,7 +47,8 @@ defmodule Holidefs do
     si: "Slovenia",
     sk: "Slovakia",
     us: "United States",
-    za: "South Africa"
+    za: "South Africa",
+    fed: "Federal Reserve"
   }
 
   @locale_keys Application.get_env(:holidefs, :locales, Map.keys(@all_locales))

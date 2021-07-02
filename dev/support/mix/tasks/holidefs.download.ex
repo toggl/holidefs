@@ -31,7 +31,8 @@ defmodule Mix.Tasks.Holidefs.Download do
   @renamed_locales %{
     co: :es_co,
     rs: :rs_la,
-    be: :be_nl
+    be: :be_nl,
+    fed: :federal_reserve
   }
 
   @doc false
