@@ -16,13 +16,13 @@ defmodule Holidefs.Definition do
         }
 
   @doc """
-  Returns the path for the given locale definition file
+  Returns the path for the given locale definition file.
   """
   @spec file_path(atom, Path.t()) :: binary
   def file_path(code, path \\ path()), do: Path.join(path, "#{code}.yaml")
 
   @doc """
-  Returns the path where all the locale definitions are saved
+  Returns the path where all the locale definitions are saved.
   """
   @spec path() :: Path.t()
   def path() do

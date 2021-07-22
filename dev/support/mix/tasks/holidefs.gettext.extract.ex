@@ -4,7 +4,7 @@ defmodule Mix.Tasks.Holidefs.Gettext.Extract do
   alias Holidefs.Definition
   alias Holidefs.Definition.Store
 
-  @shortdoc "Extracts a new .pot from the definition files"
+  @shortdoc "Extracts a new .pot from the definition files."
 
   @moduledoc """
   Extracts a new .pot from all the definition files we load
@@ -14,9 +14,9 @@ defmodule Mix.Tasks.Holidefs.Gettext.Extract do
   or add new translations to the existing ones. Execute the command
   `mix help gettext.merge` to check how.
 
-  ## Example
+  ## Examples
 
-    mix holidefs.gettext.extract
+      mix holidefs.gettext.extract
 
   """
 

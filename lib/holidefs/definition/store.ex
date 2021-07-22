@@ -8,13 +8,13 @@ defmodule Holidefs.Definition.Store do
   definitions = for {c, n} <- Holidefs.locales(), do: Definition.load!(c, n)
 
   @doc """
-  Returns all the loaded definitions with their rules
+  Returns all the loaded definitions with their rules.
   """
   @spec all_definitions :: [Holidefs.Definition.t()]
   def all_definitions, do: unquote(Macro.escape(definitions))
 
   @doc """
-  Returns the definitions for the given locale
+  Returns the definitions for the given locale.
   """
   @spec get_definition(Holidefs.locale_code()) :: Holidefs.Definition.t() | nil
   for definition <- definitions do

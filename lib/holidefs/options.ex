@@ -2,13 +2,15 @@ defmodule Holidefs.Options do
   @moduledoc """
   Here is the list of options you can send to `Holidefs` functions:
 
-    * `regions` - a list of strings to define what region will be loaded. When
-    empty it fallbacks to the basic region of the locale, which is the region
-    with the same code of the locale. Defaults to `[]`
-    * `include_informal?` - flag to include the informal holidays on the
-    return list. Defaults to `false`
-    * `observed?` - flag to consider the `observed_date` of the holidays as
-    the `date`. Defaults to `false`
+    * `:regions` - a list of strings to define what region will be loaded. When
+      empty it fallbacks to the basic region of the locale, which is the region
+      with the same code of the locale. Defaults to `[]`
+
+    * `:include_informal?` - flag to include the informal holidays on the
+      return list. Defaults to `false`
+
+    * `:observed?` - flag to consider the `observed_date` of the holidays as
+      the `date`. Defaults to `false`
 
   """
 

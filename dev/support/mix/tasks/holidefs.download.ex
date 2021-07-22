@@ -3,21 +3,22 @@ defmodule Mix.Tasks.Holidefs.Download do
 
   alias Holidefs.Definition
 
-  @shortdoc "Downloads the .yaml files with the calendar definitions"
+  @shortdoc "Downloads the .yaml files with the calendar definitions."
 
   @moduledoc """
   Downloads the definition files from https://github.com/holidays/definitions.
 
-  ## Example
+  ## Examples
 
-    mix holidefs.download
+      mix holidefs.download
 
   ## Command line options
 
     * `-l`, `--locale` - the locale code (or list of locale codes separated
-    by comma). All locales by default
+      by comma). All locales by default
+
     * `-c`, `--clean` - removes all locale files that are not needed anymore
-    before processing the list
+      before processing the list
 
   """
 
