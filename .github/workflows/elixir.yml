@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  MIX_ENV: test
+
 jobs:
   build:
 
@@ -26,6 +29,10 @@ jobs:
         key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
         restore-keys: ${{ runner.os }}-mix-
     - name: Install dependencies
-      run: MIX_ENV=test mix deps.get
+      run: |
+        mix local.rebar --force
+        mix local.hex --force
+        mix deps.get
+        mix deps.compile
     - name: Run tests
-      run: MIX_ENV=test mix test --color
+      run: mix test --color
