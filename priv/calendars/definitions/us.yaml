@@ -65,6 +65,7 @@
 # - http://www.kleiner-kalender.de/event/rosch-ha-schana/0651c.html
 # - http://www.kaldix.com/united-states/calendar/virginia/holidays/independence-day/year-2017/
 # - https://publicholidays.us/independence-day/
+# - https://www.ca2.uscourts.gov/clerk/calendars/federal_holidays.html
 ---
 months:
   0:
@@ -935,7 +936,7 @@ tests:
     expect:
       holiday: false
   - given:
-      date: ['2021-12-27', '2022-12-26', '2027-12-27']
+      date: ['2021-12-24', '2022-12-26', '2027-12-24']
       regions: ["us"]
       options: ["observed"]
     expect:
