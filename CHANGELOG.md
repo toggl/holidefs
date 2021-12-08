@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.3.3
+
+### Changed
+
+- Fix issue #27 : Incorrect observed date if Christmas falls on saturday
+  
 ## 0.3.2
 
 ### Added
