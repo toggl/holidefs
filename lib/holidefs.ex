@@ -186,7 +186,7 @@ defmodule Holidefs do
          opts
        ) do
     holidays =
-      start.year..finish.year
+      start.year..(finish.year + 1)
       |> Stream.flat_map(&all_year_holidays(definition, &1, opts))
       |> Stream.drop_while(&(Date.compare(&1.date, start) == :lt))
       |> Enum.take_while(&(Date.compare(&1.date, finish) != :gt))
