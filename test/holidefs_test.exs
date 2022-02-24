@@ -82,7 +82,8 @@ defmodule HolidefsTest do
                date: ~D[2017-11-15],
                name: "Proclamação da República",
                observed_date: ~D[2017-11-15],
-               raw_date: ~D[2017-11-15]
+               raw_date: ~D[2017-11-15],
+               uid: "br-2017-0ab43ef846d8bacc8c4694ad94207d17"
              }
            ]
 
