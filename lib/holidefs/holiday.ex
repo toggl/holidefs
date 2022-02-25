@@ -9,14 +9,15 @@ defmodule Holidefs.Holiday do
   alias Holidefs.Holiday
   alias Holidefs.Options
 
-  defstruct [:name, :raw_date, :observed_date, :date, informal?: false]
+  defstruct [:name, :raw_date, :observed_date, :date, :uid, informal?: false]
 
   @type t :: %Holidefs.Holiday{
           name: String.t(),
           raw_date: Date.t(),
           observed_date: Date.t(),
           date: Date.t(),
-          informal?: boolean
+          informal?: boolean,
+          uid: String.t()
         }
 
   @doc """
@@ -33,7 +34,8 @@ defmodule Holidefs.Holiday do
 
   defp in_year_ranges?(nil, _), do: true
 
-  defp in_year_ranges?(list, year) when is_list(list), do: Enum.all?(list, &in_year_range?(&1, year))
+  defp in_year_ranges?(list, year) when is_list(list),
+    do: Enum.all?(list, &in_year_range?(&1, year))
 
   defp in_year_range?(%{"before" => before_year}, year), do: year <= before_year
   defp in_year_range?(%{"after" => after_year}, year), do: year >= after_year
@@ -51,7 +53,8 @@ defmodule Holidefs.Holiday do
             raw_date: date,
             observed_date: load_observed(rule, date),
             date: load_date(rule, date, opts),
-            informal?: rule.informal?
+            informal?: rule.informal?,
+            uid: generate_uid(code, year, rule.name)
           }
         end
 
@@ -62,7 +65,8 @@ defmodule Holidefs.Holiday do
             raw_date: date,
             observed_date: load_observed(rule, date),
             date: load_date(rule, date, opts),
-            informal?: rule.informal?
+            informal?: rule.informal?,
+            uid: generate_uid(code, year, rule.name)
           }
         ]
 
@@ -81,7 +85,8 @@ defmodule Holidefs.Holiday do
         raw_date: date,
         observed_date: load_observed(rule, date),
         date: load_date(rule, date, opts),
-        informal?: rule.informal?
+        informal?: rule.informal?,
+        uid: generate_uid(code, year, rule.name)
       }
     ]
   end
@@ -95,7 +100,8 @@ defmodule Holidefs.Holiday do
         raw_date: date,
         observed_date: load_observed(rule, date),
         date: load_date(rule, date, opts),
-        informal?: rule.informal?
+        informal?: rule.informal?,
+        uid: generate_uid(code, year, rule.name)
       }
     ]
   end
@@ -114,6 +120,17 @@ defmodule Holidefs.Holiday do
 
   defp load_observed(%Rule{observed: nil}, date), do: date
   defp load_observed(%Rule{observed: fun} = rule, date), do: CustomFunctions.call(fun, date, rule)
+
+  defp generate_uid(code, year, name) do
+    <<sha1::128, _::32>> = :crypto.hash(:sha, name)
+
+    hash =
+      <<sha1::128>>
+      |> Base.encode16()
+      |> String.downcase()
+
+    "#{code}-#{year}-#{hash}"
+  end
 
   @doc """
   Returns the translated name of the given holiday
