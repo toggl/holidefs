@@ -47,7 +47,7 @@ defmodule Holidefs.Mixfile do
         "CHANGELOG.md": [],
         "CODE_OF_CONDUCT.md": [title: "Code of Conduct"],
         "CONTRIBUTING.md": [],
-        "LICENSE.md": [title: "License"],
+        "LICENSE": [title: "License"],
         "README.md": [title: "Overview"]
       ],
       main: "readme",

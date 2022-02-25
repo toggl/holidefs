@@ -4,7 +4,7 @@
 [![Module Version](https://img.shields.io/hexpm/v/holidefs.svg)](https://hex.pm/packages/holidefs)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/holidefs/)
 [![Total Download](https://img.shields.io/hexpm/dt/holidefs.svg)](https://hex.pm/packages/holidefs)
-[![License](https://img.shields.io/hexpm/l/holidefs.svg)](https://github.com/Teamweek/holidefs/blob/master/LICENSE.md)
+[![License](https://img.shields.io/hexpm/l/holidefs.svg)](https://github.com/Teamweek/holidefs/blob/master/LICENSE)
 [![Last Updated](https://img.shields.io/github/last-commit/Teamweek/holidefs.svg)](https://github.com/Teamweek/holidefs/commits/master)
 
 Definition-based national holidays in Elixir.
@@ -50,4 +50,4 @@ For the complete list of options and their meaning check
 
 Copyright (c) 2018 Teamweek
 
-This software is released under the [MIT License](./LICENSE.md).
+This software is released under the [MIT License](./LICENSE).
