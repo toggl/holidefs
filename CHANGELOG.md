@@ -1,12 +1,19 @@
 # Changelog
 
-## 0.3.3
+## v0.3.4 - 2022-02-25
+
+### Changed
+
+- Fix issue BE-122 : Update croatian holidays
+- Implement BE-133 : Generate uid for each Holiday 
+
+## v0.3.3 - 2021-12-08
 
 ### Changed
 
 - Fix issue #27 : Incorrect observed date if Christmas falls on saturday
   
-## 0.3.2
+## v0.3.2 - 2021-04-06
 
 ### Added
 
@@ -16,25 +23,25 @@
 
 - Bumped versions. Refactor to make yaml_elixir > 2 work.
 
-## 0.3.1
+## v0.3.1 - 2018-05-02
 
 ### Added
 
 - Locales: Belgium, Mexico and New Zealand
 
-## 0.3.0
+## v0.3.0 - 2018-02-28
 
 ### Added
 
 - Support for multiple regions on the same locale
 
-## 0.2.1
+## v0.2.1 - 2018-02-23
 
 ### Added
 
 - Now `Holidefs` functions accepts string locale codes too
 
-## 0.2.0
+## v0.2.0 - 2018-02-23
 
 ### Changed
 
@@ -42,19 +49,19 @@
 - All definitions files download are now locked to
 https://github.com/holidays/definitions/tree/v2.3.0 tag
 
-## 0.1.2
+## v0.1.2 - 2018-02-13
 
 ### Fixed
 
 - Fixed runtime holidays definitions path
 
-## 0.1.1
+## v0.1.1 - 2018-02-13
 
 ### Added
 
 - Dialyzer and better specs
 
-## 0.1.0
+## v0.1.0 - 2018-02-08
 
 ### Added
 

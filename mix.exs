@@ -2,15 +2,13 @@ defmodule Holidefs.Mixfile do
   use Mix.Project
 
   @github_url "https://github.com/Teamweek/holidefs"
+  @version "0.3.4"
 
   def project do
     [
       app: :holidefs,
-      version: "0.3.3",
+      version: @version,
       elixir: "~> 1.5",
-      description: "Definition-based national holidays",
-      source_url: @github_url,
-      homepage_url: @github_url,
       elixirc_paths: elixirc_paths(Mix.env()),
       package: package(),
       start_permanent: Mix.env() == :prod,
@@ -35,6 +33,7 @@ defmodule Holidefs.Mixfile do
 
   defp package do
     [
+      description: "Definition-based national holidays",
       files: ["lib", "priv", "mix.exs", "README*", "LICENSE*"],
       maintainers: ["Kelvin Stinghen", "Adrien Anselme"],
       licenses: ["MIT"],
@@ -44,8 +43,18 @@ defmodule Holidefs.Mixfile do
 
   defp docs do
     [
+      extras: [
+        "CHANGELOG.md": [],
+        "CODE_OF_CONDUCT.md": [title: "Code of Conduct"],
+        "CONTRIBUTING.md": [],
+        "LICENSE.md": [title: "License"],
+        "README.md": [title: "Overview"]
+      ],
       main: "readme",
-      extras: ["README.md", "CHANGELOG.md"]
+      source_url: @github_url,
+      source_ref: "#v{@version}",
+      homepage_url: @github_url,
+      formatters: ["html"]
     ]
   end
 
@@ -81,7 +90,7 @@ defmodule Holidefs.Mixfile do
     [
       {:credo, "~> 1.4", only: [:test, :dev], optional: true, runtime: false},
       {:download, "~> 0.0.4", only: :dev, runtime: false},
-      {:ex_doc, "~> 0.18", only: :dev, runtime: false},
+      {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:excoveralls, "~> 0.10", only: :test},
       {:muzak, "~> 1.1", only: :test},
       {:gettext, "~> 0.15"},

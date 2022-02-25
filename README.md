@@ -1,15 +1,17 @@
 # Holidefs
 
 [![Build Status](https://travis-ci.org/Teamweek/holidefs.svg?branch=master)](https://travis-ci.org/Teamweek/holidefs)
-[![Inline docs](http://inch-ci.org/github/Teamweek/holidefs.svg)](http://inch-ci.org/github/Teamweek/holidefs)
+[![Module Version](https://img.shields.io/hexpm/v/holidefs.svg)](https://hex.pm/packages/holidefs)
+[![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/holidefs/)
+[![Total Download](https://img.shields.io/hexpm/dt/holidefs.svg)](https://hex.pm/packages/holidefs)
+[![License](https://img.shields.io/hexpm/l/holidefs.svg)](https://github.com/Teamweek/holidefs/blob/master/LICENSE.md)
+[![Last Updated](https://img.shields.io/github/last-commit/Teamweek/holidefs.svg)](https://github.com/Teamweek/holidefs/commits/master)
 
 Definition-based national holidays in Elixir.
 
-[Online documentation](http://hexdocs.pm/holidefs)
-
 ## Installation
 
-The package can be installed by adding `holidefs` to your list
+The package can be installed by adding `:holidefs` to your list
 of dependencies in `mix.exs`:
 
 ```elixir
@@ -43,3 +45,9 @@ Holidefs.between(:br, ~D[2018-02-01], ~D[2018-04-03], include_informal?: true)
 
 For the complete list of options and their meaning check
 [`Holidefs.Options` doc](http://hexdocs.pm/holidefs/Holidefs.Options.html)
+
+## Copyright and License
+
+Copyright (c) 2018 Teamweek
+
+This software is released under the [MIT License](./LICENSE.md).
