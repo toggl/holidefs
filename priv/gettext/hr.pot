@@ -18,7 +18,7 @@ msgstr ""
 msgid "Sveta tri kralja"
 msgstr ""
 
-msgid "Međunarodni praznik rada"
+msgid "Praznik rada"
 msgstr ""
 
 msgid "Dan antifašističke borbe"
@@ -30,10 +30,10 @@ msgstr ""
 msgid "Dan pobjede i domovinske zahvalnosti i dan hrvatskih branitelja"
 msgstr ""
 
-msgid "Velika Gospa"
+msgid "Dan sjećanja na žrtve Domovinskog rata i Dan sjećanja na žrtvu Vukovara i Škabrnje"
 msgstr ""
 
-msgid "Dan neovisnosti"
+msgid "Velika Gospa"
 msgstr ""
 
 msgid "Dan svih svetih"

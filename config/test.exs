@@ -1,4 +1,42 @@
 use Mix.Config
 
-config :holidefs, locales: [:br, :us]
+config :holidefs,
+  locales: [
+    :br,
+    :us,
+    :hr,
+    :at,
+    :au,
+    :be,
+    :ca,
+    :ch,
+    :co,
+    :cz,
+    :de,
+    :dk,
+    :ee,
+    :es,
+    :fi,
+    :fr,
+    :gb,
+    :hu,
+    :ie,
+    :it,
+    :mx,
+    :my,
+    :nl,
+    :no,
+    :nz,
+    :ph,
+    :pl,
+    :pt,
+    :rs,
+    :ru,
+    :se,
+    :sg,
+    :si,
+    :sk,
+    :za
+  ]
+
 config :logger, level: :warn
