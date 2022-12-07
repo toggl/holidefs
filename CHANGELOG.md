@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.3.5 - 2022-12-07
+
+### Changed
+
+- Locales: Lithuania
+  
 ## v0.3.4 - 2022-02-25
 
 ### Changed
