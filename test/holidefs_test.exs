@@ -28,6 +28,7 @@ defmodule HolidefsTest do
              hu: "Hungary",
              ie: "Ireland",
              it: "Italy",
+             lt: "Lithuania",
              mx: "Mexico",
              my: "Malaysia",
              nl: "Netherlands",

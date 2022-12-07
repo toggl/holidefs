@@ -3,22 +3,11 @@
 msgid ""
 msgstr ""
 
-msgid "Año nuevo"
-msgstr ""
-
-msgid "Día de los Reyes Magos"
-msgstr ""
-
-msgid "Día de San José"
-msgstr ""
 
 msgid "Jueves Santo"
 msgstr ""
 
 msgid "Viernes Santo"
-msgstr ""
-
-msgid "Primero de Mayo"
 msgstr ""
 
 msgid "Ascensión del señor"
@@ -28,6 +17,18 @@ msgid "Corpus Christi"
 msgstr ""
 
 msgid "Sagrado Corazón"
+msgstr ""
+
+msgid "Año nuevo"
+msgstr ""
+
+msgid "Día de los Reyes Magos"
+msgstr ""
+
+msgid "Día de San José"
+msgstr ""
+
+msgid "Primero de Mayo"
 msgstr ""
 
 msgid "San Pedro y San Pablo"
@@ -56,3 +57,4 @@ msgstr ""
 
 msgid "Navidad"
 msgstr ""
+

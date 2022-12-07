@@ -3,6 +3,7 @@
 msgid ""
 msgstr ""
 
+
 msgid "velikonočna nedelja"
 msgstr ""
 
@@ -41,3 +42,4 @@ msgstr ""
 
 msgid "dan samostojnosti in enotnosti"
 msgstr ""
+

@@ -3,6 +3,7 @@
 msgid ""
 msgstr ""
 
+
 msgid "Ostermontag"
 msgstr ""
 
@@ -41,3 +42,4 @@ msgstr ""
 
 msgid "2. Weihnachtstag"
 msgstr ""
+

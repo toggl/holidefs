@@ -1,0 +1,149 @@
+# Lithuanian holiday definitions for the Elixir holidefs gem.
+#
+# Updated: 2022-11-23
+#
+# Sources:
+# - https://en.wikipedia.org/wiki/Public_holidays_in_Lithuania
+---
+months:
+  0:
+    - name: Šv. Velykos # Easter Sunday
+      regions: [lt]
+      function: easter(year)
+    - name: Antroji šv. Velykų diena # Easter Monday
+      regions: [lt]
+      function: easter(year)
+      function_modifier: 1
+    - name: Motinos diena # Mothers day
+      regions: [lt]
+      function: mothers_day(year)
+    - name: Tėvo diena # Fathers day
+      regions: [lt]
+      function: fathers_day(year)
+  1:
+    - name: Naujųjų metų diena # New Year's Day
+      regions: [lt]
+      mday: 1
+  2:
+    - name: Lietuvos valstybės atkūrimo diena # Day of Restoration of the State of Lithuania (1918)
+      regions: [lt]
+      mday: 16
+  3:
+    - name: Lietuvos nepriklausomybės atkūrimo diena # Day of Restoration of Independence of Lithuania
+      regions: [lt]
+      mday: 11
+  5:
+    - name: Tarptautinė darbo diena # International Workers' Day
+      regions: [lt]
+      mday: 1
+  6:
+    - name: Joninės (Rasos) # St. John's Day
+      regions: [lt]
+      mday: 24
+  7:
+    - name: Valstybės ir Tautiškos giesmės diena # Statehood Day
+      regions: [lt]
+      mday: 6
+  8:
+    - name: Žolinė # Assumption Day
+      regions: [lt]
+      mday: 15
+  11:
+    - name: Visų šventųjų diena # All Saints' Day
+      regions: [lt]
+      mday: 1
+    - name: Mirusiųjų atminimo diena # All Souls' Day
+      regions: [lt]
+      mday: 2
+  12:
+    - name: Šv. Kūčios # Christmas Eve
+      regions: [lt]
+      mday: 24
+    - name: Šv. Kalėdos # Christmas Day
+      regions: [lt]
+      mday: 25
+    - name: Šv. Kalėdos (antra diena) # Boxing Day
+      regions: [lt]
+      mday: 26
+
+tests:
+  - given:
+      date: "2022-01-01"
+      regions: ["lt"]
+    expect:
+      name: "Naujųjų metų diena"
+  - given:
+      date: "2022-2-16"
+      regions: ["lt"]
+    expect:
+      name: "Lietuvos valstybės atkūrimo diena"
+  - given:
+      date: "2022-3-11"
+      regions: ["lt"]
+    expect:
+      name: "Lietuvos nepriklausomybės atkūrimo diena"
+  - given:
+      date: "2022-4-17"
+      regions: ["lt"]
+    expect:
+      name: "Šv. Velykos"
+  - given:
+      date: "2022-4-18"
+      regions: ["lt"]
+    expect:
+      name: "Antroji šv. Velykų diena"
+  - given:
+      date: "2022-5-1"
+      regions: ["lt"]
+    expect:
+      name: "Tarptautinė darbo diena"
+  - given:
+      date: "2022-5-1"
+      regions: ["lt"]
+    expect:
+      name: "Motinos diena"
+  - given:
+      date: "2022-6-5"
+      regions: ["lt"]
+    expect:
+      name: "Tėvo diena"
+  - given:
+      date: "2022-6-24"
+      regions: ["lt"]
+    expect:
+      name: "Joninės (Rasos)"
+  - given:
+      date: "2022-7-6"
+      regions: ["lt"]
+    expect:
+      name: "Valstybės ir Tautiškos giesmės diena"
+  - given:
+      date: "2022-8-15"
+      regions: ["lt"]
+    expect:
+      name: "Žolinė"
+  - given:
+      date: "2022-11-1"
+      regions: ["lt"]
+    expect:
+      name: "Visų šventųjų diena"
+  - given:
+      date: "2022-11-2"
+      regions: ["lt"]
+    expect:
+      name: "Mirusiųjų atminimo diena"
+  - given:
+      date: "2022-12-24"
+      regions: ["lt"]
+    expect:
+      name: "Šv. Kūčios"
+  - given:
+      date: "2022-12-25"
+      regions: ["lt"]
+    expect:
+      name: "Šv. Kalėdos"
+  - given:
+      date: "2022-12-26"
+      regions: ["lt"]
+    expect:
+      name: "Šv. Kalėdos (antra diena)"

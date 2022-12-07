@@ -3,6 +3,7 @@
 msgid ""
 msgstr ""
 
+
 msgid "Новый год"
 msgstr ""
 
@@ -32,3 +33,4 @@ msgstr ""
 
 msgid "День народного единства"
 msgstr ""
+

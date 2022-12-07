@@ -3,6 +3,7 @@
 msgid ""
 msgstr ""
 
+
 msgid "Carnaval"
 msgstr ""
 
@@ -38,3 +39,4 @@ msgstr ""
 
 msgid "Natal"
 msgstr ""
+

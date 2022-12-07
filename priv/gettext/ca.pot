@@ -3,6 +3,7 @@
 msgid ""
 msgstr ""
 
+
 msgid "Good Friday"
 msgstr ""
 
@@ -30,7 +31,7 @@ msgstr ""
 msgid "Islander Day"
 msgstr ""
 
-msgid "St. Patrick's Day"
+msgid "St. George's Day"
 msgstr ""
 
 msgid "Victoria Day"
@@ -89,3 +90,4 @@ msgstr ""
 
 msgid "Boxing Day"
 msgstr ""
+

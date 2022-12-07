@@ -1,0 +1,59 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "Šv. Velykos"
+msgstr "Easter Sunday"
+
+msgid "Antroji šv. Velykų diena"
+msgstr "Easter Monday"
+
+msgid "Motinos diena"
+msgstr "Mothers day"
+
+msgid "Tėvo diena"
+msgstr "Fathers day"
+
+msgid "Naujųjų metų diena"
+msgstr "New Year's Day"
+
+msgid "Lietuvos valstybės atkūrimo diena"
+msgstr "Day of Restoration of the State of Lithuania"
+
+msgid "Lietuvos nepriklausomybės atkūrimo diena"
+msgstr "Day of Restoration of Independence of Lithuania"
+
+msgid "Tarptautinė darbo diena"
+msgstr "International Workers' Day"
+
+msgid "Joninės (Rasos)"
+msgstr "St. John's Day"
+
+msgid "Valstybės ir Tautiškos giesmės diena"
+msgstr "Statehood Day"
+
+msgid "Žolinė"
+msgstr "Assumption Day"
+
+msgid "Visų šventųjų diena"
+msgstr "All Saints' Day"
+
+msgid "Mirusiųjų atminimo diena"
+msgstr "All Souls' Day"
+
+msgid "Šv. Kūčios"
+msgstr "Christmas Eve"
+
+msgid "Šv. Kalėdos"
+msgstr "Christmas Day"
+
+msgid "Šv. Kalėdos (antra diena)"
+msgstr "Boxing Day"
