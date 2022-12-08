@@ -3,6 +3,7 @@
 msgid ""
 msgstr ""
 
+
 msgid "Uskrs"
 msgstr ""
 
@@ -21,16 +22,13 @@ msgstr ""
 msgid "Praznik rada"
 msgstr ""
 
-msgid "Dan antifašističke borbe"
-msgstr ""
-
 msgid "Dan državnosti"
 msgstr ""
 
-msgid "Dan pobjede i domovinske zahvalnosti i dan hrvatskih branitelja"
+msgid "Dan antifašističke borbe"
 msgstr ""
 
-msgid "Dan sjećanja na žrtve Domovinskog rata i Dan sjećanja na žrtvu Vukovara i Škabrnje"
+msgid "Dan pobjede i domovinske zahvalnosti i dan hrvatskih branitelja"
 msgstr ""
 
 msgid "Velika Gospa"
@@ -39,8 +37,12 @@ msgstr ""
 msgid "Dan svih svetih"
 msgstr ""
 
+msgid "Dan sjećanja na žrtve Domovinskog rata i Dan sjećanja na žrtvu Vukovara i Škabrnje"
+msgstr ""
+
 msgid "Božić"
 msgstr ""
 
 msgid "Sveti Stjepan"
 msgstr ""
+

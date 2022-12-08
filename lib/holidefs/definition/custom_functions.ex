@@ -12,7 +12,7 @@ defmodule Holidefs.Definition.CustomFunctions do
   end
 
   def call(fun, year, %Rule{} = rule) do
-    apply(__MODULE__, fun, [year, rule]) 
+    apply(__MODULE__, fun, [year, rule])
   end
 
   @doc false
@@ -167,6 +167,14 @@ defmodule Holidefs.Definition.CustomFunctions do
     else
       date
     end
+  end
+
+  def mothers_day(year, _) do
+    DateCalculator.nth_day_of_week(year, 5, 1, 7)
+  end
+
+  def fathers_day(year, _) do
+    DateCalculator.nth_day_of_week(year, 6, 1, 7)
   end
 
   @doc false

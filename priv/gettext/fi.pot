@@ -3,6 +3,7 @@
 msgid ""
 msgstr ""
 
+
 msgid "Pitkäperjantai"
 msgstr ""
 
@@ -47,3 +48,4 @@ msgstr ""
 
 msgid "Tapaninpäivä"
 msgstr ""
+

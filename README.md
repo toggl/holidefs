@@ -48,6 +48,6 @@ For the complete list of options and their meaning check
 
 ## Copyright and License
 
-Copyright (c) 2018 Teamweek
+Copyright (c) 2022 Toggl
 
 This software is released under the [MIT License](./LICENSE).

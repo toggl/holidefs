@@ -3,6 +3,7 @@
 msgid ""
 msgstr ""
 
+
 msgid "Fastelavn"
 msgstr ""
 
@@ -50,3 +51,4 @@ msgstr ""
 
 msgid "Nyttårsaften"
 msgstr ""
+
