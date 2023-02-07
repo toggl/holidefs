@@ -22,6 +22,7 @@ defmodule HolidefsTest do
              dk: "Denmark",
              ee: "Estonia",
              es: "Spain",
+             fed: "Federal Reserve",
              fi: "Finland",
              fr: "France",
              gb: "United Kingdom",
