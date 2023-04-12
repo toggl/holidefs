@@ -1,6 +1,6 @@
 defmodule Holidefs do
   @moduledoc """
-  Holdefs is a holiday OTP application for multiple locales that loads the
+  Holidefs is a holiday OTP application for multiple locales that loads the
   dates from definition files on the startup.
   """
 
