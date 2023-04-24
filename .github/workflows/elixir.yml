@@ -11,28 +11,40 @@ env:
 
 jobs:
   build:
-
     name: Build and test
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v2
-    - name: Set up Elixir
-      uses: erlef/setup-elixir@885971a72ed1f9240973bd92ab57af8c1aa68f24
+
+    - uses: cachix/install-nix-action@v19
       with:
-        elixir-version: '1.11.4' # Define the elixir version [required]
-        otp-version: '22.3' # Define the OTP version [required]
-    - name: Restore dependencies cache
-      uses: actions/cache@v2
+        github_access_token: ${{ secrets.GITHUB_TOKEN }}
+        extra_nix_config: |
+          # NOTE: Reassign the nix store to this to avoid permission issues when
+          #trying to restoring what was cached by GitHub Actions.
+          store = /home/runner/nix
+
+          # NOTE: Other binary caches for us to use if cache.nixos.org doesn't
+          # have what we need.
+          trusted-public-keys = hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
+          substituters = https://cache.iog.io https://cache.nixos.org/
+
+    - name: Restore cached nix store
+      uses: actions/cache@v3
+      with:
+        path: /home/runner/nix
+        key: ${{ runner.os }}-nix-${{ hashFiles('flake.lock') }}
+
+    - name: Restore cached mix deps
+      uses: actions/cache@v3
       with:
         path: deps
         key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
         restore-keys: ${{ runner.os }}-mix-
+
     - name: Install dependencies
-      run: |
-        mix local.rebar --force
-        mix local.hex --force
-        mix deps.get
-        mix deps.compile
+      run: nix develop .#devShells.x86_64-linux.ci --command bash -c "mix local.rebar --force && mix local.hex --force && mix deps.get && mix deps.compile"
+
     - name: Run tests
-      run: mix test --color
+      run: nix develop .#devShells.x86_64-linux.ci --command mix test --color
