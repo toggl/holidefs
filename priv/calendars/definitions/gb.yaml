@@ -53,6 +53,11 @@ months:
     regions: [gb]
     week: -1
     wday: 1
+  - name: Bank Holiday for the Coronation of King Charles III
+    regions: [gb]
+    mday: 8
+    year_ranges:
+      - limited: [2023]
   7:
   - name: Tynwald Day
     regions: [im, gb_iom]
@@ -372,3 +377,18 @@ tests:
       regions: ["je"]
     expect:
       name: "Bank Holiday"
+  - given:
+      date: '2023-05-08'
+      regions: ["gb"]
+    expect:
+      name: "Bank Holiday for the Coronation of King Charles III"
+  - given:
+      date: '2024-05-08'
+      regions: ['gb']
+    expect:
+      holiday: false
+  - given:
+      date: '2022-05-08'
+      regions: ['gb']
+    expect:
+      holiday: false

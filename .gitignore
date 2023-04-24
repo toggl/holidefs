@@ -1,3 +1,4 @@
+### Elixir/Erlang ###
 # The directory Mix will write compiled artifacts to.
 /_build/
 
@@ -24,3 +25,7 @@ erl_crash.dump
 *.ez
 
 .DS_Store
+
+### nix ###
+.direnv
+result
