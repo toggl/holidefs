@@ -1,24 +1,32 @@
 # Changelog
 
+## v0.3.6 - 2023-04-24
+
+### Changed
+
+- Add UK bank holiday
+
+### Changed
+
 ## v0.3.5 - 2022-12-07
 
 ### Changed
 
 - Locales: Lithuania
-  
+
 ## v0.3.4 - 2022-02-25
 
 ### Changed
 
 - Fix issue BE-122 : Update croatian holidays
-- Implement BE-133 : Generate uid for each Holiday 
+- Implement BE-133 : Generate uid for each Holiday
 
 ## v0.3.3 - 2021-12-08
 
 ### Changed
 
 - Fix issue #27 : Incorrect observed date if Christmas falls on saturday
-  
+
 ## v0.3.2 - 2021-04-06
 
 ### Added
