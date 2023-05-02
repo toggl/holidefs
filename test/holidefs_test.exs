@@ -17,6 +17,7 @@ defmodule HolidefsTest do
              ca: "Canada",
              ch: "Switzerland",
              co: "Colombia",
+             cy: "Cyprus",
              cz: "Czech Republic",
              de: "Germany",
              dk: "Denmark",
