@@ -1,0 +1,99 @@
+# Cyprus holiday definitions.
+#
+# Updated: 2023-05-02.
+# Sources:
+# - https://www.visitcyprus.com/index.php/en/practical-info/time-working-hour-holidays
+---
+months:
+  0:
+  - name: Green Monday
+    regions: [cy]
+    function: orthodox_easter(year)
+    function_modifier: -48
+  - name: Good Friday
+    regions: [cy]
+    function: orthodox_easter(year)
+    function_modifier: -2
+  - name: Easter Sunday
+    regions: [cy]
+    function: orthodox_easter(year)
+    function_modifier: 0
+  - name: Easter Monday
+    regions: [cy]
+    function: orthodox_easter(year)
+    function_modifier: 1
+  - name: Festival of the Flood
+    regions: [cy]
+    function: orthodox_easter(year)
+    function_modifier: 50
+  1:
+  - name: New Year's Day
+    regions: [cy]
+    mday: 1
+  - name: Epiphany Day
+    regions: [cy]
+    mday: 6
+  3:
+  - name: Greek National Day
+    regions: [cy]
+    mday: 25
+  4:
+  - name: National Anniversary Day
+    regions: [cy]
+    mday: 1
+  5:
+  - name: Labour Day
+    regions: [cy]
+    mday: 1
+  8:
+  - name: Assumption of the Virgin Mary
+    regions: [cy]
+    mday: 15
+  10:
+  - name: Cyprus Independence Day
+    regions: [cy]
+    mday: 1
+  - name: Greek National Anniversary Day
+    regions: [cy]
+    mday: 28
+  12:
+  - name: Christmas Eve
+    regions: [cy]
+    mday: 24
+  - name: Christmas Day
+    regions: [cy]
+    mday: 25
+  - name: Boxing Day
+    regions: [cy]
+    mday: 26
+tests:
+  - given:
+      date: '2023-02-27'
+      regions: ["cy"]
+      options: []
+    expect:
+      name: "Green Monday"
+  - given:
+      date: '2023-04-14'
+      regions: ["cy"]
+      options: []
+    expect:
+      name: "Good Friday"
+  - given:
+      date: '2023-04-16'
+      regions: ["cy"]
+      options: []
+    expect:
+      name: "Easter Sunday"
+  - given:
+      date: '2023-04-17'
+      regions: ["cy"]
+      options: []
+    expect:
+      name: "Easter Monday"
+  - given:
+      date: '2023-06-05'
+      regions: ["cy"]
+      options: []
+    expect:
+      name: "Festival of the Flood"
