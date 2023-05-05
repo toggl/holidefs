@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.3.7 - 2023-05-05
+
+### Changed
+
+- Add Cyprus holidays
+
 ## v0.3.6 - 2023-04-24
 
 ### Changed
