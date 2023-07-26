@@ -27,10 +27,10 @@ defmodule Holidefs.Definition.Rule do
           day: integer,
           week: integer,
           weekday: integer,
-          function: function,
-          function_modifier: integer,
+          function: atom | nil,
+          function_modifier: integer | nil,
           regions: [String.t()],
-          observed: function,
+          observed: atom | nil,
           year_ranges: map | nil,
           informal?: boolean
         }
