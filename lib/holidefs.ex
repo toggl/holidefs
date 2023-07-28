@@ -53,7 +53,7 @@ defmodule Holidefs do
     fed: "Federal Reserve"
   }
 
-  @locale_keys Application.get_env(:holidefs, :locales, Map.keys(@all_locales))
+  @locale_keys Application.compile_env(:holidefs, :locales, Map.keys(@all_locales))
   @locales Map.take(@all_locales, @locale_keys)
 
   @doc """
