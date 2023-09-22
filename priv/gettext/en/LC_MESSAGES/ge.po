@@ -1,0 +1,62 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+
+msgid "დიდი პარასკევი"
+msgstr "Good Friday"
+
+msgid "დიდი შაბათი"
+msgstr "Holy Saturday"
+
+msgid "ბრწყინვალე აღდგომის დღე"
+msgstr "Easter Sunday"
+
+msgid "მიცვალებულთა"
+msgstr "Easter Monday"
+
+msgid "ახალი წელი"
+msgstr "New Year's Day"
+
+msgid "ბედობა"
+msgstr "Day after New Year's Day"
+
+msgid "ქრისტეშობა"
+msgstr "Christmas Day"
+
+msgid "ნათლისღება"
+msgstr "Baptism Day of our Lord Jesus Christ"
+
+msgid "დედის დღე"
+msgstr "Mother's Day"
+
+msgid "ქალთა საერთაშორისო დღე"
+msgstr "International Women's Day"
+
+msgid "ეროვნული ერთიანობის დღე"
+msgstr "Day of National Unity"
+
+msgid "ფაშიზმზე გამარჯვების დღე"
+msgstr "Victory Day"
+
+msgid "წმინდა მოციქულის ანდრია პირველწოდებულის საქართველოში შემოსვლის დღე"
+msgstr "Saint Andrew the First-Called Day"
+
+msgid "დამოუკიდებლობის დღე"
+msgstr "Independence Day"
+
+msgid "მარიამობა"
+msgstr "Saint Mary's Day"
+
+msgid "სვეტიცხოვლობა"
+msgstr "Day of Svetitskhoveli Cathedral (in Mtskheta)"
+
+msgid "გიორგობა"
+msgstr "Saint George's Day"
