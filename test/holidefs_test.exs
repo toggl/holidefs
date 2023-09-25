@@ -11,6 +11,7 @@ defmodule HolidefsTest do
              at: "Austria",
              au: "Australia",
              be: "Belgium",
+             bg: "Bulgaria",
              br: "Brazil",
              hr: "Croatia",
              us: "United States",

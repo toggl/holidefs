@@ -16,6 +16,7 @@ defmodule Holidefs do
     at: "Austria",
     au: "Australia",
     be: "Belgium",
+    bg: "Bulgaria",
     br: "Brazil",
     ca: "Canada",
     ch: "Switzerland",

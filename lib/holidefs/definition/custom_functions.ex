@@ -26,6 +26,11 @@ defmodule Holidefs.Definition.CustomFunctions do
   end
 
   @doc false
+  def julian_orthodox_easter(year, _) do
+    DateCalculator.julian_orthodox_easter(year)
+  end
+
+  @doc false
   def us_inauguration_day(year, rule) when rem(year, 4) == 1 do
     {:ok, date} = Date.new(year, rule.month, 20)
     date
