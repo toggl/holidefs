@@ -2,7 +2,7 @@ defmodule Holidefs.Mixfile do
   use Mix.Project
 
   @github_url "https://github.com/Teamweek/holidefs"
-  @version "0.3.7"
+  @version "0.3.8"
 
   def project do
     [
