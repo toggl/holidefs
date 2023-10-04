@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.3.8 - 2023-09-25
+
+### Changed
+
+- Added Bulgaria, Georgia and Kazakhstan holidays
+
 ## v0.3.7 - 2023-05-05
 
 ### Changed
