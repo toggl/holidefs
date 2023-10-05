@@ -8,7 +8,7 @@ defmodule Holidefs.Mixfile do
     [
       app: :holidefs,
       version: @version,
-      elixir: "~> 1.5",
+      elixir: "~> 1.11",
       elixirc_paths: elixirc_paths(Mix.env()),
       package: package(),
       start_permanent: Mix.env() == :prod,
