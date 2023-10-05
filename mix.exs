@@ -13,7 +13,6 @@ defmodule Holidefs.Mixfile do
       package: package(),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      compilers: [:gettext] ++ Mix.compilers(),
       test_coverage: [tool: ExCoveralls],
       docs: docs(),
       preferred_cli_env: preferred_cli_env(),
@@ -93,7 +92,7 @@ defmodule Holidefs.Mixfile do
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:excoveralls, "~> 0.10", only: :test},
       {:muzak, "~> 1.1", only: :test},
-      {:gettext, "~> 0.15"},
+      {:gettext, "~> 0.23"},
       {:inch_ex, only: :docs},
       {:yaml_elixir, "~> 2.0"},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false}
