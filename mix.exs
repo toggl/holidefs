@@ -1,7 +1,7 @@
 defmodule Holidefs.Mixfile do
   use Mix.Project
 
-  @github_url "https://github.com/Teamweek/holidefs"
+  @github_url "https://github.com/toggl/holidefs"
   @version "0.3.8"
 
   def project do
@@ -46,14 +46,15 @@ defmodule Holidefs.Mixfile do
         "CHANGELOG.md": [],
         "CODE_OF_CONDUCT.md": [title: "Code of Conduct"],
         "CONTRIBUTING.md": [],
-        LICENSE: [title: "License"],
+        "LICENSE.md": [title: "License"],
         "README.md": [title: "Overview"]
       ],
       main: "readme",
       source_url: @github_url,
       source_ref: "#v{@version}",
       homepage_url: @github_url,
-      formatters: ["html"]
+      formatters: ["html"],
+      api_reference: false
     ]
   end
 
