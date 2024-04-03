@@ -21,7 +21,7 @@ defmodule Holidefs.Holiday do
         }
 
   @doc """
-  Returns a list of holidays for the definition rule on the given year
+  Returns a list of holidays for the definition rule on the given year.
   """
   @spec from_rule(atom, Holidefs.Definition.Rule.t(), integer, Holidefs.Options.t()) :: [t]
   def from_rule(code, %Rule{year_ranges: year_ranges} = rule, year, opts \\ %Options{}) do
@@ -133,7 +133,7 @@ defmodule Holidefs.Holiday do
   end
 
   @doc """
-  Returns the translated name of the given holiday
+  Returns the translated name of the given holiday.
   """
   @spec translate_name(atom, String.t()) :: String.t()
   def translate_name(code, name) do

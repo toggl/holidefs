@@ -1,10 +1,10 @@
 defmodule Holidefs.DateCalculator do
   @moduledoc """
-  Some functions to calculate dynamic holiday dates
+  Some functions to calculate dynamic holiday dates.
   """
 
   @doc """
-  Returns the date of Easter for the given `year`
+  Returns the date of Easter for the given `year`.
 
   ## Examples
 
@@ -39,7 +39,7 @@ defmodule Holidefs.DateCalculator do
   end
 
   @doc """
-  Returns the date of Orthodox Easter for the given `year`
+  Returns the date of Orthodox Easter for the given `year`.
 
   ## Examples
 
@@ -75,7 +75,7 @@ defmodule Holidefs.DateCalculator do
   end
 
   @doc """
-  Returns the date of Orthodox Easter for the given `year`
+  Returns the date of Orthodox Easter for the given `year`.
 
   ## Examples
 
@@ -100,7 +100,7 @@ defmodule Holidefs.DateCalculator do
   end
 
   @doc """
-  Returns the nth day of the week
+  Returns the nth day of the week.
   """
   @spec nth_day_of_week(integer, integer, integer, integer) :: Date.t()
   def nth_day_of_week(year, month, -1, weekday) do
@@ -128,7 +128,7 @@ defmodule Holidefs.DateCalculator do
   end
 
   @doc """
-  Returns the next day of week after the given day
+  Returns the next day of week after the given day.
   """
   @spec next_day_of_week(Date.t(), integer) :: Date.t()
   def next_day_of_week(date, day_of_week) do
@@ -142,7 +142,7 @@ defmodule Holidefs.DateCalculator do
   end
 
   @doc """
-  Returns the previous day of week after the given day
+  Returns the previous day of week after the given day.
   """
   @spec previous_day_of_week(Date.t(), integer) :: Date.t()
   def previous_day_of_week(date, day_of_week) do
@@ -156,7 +156,7 @@ defmodule Holidefs.DateCalculator do
   end
 
   @doc """
-  Returns the first day of the given month on the given year
+  Returns the first day of the given month on the given year.
   """
   @spec beginning_of_month(integer, integer) :: Date.t()
   def beginning_of_month(year, month) do

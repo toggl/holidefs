@@ -1,8 +1,8 @@
 defmodule Holidefs.Mixfile do
   use Mix.Project
 
-  @github_url "https://github.com/Teamweek/holidefs"
-  @version "0.3.7"
+  @github_url "https://github.com/toggl/holidefs"
+  @version "0.3.8"
 
   def project do
     [
@@ -13,7 +13,6 @@ defmodule Holidefs.Mixfile do
       package: package(),
       start_permanent: Mix.env() == :prod,
       deps: deps(),
-      compilers: [:gettext] ++ Mix.compilers(),
       test_coverage: [tool: ExCoveralls],
       docs: docs(),
       preferred_cli_env: preferred_cli_env(),
@@ -27,7 +26,7 @@ defmodule Holidefs.Mixfile do
 
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger, :crypto]
     ]
   end
 
@@ -47,14 +46,15 @@ defmodule Holidefs.Mixfile do
         "CHANGELOG.md": [],
         "CODE_OF_CONDUCT.md": [title: "Code of Conduct"],
         "CONTRIBUTING.md": [],
-        LICENSE: [title: "License"],
+        "LICENSE.md": [title: "License"],
         "README.md": [title: "Overview"]
       ],
       main: "readme",
       source_url: @github_url,
       source_ref: "#v{@version}",
       homepage_url: @github_url,
-      formatters: ["html"]
+      formatters: ["html"],
+      api_reference: false
     ]
   end
 
@@ -93,7 +93,7 @@ defmodule Holidefs.Mixfile do
       {:ex_doc, ">= 0.0.0", only: :dev, runtime: false},
       {:excoveralls, "~> 0.10", only: :test},
       {:muzak, "~> 1.1", only: :test},
-      {:gettext, "~> 0.15"},
+      {:gettext, "~> 0.23"},
       {:inch_ex, only: :docs},
       {:yaml_elixir, "~> 2.0"},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false}

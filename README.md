@@ -1,11 +1,11 @@
 # Holidefs
 
-[![Build Status](https://travis-ci.org/Teamweek/holidefs.svg?branch=master)](https://travis-ci.org/Teamweek/holidefs)
+[![CI](https://github.com/toggl/holidefs/actions/workflows/elixir.yml/badge.svg)](https://github.com/toggl/holidefs/actions/workflows/elixir.yml)
 [![Module Version](https://img.shields.io/hexpm/v/holidefs.svg)](https://hex.pm/packages/holidefs)
 [![Hex Docs](https://img.shields.io/badge/hex-docs-lightgreen.svg)](https://hexdocs.pm/holidefs/)
 [![Total Download](https://img.shields.io/hexpm/dt/holidefs.svg)](https://hex.pm/packages/holidefs)
-[![License](https://img.shields.io/hexpm/l/holidefs.svg)](https://github.com/Teamweek/holidefs/blob/master/LICENSE)
-[![Last Updated](https://img.shields.io/github/last-commit/Teamweek/holidefs.svg)](https://github.com/Teamweek/holidefs/commits/master)
+[![License](https://img.shields.io/hexpm/l/holidefs.svg)](https://github.com/toggl/holidefs/blob/master/LICENSE.md)
+[![Last Updated](https://img.shields.io/github/last-commit/toggl/holidefs.svg)](https://github.com/toggl/holidefs/commits/master)
 
 Definition-based national holidays in Elixir.
 
@@ -46,8 +46,8 @@ Holidefs.between(:br, ~D[2018-02-01], ~D[2018-04-03], include_informal?: true)
 For the complete list of options and their meaning check
 [`Holidefs.Options` doc](http://hexdocs.pm/holidefs/Holidefs.Options.html)
 
-## Copyright and License
+## License
 
 Copyright (c) 2022 Toggl
 
-This software is released under the [MIT License](./LICENSE).
+This software is released under the [MIT License](./LICENSE.md).

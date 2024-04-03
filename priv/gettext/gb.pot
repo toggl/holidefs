@@ -34,6 +34,9 @@ msgstr ""
 msgid "Bank Holiday"
 msgstr ""
 
+msgid "Bank Holiday for the Coronation of King Charles III"
+msgstr ""
+
 msgid "Tynwald Day"
 msgstr ""
 
