@@ -2,7 +2,7 @@ defmodule Holidefs.Mixfile do
   use Mix.Project
 
   @github_url "https://github.com/toggl/holidefs"
-  @version "0.3.8"
+  @version "0.4.0"
 
   def project do
     [
