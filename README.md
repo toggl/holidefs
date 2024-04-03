@@ -17,7 +17,7 @@ of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:holidefs, "~> 0.3"}
+    {:holidefs, "~> 0.4"}
   ]
 end
 ```
