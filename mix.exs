@@ -2,13 +2,13 @@ defmodule Holidefs.Mixfile do
   use Mix.Project
 
   @github_url "https://github.com/toggl/holidefs"
-  @version "0.3.8"
+  @version "0.4.0"
 
   def project do
     [
       app: :holidefs,
       version: @version,
-      elixir: "~> 1.5",
+      elixir: "~> 1.11",
       elixirc_paths: elixirc_paths(Mix.env()),
       package: package(),
       start_permanent: Mix.env() == :prod,
