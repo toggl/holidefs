@@ -37,7 +37,7 @@ msgstr ""
 msgid "Islander Day"
 msgstr ""
 
-msgid "St. Patrick's Day"
+msgid "St. George's Day"
 msgstr ""
 
 msgid "Victoria Day"

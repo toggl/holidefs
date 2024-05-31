@@ -10,23 +10,11 @@ msgid ""
 msgstr ""
 "Language: en\n"
 
-msgid "Año nuevo"
-msgstr "New Year's Day"
-
-msgid "Día de los Reyes Magos"
-msgstr "Epiphany"
-
-msgid "Día de San José"
-msgstr "Saint Joseph's Day"
-
 msgid "Jueves Santo"
 msgstr "Maundy Thursday"
 
 msgid "Viernes Santo"
 msgstr "Good Friday"
-
-msgid "Primero de Mayo"
-msgstr "Labour Day"
 
 msgid "Ascensión del señor"
 msgstr "Ascension of Jesus"
@@ -36,6 +24,18 @@ msgstr "Corpus Christi"
 
 msgid "Sagrado Corazón"
 msgstr "Sacred Heart"
+
+msgid "Año nuevo"
+msgstr "New Year's Day"
+
+msgid "Día de los Reyes Magos"
+msgstr "Three Kings Day"
+
+msgid "Día de San José"
+msgstr "Saint Joseph's Day"
+
+msgid "Primero de Mayo"
+msgstr "Labour Day"
 
 msgid "San Pedro y San Pablo"
 msgstr "Saint Peter and Saint Paul"

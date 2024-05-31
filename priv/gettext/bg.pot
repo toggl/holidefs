@@ -7,50 +7,38 @@ msgstr ""
 msgid "Разпети петък"
 msgstr ""
 
-
 msgid "Велика събота"
 msgstr ""
-
 
 msgid "Възкресение Христово. Великден"
 msgstr ""
 
-
 msgid "Нова година"
 msgstr ""
-
 
 msgid "Освобожението на България"
 msgstr ""
 
-
 msgid "Ден на труда"
 msgstr ""
-
 
 msgid "Гергьовден. Ден на храбростта"
 msgstr ""
 
-
 msgid "Ден на славянската писменост"
 msgstr ""
-
 
 msgid "Ден на Съединението"
 msgstr ""
 
-
 msgid "Ден на Независимостта"
 msgstr ""
-
 
 msgid "Ден на Народните будители"
 msgstr ""
 
-
 msgid "Бъдни вечер"
 msgstr ""
-
 
 msgid "Рождество Христово. Коледа"
 msgstr ""
