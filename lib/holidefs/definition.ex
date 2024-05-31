@@ -7,6 +7,8 @@ defmodule Holidefs.Definition do
   alias Holidefs.Definition
   alias Holidefs.Definition.Rule
 
+  require Logger
+
   defstruct [:code, :name, rules: []]
 
   @type t :: %Definition{
@@ -54,6 +56,7 @@ defmodule Holidefs.Definition do
         }
 
       {:error, _} ->
+        Logger.warn("Definition file for #{code} not found.")
         nil
     end
   end
