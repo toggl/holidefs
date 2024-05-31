@@ -32,28 +32,37 @@ defmodule Holidefs.Definition do
   @doc """
   Loads the definition for a locale code and name.
 
+  If the file does not exists, it returns `nil`.
+
   If any definition rule is invalid, a `RuntimeError` will be raised
   """
   @spec load!(atom, String.t()) :: t
   def load!(code, name) do
-    {:ok, file_data} =
-      code
-      |> file_path()
-      |> to_charlist()
-      |> YamlElixir.read_from_file()
+    case read_file(code) do
+      {:ok, file_data} ->
+        rules =
+          file_data
+          |> Map.get("months")
+          |> Enum.flat_map(fn {month, rules} ->
+            for rule <- rules, do: Rule.build(code, month, rule)
+          end)
 
-    rules =
-      file_data
-      |> Map.get("months")
-      |> Enum.flat_map(fn {month, rules} ->
-        for rule <- rules, do: Rule.build(code, month, rule)
-      end)
+        %Definition{
+          code: code,
+          name: name,
+          rules: rules
+        }
 
-    %Definition{
-      code: code,
-      name: name,
-      rules: rules
-    }
+      {:error, _} ->
+        nil
+    end
+  end
+
+  defp read_file(code) do
+    code
+    |> file_path()
+    |> to_charlist()
+    |> YamlElixir.read_from_file()
   end
 
   @doc """
