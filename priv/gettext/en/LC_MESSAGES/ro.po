@@ -1,0 +1,42 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Paștele - duminică"
+msgstr "Easter - Sunday"
+
+msgid "Paștele - luni"
+msgstr "Easter - Monday"
+
+msgid "Rusaliile - 50"
+msgstr "Pentecost - 50"
+
+msgid "Rusaliile - 51"
+msgstr "Pentecost - 51"
+
+msgid "Anul nou"
+msgstr "New Year"
+
+msgid "Ziua muncii"
+msgstr "Labor Day"
+
+msgid "Adormirea Maicii Domnului"
+msgstr "Assumption of the Virgin Mary"
+
+msgid "Sfântul Apostol Andrei"
+msgstr "Saint Andrew the Apostle"
+
+msgid "Ziua Națională"
+msgstr "National Day"
+
+msgid "Sărbătoarea Nașterii Domnului"
+msgstr "The Feast of the Nativity"

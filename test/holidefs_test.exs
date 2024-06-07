@@ -42,6 +42,7 @@ defmodule HolidefsTest do
              ph: "Philippines",
              pl: "Poland",
              pt: "Portugal",
+             ro: "Romania",
              rs: "Serbia",
              ru: "Russia",
              se: "Sweden",
