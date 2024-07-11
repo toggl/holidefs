@@ -31,6 +31,11 @@ defmodule Holidefs.Definition.CustomFunctions do
   end
 
   @doc false
+  def orthodox_easter_julian(year, _) do
+    DateCalculator.julian_orthodox_easter(year)
+  end
+
+  @doc false
   def us_inauguration_day(year, rule) when rem(year, 4) == 1 do
     {:ok, date} = Date.new(year, rule.month, 20)
     date
@@ -54,34 +59,122 @@ defmodule Holidefs.Definition.CustomFunctions do
   end
 
   @doc false
-  def rosh_hashanah(year, _) do
-    map = %{
-      2014 => ~D[2014-09-25],
-      2015 => ~D[2015-09-14],
-      2016 => ~D[2016-10-03],
-      2017 => ~D[2017-09-21],
-      2018 => ~D[2018-09-10],
-      2019 => ~D[2019-09-30],
-      2020 => ~D[2020-09-19]
-    }
-
-    map[year]
-  end
+  def rosh_hashanah(2014, _), do: ~D[2014-09-25]
+  def rosh_hashanah(2015, _), do: ~D[2015-09-14]
+  def rosh_hashanah(2016, _), do: ~D[2016-10-03]
+  def rosh_hashanah(2017, _), do: ~D[2017-09-21]
+  def rosh_hashanah(2018, _), do: ~D[2018-09-10]
+  def rosh_hashanah(2019, _), do: ~D[2019-09-30]
+  def rosh_hashanah(2020, _), do: ~D[2020-09-19]
+  def rosh_hashanah(2021, _), do: ~D[2021-09-07]
+  def rosh_hashanah(2022, _), do: ~D[2022-09-26]
+  def rosh_hashanah(2023, _), do: ~D[2023-09-16]
+  def rosh_hashanah(2024, _), do: ~D[2024-10-03]
+  def rosh_hashanah(2025, _), do: ~D[2025-09-23]
+  def rosh_hashanah(2026, _), do: ~D[2026-09-12]
+  def rosh_hashanah(2027, _), do: ~D[2027-10-02]
+  def rosh_hashanah(2028, _), do: ~D[2028-09-21]
+  def rosh_hashanah(2029, _), do: ~D[2029-09-10]
+  def rosh_hashanah(2030, _), do: ~D[2030-09-28]
+  def rosh_hashanah(2031, _), do: ~D[2031-09-18]
+  def rosh_hashanah(2032, _), do: ~D[2032-09-06]
+  def rosh_hashanah(2033, _), do: ~D[2033-09-24]
+  def rosh_hashanah(2034, _), do: ~D[2034-09-14]
+  def rosh_hashanah(2035, _), do: ~D[2035-10-04]
+  def rosh_hashanah(2036, _), do: ~D[2036-09-22]
+  def rosh_hashanah(2037, _), do: ~D[2037-09-09]
+  def rosh_hashanah(2038, _), do: ~D[2038-09-30]
+  def rosh_hashanah(2039, _), do: ~D[2039-09-19]
+  def rosh_hashanah(2040, _), do: ~D[2040-09-08]
+  def rosh_hashanah(2041, _), do: ~D[2041-09-26]
+  def rosh_hashanah(2042, _), do: ~D[2042-09-15]
+  def rosh_hashanah(2043, _), do: ~D[2043-10-05]
+  def rosh_hashanah(2044, _), do: ~D[2044-09-22]
+  def rosh_hashanah(2045, _), do: ~D[2045-09-12]
+  def rosh_hashanah(2046, _), do: ~D[2046-10-01]
+  def rosh_hashanah(2047, _), do: ~D[2047-09-21]
+  def rosh_hashanah(2048, _), do: ~D[2048-09-08]
+  def rosh_hashanah(2049, _), do: ~D[2049-09-27]
+  def rosh_hashanah(2050, _), do: ~D[2050-09-17]
+  def rosh_hashanah(2051, _), do: ~D[2051-09-07]
+  def rosh_hashanah(2052, _), do: ~D[2052-09-24]
+  def rosh_hashanah(_, _), do: nil
 
   @doc false
-  def yom_kippur(year, _) do
-    map = %{
-      2014 => ~D[2014-10-04],
-      2015 => ~D[2015-09-23],
-      2016 => ~D[2016-10-12],
-      2017 => ~D[2017-09-30],
-      2018 => ~D[2018-09-19],
-      2019 => ~D[2019-10-09],
-      2020 => ~D[2020-09-28]
-    }
+  def yom_kippur(2014, _), do: ~D[2014-10-04]
+  def yom_kippur(2015, _), do: ~D[2015-09-23]
+  def yom_kippur(2016, _), do: ~D[2016-10-12]
+  def yom_kippur(2017, _), do: ~D[2017-09-30]
+  def yom_kippur(2018, _), do: ~D[2018-09-19]
+  def yom_kippur(2019, _), do: ~D[2019-10-09]
+  def yom_kippur(2020, _), do: ~D[2020-09-28]
+  def yom_kippur(2021, _), do: ~D[2021-09-16]
+  def yom_kippur(2022, _), do: ~D[2022-10-05]
+  def yom_kippur(2023, _), do: ~D[2023-09-25]
+  def yom_kippur(2024, _), do: ~D[2024-10-12]
+  def yom_kippur(2025, _), do: ~D[2025-10-02]
+  def yom_kippur(2026, _), do: ~D[2026-09-21]
+  def yom_kippur(2027, _), do: ~D[2027-10-11]
+  def yom_kippur(2028, _), do: ~D[2028-09-30]
+  def yom_kippur(2029, _), do: ~D[2029-09-19]
+  def yom_kippur(2030, _), do: ~D[2030-10-07]
+  def yom_kippur(2031, _), do: ~D[2031-09-27]
+  def yom_kippur(2032, _), do: ~D[2032-09-15]
+  def yom_kippur(2033, _), do: ~D[2033-10-03]
+  def yom_kippur(2034, _), do: ~D[2034-09-23]
+  def yom_kippur(2035, _), do: ~D[2035-10-13]
+  def yom_kippur(2036, _), do: ~D[2036-10-01]
+  def yom_kippur(2037, _), do: ~D[2037-09-19]
+  def yom_kippur(2038, _), do: ~D[2038-10-09]
+  def yom_kippur(2039, _), do: ~D[2039-09-28]
+  def yom_kippur(2040, _), do: ~D[2040-09-17]
+  def yom_kippur(2041, _), do: ~D[2041-10-05]
+  def yom_kippur(2042, _), do: ~D[2042-09-24]
+  def yom_kippur(2043, _), do: ~D[2043-10-14]
+  def yom_kippur(2044, _), do: ~D[2044-10-01]
+  def yom_kippur(2045, _), do: ~D[2045-09-21]
+  def yom_kippur(2046, _), do: ~D[2046-10-10]
+  def yom_kippur(2047, _), do: ~D[2047-09-30]
+  def yom_kippur(2048, _), do: ~D[2048-09-17]
+  def yom_kippur(2049, _), do: ~D[2049-10-06]
+  def yom_kippur(2050, _), do: ~D[2050-09-26]
+  def yom_kippur(2051, _), do: ~D[2051-09-16]
+  def yom_kippur(2052, _), do: ~D[2052-10-03]
+  def yom_kippur(_, _), do: nil
 
-    map[year]
-  end
+  @doc false
+  def matariki(2022, _), do: ~D[2022-06-24]
+  def matariki(2023, _), do: ~D[2023-07-14]
+  def matariki(2024, _), do: ~D[2024-06-28]
+  def matariki(2025, _), do: ~D[2025-06-20]
+  def matariki(2026, _), do: ~D[2026-07-10]
+  def matariki(2027, _), do: ~D[2027-06-25]
+  def matariki(2028, _), do: ~D[2028-07-14]
+  def matariki(2029, _), do: ~D[2029-07-06]
+  def matariki(2030, _), do: ~D[2030-06-21]
+  def matariki(2031, _), do: ~D[2031-07-11]
+  def matariki(2032, _), do: ~D[2032-07-02]
+  def matariki(2033, _), do: ~D[2033-06-24]
+  def matariki(2034, _), do: ~D[2034-07-07]
+  def matariki(2035, _), do: ~D[2035-06-29]
+  def matariki(2036, _), do: ~D[2036-07-18]
+  def matariki(2037, _), do: ~D[2037-07-10]
+  def matariki(2038, _), do: ~D[2038-06-25]
+  def matariki(2039, _), do: ~D[2039-07-15]
+  def matariki(2040, _), do: ~D[2040-07-06]
+  def matariki(2041, _), do: ~D[2041-07-19]
+  def matariki(2042, _), do: ~D[2042-07-11]
+  def matariki(2043, _), do: ~D[2043-07-03]
+  def matariki(2044, _), do: ~D[2044-06-24]
+  def matariki(2045, _), do: ~D[2045-07-07]
+  def matariki(2046, _), do: ~D[2046-06-29]
+  def matariki(2047, _), do: ~D[2047-07-19]
+  def matariki(2048, _), do: ~D[2048-07-03]
+  def matariki(2049, _), do: ~D[2049-06-25]
+  def matariki(2050, _), do: ~D[2050-07-15]
+  def matariki(2051, _), do: ~D[2051-06-30]
+  def matariki(2052, _), do: ~D[2052-06-21]
+  def matariki(_, _), do: nil
 
   @doc false
   def election_day(year, _) do
@@ -386,5 +479,78 @@ defmodule Holidefs.Definition.CustomFunctions do
   def se_alla_helgons_dag(year, _) do
     {:ok, date} = Date.new(year, 10, 31)
     DateCalculator.next_day_of_week(date, 6)
+  end
+
+  @doc false
+  def epiphany(year, _) do
+    {:ok, date} = Date.new(year, 1, 6)
+    day_of_week = Date.day_of_week(date)
+
+    cond do
+      day_of_week > 1 && day_of_week < 7 ->
+        Date.add(date, 8 - day_of_week)
+
+      day_of_week == 7 ->
+        Date.add(date, 1)
+
+      true ->
+        date
+    end
+  end
+
+  @doc false
+  def to_nearest_monday_after(year, rule) do
+    {:ok, date} = Date.new(year, rule.month, rule.day)
+    DateCalculator.to_nearest_monday_after(date)
+  end
+
+  @doc false
+  def qld_brisbane_ekka_holiday(year, rule) do
+    first_friday = DateCalculator.nth_day_of_week(year, rule.month, 1, 5)
+
+    date =
+      if first_friday.day < 5 do
+        DateCalculator.nth_day_of_week(year, rule.month, 2, 5)
+      else
+        first_friday
+      end
+
+    Date.add(date, 5)
+  end
+
+  @doc false
+  def qld_kings_bday_october(year, rule) do
+    if year >= 2023 do
+      DateCalculator.nth_day_of_week(year, rule.month, 1, 1)
+    end
+  end
+
+  @doc false
+  def ch_be_zibelemaerit(year, rule) do
+    DateCalculator.nth_day_of_week(year, rule.month, 4, 1)
+  end
+
+  @doc false
+  def saint_josephs_day(year, rule), do: co_shift_date(year, rule, 19)
+  @doc false
+  def saint_peter_and_saint_paul(year, rule), do: co_shift_date(year, rule, 29)
+  @doc false
+  def assumption_of_mary(year, rule), do: co_shift_date(year, rule, 15)
+  @doc false
+  def columbus_day(year, rule), do: co_shift_date(year, rule, 12)
+  @doc false
+  def all_saints_day(year, rule), do: co_shift_date(year, rule, 1)
+  @doc false
+  def independence_of_cartagena(year, rule), do: co_shift_date(year, rule, 11)
+
+  defp co_shift_date(year, rule, day) do
+    {:ok, date} = Date.new(year, rule.month, day)
+    day_of_week = Date.day_of_week(date)
+
+    if day_of_week > 1 do
+      Date.add(date, 8 - day_of_week)
+    else
+      date
+    end
   end
 end

@@ -172,4 +172,19 @@ defmodule Holidefs.DateCalculator do
     |> next_beginning_of_month(month)
     |> Date.add(-1)
   end
+
+  def to_nearest_monday_after(date) do
+    day =
+      case Date.day_of_week(date) do
+        1 -> 0
+        2 -> 6
+        3 -> 5
+        4 -> 4
+        5 -> 3
+        6 -> 2
+        7 -> 1
+      end
+
+    Date.add(date, day)
+  end
 end

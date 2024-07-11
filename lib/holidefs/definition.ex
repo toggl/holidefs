@@ -4,6 +4,8 @@ defmodule Holidefs.Definition do
   the year.
   """
 
+  @holidays_deps_path Path.join(Mix.Project.deps_path(), "holidays")
+
   alias Holidefs.Definition
   alias Holidefs.Definition.Rule
 
@@ -20,15 +22,21 @@ defmodule Holidefs.Definition do
   @doc """
   Returns the path for the given locale definition file.
   """
-  @spec file_path(atom, Path.t()) :: binary
-  def file_path(code, path \\ path()), do: Path.join(path, "#{code}.yaml")
+  @spec file_path(atom, atom) :: binary
+  def file_path(code, path_type \\ :default), do: Path.join(path(path_type), "#{code}.yaml")
 
   @doc """
   Returns the path where all the locale definitions are saved.
   """
-  @spec path() :: Path.t()
-  def path() do
+  @spec path(atom) :: Path.t()
+  def path(type \\ :default)
+
+  def path(:default) do
     Path.join(:code.priv_dir(:holidefs), "/calendars/definitions")
+  end
+
+  def path(:deps) do
+    @holidays_deps_path
   end
 
   @doc """
@@ -38,9 +46,9 @@ defmodule Holidefs.Definition do
 
   If any definition rule is invalid, a `RuntimeError` will be raised
   """
-  @spec load!(atom, String.t()) :: t
-  def load!(code, name) do
-    case read_file(code) do
+  @spec load!(atom, String.t(), atom) :: t | nil
+  def load!(code, name, path_type \\ :default) do
+    case read_file(code, path_type) do
       {:ok, file_data} ->
         rules =
           file_data
@@ -56,14 +64,14 @@ defmodule Holidefs.Definition do
         }
 
       {:error, _} ->
-        Logger.warn("Definition file for #{code} not found.")
+        Logger.warning("Definition file for #{code} not found.")
         nil
     end
   end
 
-  defp read_file(code) do
+  defp read_file(code, path_type \\ :default) do
     code
-    |> file_path()
+    |> file_path(path_type)
     |> to_charlist()
     |> YamlElixir.read_from_file()
   end

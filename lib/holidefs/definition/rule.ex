@@ -4,8 +4,11 @@ defmodule Holidefs.Definition.Rule do
   when it happens on a year.
   """
 
+  require Logger
+
   alias Holidefs.Definition.CustomFunctions
   alias Holidefs.Definition.Rule
+  alias Holidefs.Exceptions.{FunctionNotDefinedError, InvalidRuleMapError}
 
   defstruct [
     :name,
@@ -38,50 +41,47 @@ defmodule Holidefs.Definition.Rule do
   @valid_weeks [-5, -4, -3, -2, -1, 1, 2, 3, 4, 5]
   @valid_weekdays 1..7
 
-  @doc """
-  Builds a new rule from its month and definition map
-  """
-  @spec build(atom, integer, map) :: t
-  def build(code, month, %{"name" => name, "function" => func} = map) do
-    %Rule{
-      name: name,
+  def build(code, month, %{"name" => name} = map) do
+    %{
+      "year_ranges" => year_ranges,
+      "type" => type,
+      "observed" => observed,
+      "function" => function,
+      "function_modifier" => function_modifier
+    } = fill_missing(map)
+
+    rule = %Rule{
       month: month,
-      day: map["mday"],
-      week: map["week"],
-      weekday: map["wday"],
-      year_ranges: map["year_ranges"],
-      informal?: map["type"] == "informal",
-      observed: observed_from_name(map["observed"]),
+      name: name,
+      year_ranges: year_ranges,
+      informal?: type == "informal",
+      observed: observed_from_name(observed),
       regions: load_regions(map, code),
-      function: function_from_name(func),
-      function_modifier: map["function_modifier"]
+      function: function_from_name!(function),
+      function_modifier: function_modifier
     }
+
+    case map do
+      %{"week" => week, "wday" => wday} ->
+        %{rule | week: week!(week), weekday: weekday!(wday)}
+
+      %{"mday" => mday} ->
+        %{rule | day: mday}
+
+      %{"function" => function} when not is_nil(function) ->
+        rule
+
+      _ ->
+        raise InvalidRuleMapError, map: map
+    end
   end
 
-  def build(code, month, %{"name" => name, "week" => week, "wday" => wday} = map)
-      when week in @valid_weeks and wday in @valid_weekdays do
-    %Rule{
-      name: name,
-      month: month,
-      week: week,
-      weekday: wday,
-      year_ranges: map["year_ranges"],
-      informal?: map["type"] == "informal",
-      observed: observed_from_name(map["observed"]),
-      regions: load_regions(map, code)
-    }
-  end
+  defp fill_missing(map) do
+    keys = ~w(year_ranges type observed function function_modifier)
 
-  def build(code, month, %{"name" => name, "mday" => day} = map) do
-    %Rule{
-      name: name,
-      month: month,
-      day: day,
-      year_ranges: map["year_ranges"],
-      informal?: map["type"] == "informal",
-      observed: observed_from_name(map["observed"]),
-      regions: load_regions(map, code)
-    }
+    Enum.reduce(keys, map, fn key, map ->
+      Map.put_new(map, key, nil)
+    end)
   end
 
   defp load_regions(%{"regions" => regions}, code) do
@@ -93,18 +93,34 @@ defmodule Holidefs.Definition.Rule do
   end
 
   defp observed_from_name(nil), do: nil
-  defp observed_from_name(name), do: function_from_name(name)
+  defp observed_from_name(name), do: function_from_name!(name)
 
   @custom_functions :exports
                     |> CustomFunctions.module_info()
                     |> Keyword.keys()
 
-  defp function_from_name(name) when is_binary(name) do
+  defp function_from_name!(name) when is_binary(name) do
     name
     |> String.replace(~r/\(.+\)/, "")
     |> String.to_atom()
-    |> function_from_name()
+    |> function_from_name!()
   end
 
-  defp function_from_name(name) when is_atom(name) and name in @custom_functions, do: name
+  defp function_from_name!(:""), do: nil
+  defp function_from_name!(nil), do: nil
+
+  defp function_from_name!(name) when is_atom(name) and name in @custom_functions do
+    name
+  end
+
+  defp function_from_name!(name) when is_atom(name) do
+    raise FunctionNotDefinedError, name: name
+  end
+
+  def week!(week) when week in @valid_weeks, do: week
+  def week!(nil), do: nil
+  # Ruby uses 0 for Sunday, but Elixir uses 7
+  def weekday!(0), do: weekday!(7)
+  def weekday!(wday) when wday in @valid_weekdays, do: wday
+  def weekday!(nil), do: nil
 end

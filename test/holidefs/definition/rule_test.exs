@@ -1,6 +1,7 @@
 defmodule Holidefs.Definition.RuleTest do
   use ExUnit.Case
   alias Holidefs.Definition.Rule
+  alias Holidefs.Exceptions.{FunctionNotDefinedError, InvalidRuleMapError}
 
   doctest Rule
 
@@ -32,11 +33,11 @@ defmodule Holidefs.Definition.RuleTest do
         Rule.build(:us, 0, %{"no_name" => "Bad"})
       end
 
-      assert_raise FunctionClauseError, fn ->
+      assert_raise InvalidRuleMapError, fn ->
         Rule.build(:us, 0, %{"name" => "Bad"})
       end
 
-      assert_raise FunctionClauseError, fn ->
+      assert_raise FunctionNotDefinedError, fn ->
         Rule.build(:us, 0, %{"name" => "Bad", "function" => "no_function()"})
       end
     end
@@ -46,9 +47,10 @@ defmodule Holidefs.Definition.RuleTest do
         assert %Rule{} = Rule.build(:us, 1, %{"name" => "Weekday test", "week" => 1, "wday" => i})
       end
 
-      assert_raise FunctionClauseError, fn ->
-        Rule.build(:us, 1, %{"name" => "Weekday test", "week" => 1, "wday" => 0})
-      end
+      assert %Rule{weekday: weekday} =
+               Rule.build(:us, 1, %{"name" => "Weekday test", "week" => 1, "wday" => 0})
+
+      assert weekday == 7
 
       assert_raise FunctionClauseError, fn ->
         Rule.build(:us, 1, %{"name" => "Weekday test", "week" => 1, "wday" => 8})
