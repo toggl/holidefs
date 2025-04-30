@@ -22,7 +22,7 @@ defmodule Mix.Tasks.Holidefs.Download do
 
   """
 
-  @version "v2.3.0"
+  @version "v5.7.3"
   @endpoint "https://raw.githubusercontent.com/holidays/definitions/#{@version}"
   @path Path.join(:code.priv_dir(:holidefs), "/calendars/definitions")
 

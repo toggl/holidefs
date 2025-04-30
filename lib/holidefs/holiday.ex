@@ -37,8 +37,12 @@ defmodule Holidefs.Holiday do
   defp in_year_ranges?(list, year) when is_list(list),
     do: Enum.all?(list, &in_year_range?(&1, year))
 
+  defp in_year_ranges?(map, year) when is_map(map),
+    do: in_year_range?(map, year)
+
   defp in_year_range?(%{"before" => before_year}, year), do: year <= before_year
   defp in_year_range?(%{"after" => after_year}, year), do: year >= after_year
+  defp in_year_range?(%{"from" => from_year}, year), do: year >= from_year
   defp in_year_range?(%{"limited" => years}, year), do: year in years
   defp in_year_range?(%{"between" => years}, year), do: year in years
 

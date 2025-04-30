@@ -5,7 +5,10 @@ defmodule Holidefs.Definition.Store do
 
   alias Holidefs.Definition
 
-  definitions = Holidefs.locales() |> Enum.map(fn {c, n} -> Definition.load!(c, n) end) |> Enum.reject(&is_nil/1)
+  definitions =
+    Holidefs.locales()
+    |> Enum.map(fn {c, n} -> Definition.load!(c, n) end)
+    |> Enum.reject(&is_nil/1)
 
   @doc """
   Returns all the loaded definitions with their rules.

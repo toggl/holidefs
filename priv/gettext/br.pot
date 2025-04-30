@@ -37,6 +37,9 @@ msgstr ""
 msgid "Proclamação da República"
 msgstr ""
 
+msgid "Dia Nacional de Zumbi e da Consciência Negra"
+msgstr ""
+
 msgid "Natal"
 msgstr ""
 
